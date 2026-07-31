@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:06.082345+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "3bbe1b90-20eb-0bad-fd34-3175e9a99c93",
+    "display_name": "Corine538 Gracie337 Marks830",
+    "birth_date": "1966-06-21",
+    "age_at_dataset_reference_date": 60,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "3bbe1b90-20eb-0bad-1ff1-96776566389b",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1994-08-30T10:23:25-04:00",
+        "abatement": null,
+        "recorded_date": "1994-08-30T10:23:25-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "3bbe1b90-20eb-0bad-814a-77bd5af2dfbf",
+        "code_system": "http://snomed.info/sct",
+        "code": "91302008",
+        "display": "Sepsis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2006-01-20T09:23:25-05:00",
+        "abatement": null,
+        "recorded_date": "2006-01-20T09:23:25-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "3bbe1b90-20eb-0bad-7381-a954d5f3ed3b",
+        "code_system": "http://snomed.info/sct",
+        "code": "76571007",
+        "display": "Septic shock (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2006-01-20T09:53:25-05:00",
+        "abatement": null,
+        "recorded_date": "2006-01-20T09:53:25-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "3bbe1b90-20eb-0bad-f627-4e722ddf90f7",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-06T09:23:25-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-06T09:23:25-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "3bbe1b90-20eb-0bad-74f5-3eca83ebf5c5",
+        "code_system": "http://snomed.info/sct",
+        "code": "278860009",
+        "display": "Chronic low back pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-06T09:23:25-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-06T09:23:25-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "3bbe1b90-20eb-0bad-e478-8a3bab26d760",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-04-28T11:06:16-04:00",
+        "abatement": null,
+        "recorded_date": "2026-04-28T11:06:16-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "3bbe1b90-20eb-0bad-7971-74022902e095",
+        "code_system": "http://snomed.info/sct",
+        "code": "267020005",
+        "display": "History of tubal ligation (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2002-06-03T14:05:55-04:00",
+        "abatement": null,
+        "recorded_date": "2002-06-03T14:05:55-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "3bbe1b90-20eb-0bad-f776-64f0107dd3f8",
+        "code_system": "http://snomed.info/sct",
+        "code": "224295006",
+        "display": "Only received primary school education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1984-08-14T10:54:01-04:00",
+        "abatement": null,
+        "recorded_date": "1984-08-14T10:54:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "3bbe1b90-20eb-0bad-fb3c-b1ef47b0ffe3",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-04-11T11:02:04-04:00",
+        "abatement": null,
+        "recorded_date": "2023-04-11T11:02:04-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "3bbe1b90-20eb-0bad-6688-28483aa01aee",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-04-22T10:23:25-04:00",
+        "abatement": null,
+        "recorded_date": "2025-04-22T10:23:25-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_3bbe1b90-20eb-0bad-b289-0b74c46ce299",
+      "source_ids": [
+        "3bbe1b90-20eb-0bad-b289-0b74c46ce299"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "245134",
+      "raw_display": "72 HR Fentanyl 0.025 MG/HR Transdermal System",
+      "name": "72 HR Fentanyl 0.025 MG/HR Transdermal System",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-28T10:23:25-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999942797",
+          "display": "Dr. Eldridge510 Roob72"
+        },
+        "encounter_reference": "urn:uuid:3bbe1b90-20eb-0bad-c127-a92de37fb9cb"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Every seventy two hours (qualifier value)",
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 3.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [
+            "Every seventy two hours (qualifier value)"
+          ],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_3bbe1b90-20eb-0bad-d2a1-a43b3fa83bbc",
+      "source_ids": [
+        "3bbe1b90-20eb-0bad-d2a1-a43b3fa83bbc"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "835603",
+      "raw_display": "tramadol hydrochloride 50 MG Oral Tablet",
+      "name": "tramadol hydrochloride",
+      "strength": "50 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-28T10:23:25-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999942797",
+          "display": "Dr. Eldridge510 Roob72"
+        },
+        "encounter_reference": "urn:uuid:3bbe1b90-20eb-0bad-c127-a92de37fb9cb"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 2,
+      "CareTeam": 2,
+      "Claim": 46,
+      "Condition": 32,
+      "Device": 1,
+      "DiagnosticReport": 56,
+      "DocumentReference": 24,
+      "Encounter": 24,
+      "ExplanationOfBenefit": 46,
+      "ImagingStudy": 1,
+      "Immunization": 15,
+      "MedicationRequest": 22,
+      "Observation": 151,
+      "Patient": 1,
+      "Procedure": 89,
+      "Provenance": 1,
+      "SupplyDelivery": 12
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

@@ -1,0 +1,569 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:05.957150+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "2021b3bb-9b36-7905-573f-48933b0e28ff",
+    "display_name": "Cliff504 Gilbert263 Berge125",
+    "birth_date": "1955-05-25",
+    "age_at_dataset_reference_date": 71,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "2021b3bb-9b36-7905-8af9-41a7a3164a34",
+        "code_system": "http://snomed.info/sct",
+        "code": "473461003",
+        "display": "Educated to high school level (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1973-07-18T06:31:59-04:00",
+        "abatement": null,
+        "recorded_date": "1973-07-18T06:31:59-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-64fe-056ea64cf45d",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1977-07-27T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "1977-07-27T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-a01d-bd1b922751de",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1989-08-09T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "1989-08-09T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-b7ca-eb3207d791a8",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2003-06-18T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2003-06-18T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-f304-6d2ee35dc0bb",
+        "code_system": "http://snomed.info/sct",
+        "code": "237602007",
+        "display": "Metabolic syndrome X (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2008-06-11T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2008-06-11T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-f1cc-ed7ee0234a4b",
+        "code_system": "http://snomed.info/sct",
+        "code": "44054006",
+        "display": "Diabetes mellitus type 2 (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2008-06-11T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2008-06-11T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-6277-4fd8338ec7cc",
+        "code_system": "http://snomed.info/sct",
+        "code": "80394007",
+        "display": "Hyperglycemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2009-06-17T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2009-06-17T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-22cf-651636dd906f",
+        "code_system": "http://snomed.info/sct",
+        "code": "302870006",
+        "display": "Hypertriglyceridemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2009-06-17T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2009-06-17T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-39bc-d7fe8c5fb37e",
+        "code_system": "http://snomed.info/sct",
+        "code": "431855005",
+        "display": "Chronic kidney disease stage 1 (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-07-16T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2014-07-16T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-d590-d93b901c9f2f",
+        "code_system": "http://snomed.info/sct",
+        "code": "127013003",
+        "display": "Disorder of kidney due to diabetes mellitus (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-07-16T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2014-07-16T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-05ca-994dffbc4116",
+        "code_system": "http://snomed.info/sct",
+        "code": "431856006",
+        "display": "Chronic kidney disease stage 2 (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2016-02-24T04:46:00-05:00",
+        "abatement": null,
+        "recorded_date": "2016-02-24T04:46:00-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-de77-23d6efea4514",
+        "code_system": "http://snomed.info/sct",
+        "code": "90781000119102",
+        "display": "Microalbuminuria due to type 2 diabetes mellitus (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2016-02-24T04:46:00-05:00",
+        "abatement": null,
+        "recorded_date": "2016-02-24T04:46:00-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-395d-4d37f1b0cac8",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2019-07-31T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2019-07-31T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-95e9-b9676fa37204",
+        "code_system": "http://snomed.info/sct",
+        "code": "87433001",
+        "display": "Pulmonary emphysema (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-05-31T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "2023-05-31T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-3b6a-9e9e2cadb24c",
+        "code_system": "http://snomed.info/sct",
+        "code": "68496003",
+        "display": "Polyp of colon (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-05-31T08:55:25-04:00",
+        "abatement": null,
+        "recorded_date": "2025-05-31T08:55:25-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-679f-7aa440314eca",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-04-01T06:24:14-04:00",
+        "abatement": null,
+        "recorded_date": "2026-04-01T06:24:14-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "2021b3bb-9b36-7905-99b0-5e085adf36de",
+        "code_system": "http://snomed.info/sct",
+        "code": "428251008",
+        "display": "History of appendectomy (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1957-07-31T05:46:00-04:00",
+        "abatement": null,
+        "recorded_date": "1957-07-31T05:46:00-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "2021b3bb-9b36-7905-8374-ff463a6aae05",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-06-12T06:41:24-04:00",
+        "abatement": null,
+        "recorded_date": "2024-06-12T06:41:24-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "2021b3bb-9b36-7905-3837-931c51587ae9",
+        "code_system": "http://snomed.info/sct",
+        "code": "160904001",
+        "display": "Part-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-01-07T05:18:00-05:00",
+        "abatement": null,
+        "recorded_date": "2026-01-07T05:18:00-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "2021b3bb-9b36-7905-92e1-2490f22571b4",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-01-07T04:46:00-05:00",
+        "abatement": null,
+        "recorded_date": "2026-01-07T04:46:00-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [
+    {
+      "id": "2021b3bb-9b36-7905-865f-3ab4f78101b4",
+      "code_system": "http://snomed.info/sct",
+      "code": "609328004",
+      "substance": "Allergic disposition (finding)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1956-08-02T20:46:00-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "2021b3bb-9b36-7905-8c19-f2843cede4ae",
+      "code_system": "http://snomed.info/sct",
+      "code": "762952008",
+      "substance": "Peanut (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "food"
+      ],
+      "criticality": "low",
+      "recorded_date": "1956-08-02T20:46:00-04:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Eruption of skin (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        },
+        {
+          "manifestations": [
+            "Wheezing (finding)"
+          ],
+          "severity": null,
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    }
+  ],
+  "allergy_status": "recorded",
+  "medications": [
+    {
+      "id": "med_2021b3bb-9b36-7905-0e3c-bbeafc5d24f7",
+      "source_ids": [
+        "2021b3bb-9b36-7905-0e3c-bbeafc5d24f7"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "106892",
+      "raw_display": "insulin isophane, human 70 UNT/ML / insulin, regular, human 30 UNT/ML Injectable Suspension [Humulin]",
+      "name": "insulin isophane, human 70 UNT/ML / insulin, regular, human 30 UNT/ML Injectable Suspension [Humulin]",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Diabetes mellitus type 2 (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:2021b3bb-9b36-7905-f1cc-ed7ee0234a4b",
+          "code_system": "http://snomed.info/sct",
+          "code": "44054006",
+          "display": "Diabetes mellitus type 2 (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-01T05:46:00-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999994491",
+          "display": "Dr. Alysha630 Koch169"
+        },
+        "encounter_reference": "urn:uuid:2021b3bb-9b36-7905-6e4d-5e1033f4017f"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_2021b3bb-9b36-7905-f9b1-b8161edaf806",
+      "source_ids": [
+        "2021b3bb-9b36-7905-f9b1-b8161edaf806"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "245314",
+      "raw_display": "albuterol 5 MG/ML Inhalation Solution",
+      "name": "albuterol 5 MG/ML Inhalation Solution",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Pulmonary emphysema (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:2021b3bb-9b36-7905-95e9-b9676fa37204",
+          "code_system": "http://snomed.info/sct",
+          "code": "87433001",
+          "display": "Pulmonary emphysema (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-01T05:46:00-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999994491",
+          "display": "Dr. Alysha630 Koch169"
+        },
+        "encounter_reference": "urn:uuid:2021b3bb-9b36-7905-6e4d-5e1033f4017f"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_2021b3bb-9b36-7905-5963-1e3d8337e887",
+      "source_ids": [
+        "2021b3bb-9b36-7905-5963-1e3d8337e887"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "860975",
+      "raw_display": "24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet",
+      "name": "24 HR Metformin hydrochloride",
+      "strength": "500 MG",
+      "dose_form": "Extended Release Oral Tablet",
+      "purpose_labels": [
+        "Diabetes mellitus type 2 (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:2021b3bb-9b36-7905-f1cc-ed7ee0234a4b",
+          "code_system": "http://snomed.info/sct",
+          "code": "44054006",
+          "display": "Diabetes mellitus type 2 (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-01T05:46:00-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999994491",
+          "display": "Dr. Alysha630 Koch169"
+        },
+        "encounter_reference": "urn:uuid:2021b3bb-9b36-7905-6e4d-5e1033f4017f"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_2021b3bb-9b36-7905-b4d4-0f67af210126",
+      "source_ids": [
+        "2021b3bb-9b36-7905-b4d4-0f67af210126"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "896209",
+      "raw_display": "60 ACTUAT Fluticasone propionate 0.25 MG/ACTUAT / salmeterol 0.05 MG/ACTUAT Dry Powder Inhaler",
+      "name": "60 ACTUAT Fluticasone propionate 0.25 MG/ACTUAT / salmeterol 0.05 MG/ACTUAT Dry Powder Inhaler",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Pulmonary emphysema (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:2021b3bb-9b36-7905-95e9-b9676fa37204",
+          "code_system": "http://snomed.info/sct",
+          "code": "87433001",
+          "display": "Pulmonary emphysema (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-01T05:46:00-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999994491",
+          "display": "Dr. Alysha630 Koch169"
+        },
+        "encounter_reference": "urn:uuid:2021b3bb-9b36-7905-6e4d-5e1033f4017f"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "AllergyIntolerance": 2,
+      "CarePlan": 4,
+      "CareTeam": 4,
+      "Claim": 283,
+      "Condition": 102,
+      "Device": 24,
+      "DiagnosticReport": 425,
+      "DocumentReference": 107,
+      "Encounter": 107,
+      "ExplanationOfBenefit": 283,
+      "ImagingStudy": 21,
+      "Immunization": 14,
+      "Medication": 18,
+      "MedicationAdministration": 18,
+      "MedicationRequest": 176,
+      "Observation": 2628,
+      "Patient": 1,
+      "Procedure": 595,
+      "Provenance": 1,
+      "SupplyDelivery": 64
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:05.277077+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "67310669-3c27-fe42-d991-c1dce54788b0",
+    "display_name": "Cathryn51 Pattie91 Mills423",
+    "birth_date": "1920-08-05",
+    "age_at_dataset_reference_date": 105,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "67310669-3c27-fe42-c7e7-f4f125f53b36",
+        "code_system": "http://snomed.info/sct",
+        "code": "266934004",
+        "display": "Transport problem (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1938-09-29T14:09:48-05:00",
+        "abatement": null,
+        "recorded_date": "1938-09-29T14:09:48-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-37d1-15bcae70e9ed",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1951-10-18T13:34:43-05:00",
+        "abatement": null,
+        "recorded_date": "1951-10-18T13:34:43-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-a441-20a96f15559f",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1970-08-06T14:34:43-04:00",
+        "abatement": null,
+        "recorded_date": "1970-08-06T14:34:43-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-32bb-799a07c9f888",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1971-08-12T14:34:43-04:00",
+        "abatement": null,
+        "recorded_date": "1971-08-12T14:34:43-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-2a5a-824b28777085",
+        "code_system": "http://snomed.info/sct",
+        "code": "239873007",
+        "display": "Osteoarthritis of knee (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1978-07-12T14:34:43-04:00",
+        "abatement": null,
+        "recorded_date": "1978-07-12T14:34:43-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-3a42-cf4b18d28f45",
+        "code_system": "http://snomed.info/sct",
+        "code": "55822004",
+        "display": "Hyperlipidemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1988-11-17T13:34:43-05:00",
+        "abatement": null,
+        "recorded_date": "1988-11-17T13:34:43-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-1070-c4513bddd676",
+        "code_system": "http://snomed.info/sct",
+        "code": "64859006",
+        "display": "Osteoporosis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-11-29T13:34:43-05:00",
+        "abatement": null,
+        "recorded_date": "1990-11-29T13:34:43-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-21db-d8f3017002c4",
+        "code_system": "http://snomed.info/sct",
+        "code": "40055000",
+        "display": "Chronic sinusitis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2012-06-02T05:34:43-04:00",
+        "abatement": null,
+        "recorded_date": "2012-06-02T05:34:43-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-1b01-d93c45bd1335",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2020-06-04T14:34:43-04:00",
+        "abatement": null,
+        "recorded_date": "2020-06-04T14:34:43-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-9969-4c4b8ca97a5e",
+        "code_system": "http://snomed.info/sct",
+        "code": "49436004",
+        "display": "Atrial fibrillation (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-06-06T14:34:43-04:00",
+        "abatement": null,
+        "recorded_date": "2024-06-06T14:34:43-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-1780-f60603c49b26",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-06-18T15:06:47-04:00",
+        "abatement": null,
+        "recorded_date": "2026-06-18T15:06:47-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "67310669-3c27-fe42-aa7d-4738003b83c4",
+        "code_system": "http://snomed.info/sct",
+        "code": "267020005",
+        "display": "History of tubal ligation (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1956-07-05T18:08:03-04:00",
+        "abatement": null,
+        "recorded_date": "1956-07-05T18:08:03-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "67310669-3c27-fe42-a89b-46f775242184",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1938-09-29T14:09:48-05:00",
+        "abatement": null,
+        "recorded_date": "1938-09-29T14:09:48-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-9309-753ab6da3893",
+        "code_system": "http://snomed.info/sct",
+        "code": "713458007",
+        "display": "Lack of access to transportation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1939-10-05T14:05:59-05:00",
+        "abatement": null,
+        "recorded_date": "1939-10-05T14:05:59-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-8b48-8710ac4380a0",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2022-07-21T15:34:05-04:00",
+        "abatement": null,
+        "recorded_date": "2022-07-21T15:34:05-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "67310669-3c27-fe42-2c88-2308252b711a",
+        "code_system": "http://snomed.info/sct",
+        "code": "422650009",
+        "display": "Social isolation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-06-18T15:06:47-04:00",
+        "abatement": null,
+        "recorded_date": "2026-06-18T15:06:47-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [
+    {
+      "id": "67310669-3c27-fe42-7ef1-af5756361862",
+      "code_system": "http://snomed.info/sct",
+      "code": "609328004",
+      "substance": "Allergic disposition (finding)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1921-07-16T17:34:43-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "67310669-3c27-fe42-c299-4f97cb4b5061",
+      "code_system": "http://snomed.info/sct",
+      "code": "84489001",
+      "substance": "Mold (organism)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1921-07-16T17:34:43-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "67310669-3c27-fe42-cfe9-e83a190bb80b",
+      "code_system": "http://snomed.info/sct",
+      "code": "256277009",
+      "substance": "Grass pollen (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1921-07-16T17:34:43-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "67310669-3c27-fe42-f2a0-dd298e2ef748",
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1191",
+      "substance": "Aspirin",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "medication"
+      ],
+      "criticality": "low",
+      "recorded_date": "1921-07-16T17:34:43-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "67310669-3c27-fe42-482b-29134a205cca",
+      "code_system": "http://snomed.info/sct",
+      "code": "102263004",
+      "substance": "Eggs (edible) (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "food"
+      ],
+      "criticality": "low",
+      "recorded_date": "1921-07-16T17:34:43-04:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Eruption of skin (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    }
+  ],
+  "allergy_status": "recorded",
+  "medications": [
+    {
+      "id": "med_67310669-3c27-fe42-f7ff-6c7671f15881",
+      "source_ids": [
+        "67310669-3c27-fe42-f7ff-6c7671f15881"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "314231",
+      "raw_display": "Simvastatin 10 MG Oral Tablet",
+      "name": "Simvastatin",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Hyperlipidemia (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:67310669-3c27-fe42-3a42-cf4b18d28f45",
+          "code_system": "http://snomed.info/sct",
+          "code": "55822004",
+          "display": "Hyperlipidemia (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-06-19T14:34:43-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999985390",
+          "display": "Dr. Johna806 Klein929"
+        },
+        "encounter_reference": "urn:uuid:67310669-3c27-fe42-a545-cecb97b4dea4"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_67310669-3c27-fe42-d373-68a56b58e29c",
+      "source_ids": [
+        "67310669-3c27-fe42-d373-68a56b58e29c"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "897685",
+      "raw_display": "verapamil hydrochloride 80 MG Oral Tablet [Calan]",
+      "name": "verapamil hydrochloride",
+      "strength": "80 MG",
+      "dose_form": "Oral Tablet [Calan]",
+      "purpose_labels": [
+        "Atrial fibrillation (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:67310669-3c27-fe42-9969-4c4b8ca97a5e",
+          "code_system": "http://snomed.info/sct",
+          "code": "49436004",
+          "display": "Atrial fibrillation (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-06-18T14:34:43-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999962894",
+          "display": "Dr. Irina619 Stiedemann542"
+        },
+        "encounter_reference": "urn:uuid:67310669-3c27-fe42-8312-903827cae865"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_67310669-3c27-fe42-5c5f-60fe570d2785",
+      "source_ids": [
+        "67310669-3c27-fe42-5c5f-60fe570d2785"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "197604",
+      "raw_display": "Digoxin 0.125 MG Oral Tablet",
+      "name": "Digoxin",
+      "strength": "0.125 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Atrial fibrillation (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:67310669-3c27-fe42-9969-4c4b8ca97a5e",
+          "code_system": "http://snomed.info/sct",
+          "code": "49436004",
+          "display": "Atrial fibrillation (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-06-18T14:34:43-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999962894",
+          "display": "Dr. Irina619 Stiedemann542"
+        },
+        "encounter_reference": "urn:uuid:67310669-3c27-fe42-8312-903827cae865"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_67310669-3c27-fe42-a118-b81ab9be97d8",
+      "source_ids": [
+        "67310669-3c27-fe42-a118-b81ab9be97d8"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "855332",
+      "raw_display": "Warfarin Sodium 5 MG Oral Tablet",
+      "name": "Warfarin Sodium",
+      "strength": "5 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Atrial fibrillation (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:67310669-3c27-fe42-9969-4c4b8ca97a5e",
+          "code_system": "http://snomed.info/sct",
+          "code": "49436004",
+          "display": "Atrial fibrillation (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-06-18T14:34:43-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999962894",
+          "display": "Dr. Irina619 Stiedemann542"
+        },
+        "encounter_reference": "urn:uuid:67310669-3c27-fe42-8312-903827cae865"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_67310669-3c27-fe42-039c-b0d8d89c81bd",
+      "source_ids": [
+        "67310669-3c27-fe42-039c-b0d8d89c81bd"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "849574",
+      "raw_display": "Naproxen sodium 220 MG Oral Tablet",
+      "name": "Naproxen sodium",
+      "strength": "220 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoarthritis of knee (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:67310669-3c27-fe42-2a5a-824b28777085",
+          "code_system": "http://snomed.info/sct",
+          "code": "239873007",
+          "display": "Osteoarthritis of knee (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1978-07-12T14:34:43-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999985390",
+          "display": "Dr. Johna806 Klein929"
+        },
+        "encounter_reference": "urn:uuid:67310669-3c27-fe42-8ee2-e2a0070f2b6f"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "AllergyIntolerance": 5,
+      "CarePlan": 6,
+      "CareTeam": 6,
+      "Claim": 99,
+      "Condition": 45,
+      "Device": 13,
+      "DiagnosticReport": 136,
+      "DocumentReference": 60,
+      "Encounter": 60,
+      "ExplanationOfBenefit": 99,
+      "ImagingStudy": 7,
+      "Immunization": 7,
+      "Medication": 6,
+      "MedicationAdministration": 6,
+      "MedicationRequest": 39,
+      "Observation": 518,
+      "Patient": 1,
+      "Procedure": 160,
+      "Provenance": 1,
+      "SupplyDelivery": 47
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

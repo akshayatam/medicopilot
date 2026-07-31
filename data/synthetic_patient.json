@@ -1,0 +1,86 @@
+{
+  "patient": {
+    "id": "patient_001",
+    "display_name": "Anita Sharma",
+    "age": 76,
+    "preferred_language": "Hindi",
+    "timezone": "Asia/Kolkata",
+    "caregiver": {
+      "name": "Rohan Sharma",
+      "relationship": "Grandson"
+    }
+  },
+  "medications": [
+    {
+      "id": "med_amlodipine",
+      "name": "Amlodipine",
+      "strength": "5 mg",
+      "purpose_label": "blood pressure",
+      "schedule": [
+        {
+          "time": "08:00",
+          "meal_context": "after breakfast"
+        }
+      ],
+      "instructions": "Take exactly as recorded from the verified prescription.",
+      "source": "synthetic prescription",
+      "active": true
+    },
+    {
+      "id": "med_metformin",
+      "name": "Metformin",
+      "strength": "500 mg",
+      "purpose_label": "blood sugar",
+      "schedule": [
+        {
+          "time": "20:00",
+          "meal_context": "after dinner"
+        }
+      ],
+      "instructions": "Take exactly as recorded from the verified prescription.",
+      "source": "synthetic prescription",
+      "active": true
+    },
+    {
+      "id": "med_vitamin_d",
+      "name": "Vitamin D3",
+      "strength": "1000 IU",
+      "purpose_label": "vitamin supplement",
+      "schedule": [
+        {
+          "time": "13:00",
+          "meal_context": "after lunch"
+        }
+      ],
+      "instructions": "Take exactly as recorded from the verified prescription.",
+      "source": "synthetic prescription",
+      "active": true
+    }
+  ],
+  "dose_logs": [
+    {
+      "id": "dose_001",
+      "medication_id": "med_amlodipine",
+      "scheduled_at": "2026-08-01T08:00:00+05:30",
+      "status": "taken",
+      "taken_at": "2026-08-01T08:11:00+05:30",
+      "recorded_by": "patient"
+    },
+    {
+      "id": "dose_002",
+      "medication_id": "med_vitamin_d",
+      "scheduled_at": "2026-08-01T13:00:00+05:30",
+      "status": "upcoming",
+      "taken_at": null,
+      "recorded_by": null
+    },
+    {
+      "id": "dose_003",
+      "medication_id": "med_metformin",
+      "scheduled_at": "2026-08-01T20:00:00+05:30",
+      "status": "upcoming",
+      "taken_at": null,
+      "recorded_by": null
+    }
+  ]
+}

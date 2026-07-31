@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Raw generated Synthea datasets
+data/synthea/output/
+
+# Keep small curated application datasets elsewhere
+# data/runtime_patients/ remains tracked
+# data/reconciliation/ remains tracked

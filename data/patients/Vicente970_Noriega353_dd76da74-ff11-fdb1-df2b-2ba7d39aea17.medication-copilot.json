@@ -1,0 +1,681 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:31.347110+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "dd76da74-ff11-fdb1-df2b-2ba7d39aea17",
+    "display_name": "Vicente970 Martín25 Noriega353",
+    "birth_date": "1962-09-07",
+    "age_at_dataset_reference_date": 63,
+    "gender": "male",
+    "preferred_language": "es",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "dd76da74-ff11-fdb1-3e34-5c313744d484",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1974-05-24T04:32:23-04:00",
+        "abatement": null,
+        "recorded_date": "1974-05-24T04:32:23-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-a980-188e9b224e64",
+        "code_system": "http://snomed.info/sct",
+        "code": "160968000",
+        "display": "Risk activity involvement (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1978-10-20T05:18:55-04:00",
+        "abatement": null,
+        "recorded_date": "1978-10-20T05:18:55-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-0382-7f189f448440",
+        "code_system": "http://snomed.info/sct",
+        "code": "266934004",
+        "display": "Transport problem (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1980-10-31T04:16:13-05:00",
+        "abatement": null,
+        "recorded_date": "1980-10-31T04:16:13-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-5729-53c84212d4d2",
+        "code_system": "http://snomed.info/sct",
+        "code": "195967001",
+        "display": "Asthma (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1982-11-12T03:32:23-05:00",
+        "abatement": null,
+        "recorded_date": "1982-11-12T03:32:23-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-97e4-7625225b5347",
+        "code_system": "http://snomed.info/sct",
+        "code": "446654005",
+        "display": "Refugee (person)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1982-11-12T04:12:35-05:00",
+        "abatement": null,
+        "recorded_date": "1982-11-12T04:12:35-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-5a3c-e8595695aab5",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2003-03-07T03:32:23-05:00",
+        "abatement": null,
+        "recorded_date": "2003-03-07T03:32:23-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-fc40-e703349186bd",
+        "code_system": "http://snomed.info/sct",
+        "code": "239873007",
+        "display": "Osteoarthritis of knee (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2019-06-14T04:32:23-04:00",
+        "abatement": null,
+        "recorded_date": "2019-06-14T04:32:23-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-115f-a0a1522424d8",
+        "code_system": "http://snomed.info/sct",
+        "code": "423315002",
+        "display": "Limited social contact (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-07-11T05:22:22-04:00",
+        "abatement": null,
+        "recorded_date": "2025-07-11T05:22:22-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [],
+    "social_context": [
+      {
+        "id": "dd76da74-ff11-fdb1-7036-3bcd68e6f8fb",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1980-10-31T04:16:13-05:00",
+        "abatement": null,
+        "recorded_date": "1980-10-31T04:16:13-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-15e4-9cf62ba3fe0b",
+        "code_system": "http://snomed.info/sct",
+        "code": "713458007",
+        "display": "Lack of access to transportation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1982-11-12T04:12:35-05:00",
+        "abatement": null,
+        "recorded_date": "1982-11-12T04:12:35-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-f44f-6483c15f3c8a",
+        "code_system": "http://snomed.info/sct",
+        "code": "422650009",
+        "display": "Social isolation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-07-05T05:04:34-04:00",
+        "abatement": null,
+        "recorded_date": "2024-07-05T05:04:34-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dd76da74-ff11-fdb1-91b4-874afde3cca8",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-07-17T05:03:46-04:00",
+        "abatement": null,
+        "recorded_date": "2026-07-17T05:03:46-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "dd76da74-ff11-fdb1-ecad-84f834edd11e",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-07-11T04:32:23-04:00",
+        "abatement": null,
+        "recorded_date": "2025-07-11T04:32:23-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [
+    {
+      "id": "dd76da74-ff11-fdb1-00aa-f56f423ca4f1",
+      "code_system": "http://snomed.info/sct",
+      "code": "609328004",
+      "substance": "Allergic disposition (finding)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-53db-c56d0d187e1f",
+      "code_system": "http://snomed.info/sct",
+      "code": "288328004",
+      "substance": "Bee venom (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-1956-532ec47947ac",
+      "code_system": "http://snomed.info/sct",
+      "code": "84489001",
+      "substance": "Mold (organism)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-c986-086a422352c1",
+      "code_system": "http://snomed.info/sct",
+      "code": "260147004",
+      "substance": "House dust mite (organism)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-7b13-a4e78114f0c8",
+      "code_system": "http://snomed.info/sct",
+      "code": "264287008",
+      "substance": "Animal dander (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Wheal (finding)"
+          ],
+          "severity": null,
+          "onset": null
+        },
+        {
+          "manifestations": [
+            "Rhinoconjunctivitis (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-02fb-4a1c99bf66cc",
+      "code_system": "http://snomed.info/sct",
+      "code": "256277009",
+      "substance": "Grass pollen (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-3d25-eafa741ef69a",
+      "code_system": "http://snomed.info/sct",
+      "code": "782576004",
+      "substance": "Tree pollen (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-0856-f1002e67812b",
+      "code_system": "http://snomed.info/sct",
+      "code": "102263004",
+      "substance": "Eggs (edible) (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "food"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Allergic angioedema (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "dd76da74-ff11-fdb1-eef9-d99615854fcb",
+      "code_system": "http://snomed.info/sct",
+      "code": "442571000124108",
+      "substance": "Tree nut (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "food"
+      ],
+      "criticality": "low",
+      "recorded_date": "1963-03-27T07:32:23-05:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Wheal (finding)"
+          ],
+          "severity": null,
+          "onset": null
+        },
+        {
+          "manifestations": [
+            "Eruption of skin (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        },
+        {
+          "manifestations": [
+            "Anaphylaxis (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        },
+        {
+          "manifestations": [
+            "Allergic angioedema (disorder)"
+          ],
+          "severity": null,
+          "onset": null
+        },
+        {
+          "manifestations": [
+            "Cough (finding)"
+          ],
+          "severity": null,
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    }
+  ],
+  "allergy_status": "recorded",
+  "medications": [
+    {
+      "id": "med_dd76da74-ff11-fdb1-f591-35d1da90d4b0",
+      "source_ids": [
+        "dd76da74-ff11-fdb1-f591-35d1da90d4b0"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "745752",
+      "raw_display": "NDA021457 200 ACTUAT albuterol 0.09 MG/ACTUAT Metered Dose Inhaler [ProAir]",
+      "name": "NDA021457 200 ACTUAT albuterol 0.09 MG/ACTUAT Metered Dose Inhaler [ProAir]",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Childhood asthma (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": null,
+          "code_system": "http://snomed.info/sct",
+          "code": "233678006",
+          "display": "Childhood asthma (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-07-17T04:32:23-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:dd76da74-ff11-fdb1-07c4-c319bfccf4a6"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_dd76da74-ff11-fdb1-37a2-35f280b12ca9",
+      "source_ids": [
+        "dd76da74-ff11-fdb1-37a2-35f280b12ca9"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "349094",
+      "raw_display": "budesonide 0.125 MG/ML Inhalation Suspension",
+      "name": "budesonide 0.125 MG/ML Inhalation Suspension",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Childhood asthma (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": null,
+          "code_system": "http://snomed.info/sct",
+          "code": "233678006",
+          "display": "Childhood asthma (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-07-17T04:32:23-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:dd76da74-ff11-fdb1-07c4-c319bfccf4a6"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_dd76da74-ff11-fdb1-db63-df3ff9467369",
+      "source_ids": [
+        "dd76da74-ff11-fdb1-db63-df3ff9467369"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "849574",
+      "raw_display": "Naproxen sodium 220 MG Oral Tablet",
+      "name": "Naproxen sodium",
+      "strength": "220 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoarthritis of knee (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:dd76da74-ff11-fdb1-fc40-e703349186bd",
+          "code_system": "http://snomed.info/sct",
+          "code": "239873007",
+          "display": "Osteoarthritis of knee (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2019-06-14T04:32:23-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999989590",
+          "display": "Dr. Rhett759 Padberg411"
+        },
+        "encounter_reference": "urn:uuid:dd76da74-ff11-fdb1-e954-f253b90e74d0"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_dd76da74-ff11-fdb1-a3af-164e67a44fd4",
+      "source_ids": [
+        "dd76da74-ff11-fdb1-a3af-164e67a44fd4"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1049630",
+      "raw_display": "diphenhydrAMINE Hydrochloride 25 MG Oral Tablet",
+      "name": "diphenhydrAMINE Hydrochloride",
+      "strength": "25 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1967-11-17T03:32:23-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999989590",
+          "display": "Dr. Rhett759 Padberg411"
+        },
+        "encounter_reference": "urn:uuid:dd76da74-ff11-fdb1-4a4a-4fa572938927"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "AllergyIntolerance": 9,
+      "CarePlan": 5,
+      "CareTeam": 5,
+      "Claim": 78,
+      "Condition": 38,
+      "Device": 7,
+      "DiagnosticReport": 83,
+      "DocumentReference": 47,
+      "Encounter": 47,
+      "ExplanationOfBenefit": 78,
+      "ImagingStudy": 4,
+      "Immunization": 11,
+      "Medication": 2,
+      "MedicationAdministration": 2,
+      "MedicationRequest": 31,
+      "Observation": 169,
+      "Patient": 1,
+      "Procedure": 105,
+      "Provenance": 1,
+      "SupplyDelivery": 16
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

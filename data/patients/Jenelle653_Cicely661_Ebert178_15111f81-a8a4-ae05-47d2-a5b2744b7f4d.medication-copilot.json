@@ -1,0 +1,423 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:16.556065+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "15111f81-a8a4-ae05-47d2-a5b2744b7f4d",
+    "display_name": "Jenelle653 Cicely661 Ebert178",
+    "birth_date": "1954-07-22",
+    "age_at_dataset_reference_date": 72,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "15111f81-a8a4-ae05-cad6-4836c60ae88c",
+        "code_system": "http://snomed.info/sct",
+        "code": "473461003",
+        "display": "Educated to high school level (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1972-08-24T03:39:18-04:00",
+        "abatement": null,
+        "recorded_date": "1972-08-24T03:39:18-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-f714-882cf90616f7",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1979-10-04T02:51:49-04:00",
+        "abatement": null,
+        "recorded_date": "1979-10-04T02:51:49-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-e9f3-0da28d675351",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1979-10-04T02:51:49-04:00",
+        "abatement": null,
+        "recorded_date": "1979-10-04T02:51:49-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-ac7b-0da0a2aecbe1",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1988-10-13T02:51:49-04:00",
+        "abatement": null,
+        "recorded_date": "1988-10-13T02:51:49-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-1ab4-430cc678520d",
+        "code_system": "http://snomed.info/sct",
+        "code": "59621000",
+        "display": "Essential hypertension (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1994-07-28T02:51:49-04:00",
+        "abatement": null,
+        "recorded_date": "1994-07-28T02:51:49-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-483e-2db6e9703793",
+        "code_system": "http://snomed.info/sct",
+        "code": "237602007",
+        "display": "Metabolic syndrome X (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1995-08-03T02:51:49-04:00",
+        "abatement": null,
+        "recorded_date": "1995-08-03T02:51:49-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-b5d7-2824b88075d0",
+        "code_system": "http://snomed.info/sct",
+        "code": "706893006",
+        "display": "Victim of intimate partner abuse (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2015-12-03T03:02:49-05:00",
+        "abatement": null,
+        "recorded_date": "2015-12-03T03:02:49-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "15111f81-a8a4-ae05-112f-459f2f4942bf",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-01-29T02:22:20-05:00",
+        "abatement": null,
+        "recorded_date": "2026-01-29T02:22:20-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "15111f81-a8a4-ae05-ffa4-eb393fc404d3",
+        "code_system": "http://snomed.info/sct",
+        "code": "267020005",
+        "display": "History of tubal ligation (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-02-18T05:23:31-05:00",
+        "abatement": null,
+        "recorded_date": "1990-02-18T05:23:31-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "15111f81-a8a4-ae05-6e3b-765c60f067f2",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2016-12-08T02:49:01-05:00",
+        "abatement": null,
+        "recorded_date": "2016-12-08T02:49:01-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_15111f81-a8a4-ae05-00e7-3fc06ee3423e",
+      "source_ids": [
+        "15111f81-a8a4-ae05-00e7-3fc06ee3423e"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "310798",
+      "raw_display": "Hydrochlorothiazide 25 MG Oral Tablet",
+      "name": "Hydrochlorothiazide",
+      "strength": "25 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Essential hypertension (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:15111f81-a8a4-ae05-1ab4-430cc678520d",
+          "code_system": "http://snomed.info/sct",
+          "code": "59621000",
+          "display": "Essential hypertension (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-01-29T01:51:49-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999974097",
+          "display": "Dr. Mayola305 Hauck852"
+        },
+        "encounter_reference": "urn:uuid:15111f81-a8a4-ae05-71d2-9a586d7324a2"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_15111f81-a8a4-ae05-a1ce-ca3a9b9bfaf6",
+      "source_ids": [
+        "15111f81-a8a4-ae05-a1ce-ca3a9b9bfaf6"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "314076",
+      "raw_display": "lisinopril 10 MG Oral Tablet",
+      "name": "lisinopril",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Essential hypertension (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:15111f81-a8a4-ae05-1ab4-430cc678520d",
+          "code_system": "http://snomed.info/sct",
+          "code": "59621000",
+          "display": "Essential hypertension (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-01-29T01:51:49-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999974097",
+          "display": "Dr. Mayola305 Hauck852"
+        },
+        "encounter_reference": "urn:uuid:15111f81-a8a4-ae05-71d2-9a586d7324a2"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_15111f81-a8a4-ae05-f252-7dcdf663e514",
+      "source_ids": [
+        "15111f81-a8a4-ae05-f252-7dcdf663e514"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "308136",
+      "raw_display": "amLODIPine 2.5 MG Oral Tablet",
+      "name": "amLODIPine",
+      "strength": "2.5 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Essential hypertension (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:15111f81-a8a4-ae05-1ab4-430cc678520d",
+          "code_system": "http://snomed.info/sct",
+          "code": "59621000",
+          "display": "Essential hypertension (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-01-29T01:51:49-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999974097",
+          "display": "Dr. Mayola305 Hauck852"
+        },
+        "encounter_reference": "urn:uuid:15111f81-a8a4-ae05-71d2-9a586d7324a2"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 2,
+      "CareTeam": 2,
+      "Claim": 72,
+      "Condition": 29,
+      "Device": 5,
+      "DiagnosticReport": 89,
+      "DocumentReference": 32,
+      "Encounter": 32,
+      "ExplanationOfBenefit": 72,
+      "ImagingStudy": 1,
+      "Immunization": 16,
+      "Medication": 1,
+      "MedicationAdministration": 1,
+      "MedicationRequest": 40,
+      "Observation": 301,
+      "Patient": 1,
+      "Procedure": 120,
+      "Provenance": 1,
+      "SupplyDelivery": 31
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

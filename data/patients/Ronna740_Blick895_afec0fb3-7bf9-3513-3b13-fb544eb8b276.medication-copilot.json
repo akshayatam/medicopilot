@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:27.227880+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "afec0fb3-7bf9-3513-3b13-fb544eb8b276",
+    "display_name": "Ronna740 Blick895",
+    "birth_date": "1923-01-05",
+    "age_at_dataset_reference_date": 103,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "afec0fb3-7bf9-3513-97db-7ea26128a110",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1945-03-09T11:57:06-04:00",
+        "abatement": null,
+        "recorded_date": "1945-03-09T11:57:06-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-4761-70abf1f69ff5",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1954-11-26T10:57:06-05:00",
+        "abatement": null,
+        "recorded_date": "1954-11-26T10:57:06-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-550a-da6b9b879045",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1962-06-01T11:57:06-04:00",
+        "abatement": null,
+        "recorded_date": "1962-06-01T11:57:06-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-4c2e-b18c0dbf5d76",
+        "code_system": "http://snomed.info/sct",
+        "code": "197927001",
+        "display": "Recurrent urinary tract infection (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1968-04-30T20:27:49-04:00",
+        "abatement": null,
+        "recorded_date": "1968-04-30T20:27:49-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-e85d-293811179a3b",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1969-02-14T10:57:06-05:00",
+        "abatement": null,
+        "recorded_date": "1969-02-14T10:57:06-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-2db8-8959e07a3eac",
+        "code_system": "http://snomed.info/sct",
+        "code": "40055000",
+        "display": "Chronic sinusitis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2009-03-04T09:57:06-05:00",
+        "abatement": null,
+        "recorded_date": "2009-03-04T09:57:06-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-de53-be739a9052af",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-10-25T12:46:18-04:00",
+        "abatement": null,
+        "recorded_date": "2024-10-25T12:46:18-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "afec0fb3-7bf9-3513-46b6-6468e440157e",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1961-05-27T11:57:06-04:00",
+        "abatement": null,
+        "recorded_date": "1961-05-27T11:57:06-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "afec0fb3-7bf9-3513-75b9-c6fb5707f232",
+        "code_system": "http://snomed.info/sct",
+        "code": "105531004",
+        "display": "Housing unsatisfactory (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1941-02-28T11:41:55-05:00",
+        "abatement": null,
+        "recorded_date": "1941-02-28T11:41:55-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-7df7-f9421cdc0d50",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1941-02-28T11:41:55-05:00",
+        "abatement": null,
+        "recorded_date": "1941-02-28T11:41:55-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "afec0fb3-7bf9-3513-75c8-08cef6e4987b",
+        "code_system": "http://snomed.info/sct",
+        "code": "160904001",
+        "display": "Part-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-10-31T12:52:52-04:00",
+        "abatement": null,
+        "recorded_date": "2025-10-31T12:52:52-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "afec0fb3-7bf9-3513-3852-0bcbc7adeb18",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-10-31T11:57:06-04:00",
+        "abatement": null,
+        "recorded_date": "2025-10-31T11:57:06-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 2,
+      "CareTeam": 2,
+      "Claim": 36,
+      "Condition": 36,
+      "Device": 10,
+      "DiagnosticReport": 80,
+      "DocumentReference": 33,
+      "Encounter": 33,
+      "ExplanationOfBenefit": 36,
+      "ImagingStudy": 5,
+      "Immunization": 10,
+      "Medication": 2,
+      "MedicationAdministration": 2,
+      "MedicationRequest": 3,
+      "Observation": 254,
+      "Patient": 1,
+      "Procedure": 116,
+      "Provenance": 1,
+      "SupplyDelivery": 38
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

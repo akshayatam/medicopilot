@@ -1,0 +1,322 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:18.752428+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "bc53bd85-f736-1854-2547-033fc7998fd3",
+    "display_name": "Kevin729 Colby655 Kling921",
+    "birth_date": "1962-06-11",
+    "age_at_dataset_reference_date": 64,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "bc53bd85-f736-1854-45fb-094bf17b96d1",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2010-07-05T19:33:24-04:00",
+        "abatement": null,
+        "recorded_date": "2010-07-05T19:33:24-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-c912-b2cc2f7f0c69",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-05T18:33:24-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-05T18:33:24-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-729b-8662e29ecbd3",
+        "code_system": "http://snomed.info/sct",
+        "code": "278860009",
+        "display": "Chronic low back pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-05T18:33:24-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-05T18:33:24-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-e1cd-2c01715495d6",
+        "code_system": "http://snomed.info/sct",
+        "code": "1121000119107",
+        "display": "Chronic neck pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-05T18:33:24-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-05T18:33:24-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-8e9a-7f8170afd388",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2016-07-04T19:33:24-04:00",
+        "abatement": null,
+        "recorded_date": "2016-07-04T19:33:24-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-c09d-80e56bec11c0",
+        "code_system": "http://snomed.info/sct",
+        "code": "68496003",
+        "display": "Polyp of colon (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2017-06-18T20:43:17-04:00",
+        "abatement": null,
+        "recorded_date": "2017-06-18T20:43:17-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-6644-18ee1b0ad895",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2018-04-16T19:33:24-04:00",
+        "abatement": null,
+        "recorded_date": "2018-04-16T19:33:24-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-d8d5-39ed1873969c",
+        "code_system": "http://snomed.info/sct",
+        "code": "741062008",
+        "display": "Not in labor force (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-08-25T20:18:09-04:00",
+        "abatement": null,
+        "recorded_date": "2025-08-25T20:18:09-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-e881-7d8d8d995a67",
+        "code_system": "http://snomed.info/sct",
+        "code": "423315002",
+        "display": "Limited social contact (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-08-25T20:18:09-04:00",
+        "abatement": null,
+        "recorded_date": "2025-08-25T20:18:09-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-5146-17f9d131ebd2",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-08-25T20:18:09-04:00",
+        "abatement": null,
+        "recorded_date": "2025-08-25T20:18:09-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-97d3-a19cb5d5e75c",
+        "code_system": "http://snomed.info/sct",
+        "code": "40055000",
+        "display": "Chronic sinusitis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-10-18T19:33:24-04:00",
+        "abatement": null,
+        "recorded_date": "2025-10-18T19:33:24-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [],
+    "social_context": [
+      {
+        "id": "bc53bd85-f736-1854-500f-4b7d65f72c91",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1980-08-04T20:21:57-04:00",
+        "abatement": null,
+        "recorded_date": "1980-08-04T20:21:57-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "bc53bd85-f736-1854-6481-9ac7bc7fb6a2",
+        "code_system": "http://snomed.info/sct",
+        "code": "422650009",
+        "display": "Social isolation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1981-08-10T20:15:04-04:00",
+        "abatement": null,
+        "recorded_date": "1981-08-10T20:15:04-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "bc53bd85-f736-1854-21b4-ef7f3defb10c",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2022-08-08T19:33:24-04:00",
+        "abatement": null,
+        "recorded_date": "2022-08-08T19:33:24-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_bc53bd85-f736-1854-592f-f8144edf001e",
+      "source_ids": [
+        "bc53bd85-f736-1854-592f-f8144edf001e"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "209387",
+      "raw_display": "Acetaminophen 325 MG Oral Tablet [Tylenol]",
+      "name": "Acetaminophen",
+      "strength": "325 MG",
+      "dose_form": "Oral Tablet [Tylenol]",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-08-25T19:33:24-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999960591",
+          "display": "Dr. Sancho742 Aponte375"
+        },
+        "encounter_reference": "urn:uuid:bc53bd85-f736-1854-bde8-7f7749c227d6"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Every four to six hours (qualifier value)",
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 4,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [
+            "Every four to six hours (qualifier value)"
+          ],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 5,
+      "CareTeam": 5,
+      "Claim": 57,
+      "Condition": 42,
+      "Device": 12,
+      "DiagnosticReport": 78,
+      "DocumentReference": 41,
+      "Encounter": 41,
+      "ExplanationOfBenefit": 57,
+      "ImagingStudy": 5,
+      "Immunization": 12,
+      "Medication": 2,
+      "MedicationAdministration": 2,
+      "MedicationRequest": 16,
+      "Observation": 241,
+      "Patient": 1,
+      "Procedure": 136,
+      "Provenance": 1,
+      "SupplyDelivery": 40
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

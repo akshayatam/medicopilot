@@ -1,0 +1,129 @@
+{
+  "schema_version": "2.0",
+  "source_record": {
+    "patient": {
+      "id": "demo-unready-001",
+      "display_name": "Marcus Chen",
+      "birth_date": "1950-01-01",
+      "age_at_dataset_reference_date": 76,
+      "gender": "female",
+      "preferred_language": "en-US",
+      "timezone": "America/New_York"
+    },
+    "conditions": {
+      "clinical_conditions": [],
+      "historical_conditions": [],
+      "social_context": [
+        {
+          "display": "Sensitive synthetic social context",
+          "visibility": {
+            "include_in_medication_context": false,
+            "show_in_patient_ui": false
+          }
+        }
+      ],
+      "administrative_flags": []
+    },
+    "allergies": [],
+    "allergy_status": "not_recorded",
+    "medications": [
+      {
+        "id": "src_order_a",
+        "fhir_resource_id": "order_a",
+        "raw_display": "Example medicine 5 mg",
+        "patient_friendly_name": "Example medicine",
+        "ingredients": [
+          {
+            "name": "example medicine",
+            "strength": "5 mg"
+          }
+        ],
+        "strength": "5 mg",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "No verified schedule recorded.",
+        "schedule_type": "scheduled",
+        "fhir_status": "active",
+        "current_use_status": "unverified",
+        "included_in_daily_plan": false,
+        "reconciliation_status": "needs_review",
+        "validation_flags": [
+          "missing_reason"
+        ],
+        "source": "synthetic_demo_source_record"
+      },
+      {
+        "id": "src_order_b",
+        "fhir_resource_id": "order_b",
+        "raw_display": "Example medicine 10 mg",
+        "patient_friendly_name": "Example medicine",
+        "ingredients": [
+          {
+            "name": "example medicine",
+            "strength": "10 mg"
+          }
+        ],
+        "strength": "10 mg",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "No verified schedule recorded.",
+        "schedule_type": "scheduled",
+        "fhir_status": "active",
+        "current_use_status": "unverified",
+        "included_in_daily_plan": false,
+        "reconciliation_status": "needs_review",
+        "validation_flags": [
+          "missing_reason"
+        ],
+        "source": "synthetic_demo_source_record"
+      }
+    ],
+    "clinical_administrations": [],
+    "reconciliation_flags": [
+      {
+        "type": "same_normalized_ingredient_multiple_strengths",
+        "related_medication_ids": [
+          "src_order_a",
+          "src_order_b"
+        ],
+        "source": "deterministic_conflict_detection"
+      }
+    ],
+    "provenance": {
+      "source": "curated_synthetic_demo_source"
+    }
+  },
+  "medication_plan": {
+    "medications": [],
+    "source": "not_reconciled",
+    "patient_id": "demo-unready-001",
+    "status": "needs_review"
+  },
+  "dose_logs": [],
+  "support_profile": {
+    "caregiver": null,
+    "preferred_response_language": "en-US",
+    "accessibility": {
+      "large_text": true,
+      "high_contrast": true,
+      "voice_enabled": false
+    },
+    "confirmation_style": "explicit"
+  },
+  "provenance": {
+    "source": "curated_synthetic_demo_builder"
+  },
+  "import_summary": {
+    "ready_for_medication_tracking": false,
+    "blocking_issues": [
+      "no_confirmed_current_medication_list",
+      "no_verified_medication_schedule"
+    ],
+    "warnings": [
+      "allergy_status_not_recorded",
+      "missing_medication_reasons",
+      "sensitive_conditions_excluded_from_ai_context"
+    ],
+    "source": "deterministic_readiness_validation"
+  }
+}

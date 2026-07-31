@@ -1,0 +1,205 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:30.607643+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "d655ba66-4afe-d51e-0e3d-92705e7e1454",
+    "display_name": "Theresia791 Steffanie515 Hahn503",
+    "birth_date": "1963-03-10",
+    "age_at_dataset_reference_date": 63,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "d655ba66-4afe-d51e-04f0-45a17bb6993a",
+        "code_system": "http://snomed.info/sct",
+        "code": "266934004",
+        "display": "Transport problem (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1982-05-09T02:37:55-04:00",
+        "abatement": null,
+        "recorded_date": "1982-05-09T02:37:55-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d655ba66-4afe-d51e-39b2-b923ed4e9477",
+        "code_system": "http://snomed.info/sct",
+        "code": "124171000119105",
+        "display": "Chronic intractable migraine without aura (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1997-01-30T01:04:22-05:00",
+        "abatement": null,
+        "recorded_date": "1997-01-30T01:04:22-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d655ba66-4afe-d51e-a6aa-5788d5668ed2",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2018-04-08T02:04:22-04:00",
+        "abatement": null,
+        "recorded_date": "2018-04-08T02:04:22-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d655ba66-4afe-d51e-257c-1bda23d03f9d",
+        "code_system": "http://snomed.info/sct",
+        "code": "706893006",
+        "display": "Victim of intimate partner abuse (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-04-25T03:30:02-04:00",
+        "abatement": null,
+        "recorded_date": "2021-04-25T03:30:02-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "d655ba66-4afe-d51e-0ac0-7f69bd212884",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1983-03-21T01:04:22-05:00",
+        "abatement": null,
+        "recorded_date": "1983-03-21T01:04:22-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "d655ba66-4afe-d51e-a964-5c9b02005f63",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1981-05-03T02:36:25-04:00",
+        "abatement": null,
+        "recorded_date": "1981-05-03T02:36:25-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d655ba66-4afe-d51e-35af-a536ee118885",
+        "code_system": "http://snomed.info/sct",
+        "code": "713458007",
+        "display": "Lack of access to transportation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1981-05-03T02:36:25-04:00",
+        "abatement": null,
+        "recorded_date": "1981-05-03T02:36:25-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d655ba66-4afe-d51e-1f92-838d95007c55",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2007-03-25T02:50:03-04:00",
+        "abatement": null,
+        "recorded_date": "2007-03-25T02:50:03-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d655ba66-4afe-d51e-3eee-2f37c18f322f",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-05-24T02:39:24-04:00",
+        "abatement": null,
+        "recorded_date": "2026-05-24T02:39:24-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "d655ba66-4afe-d51e-20e9-356f8ba9c530",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-05-18T02:04:22-04:00",
+        "abatement": null,
+        "recorded_date": "2025-05-18T02:04:22-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 1,
+      "CareTeam": 1,
+      "Claim": 29,
+      "Condition": 36,
+      "Device": 3,
+      "DiagnosticReport": 65,
+      "DocumentReference": 29,
+      "Encounter": 29,
+      "ExplanationOfBenefit": 29,
+      "ImagingStudy": 2,
+      "Immunization": 13,
+      "Observation": 229,
+      "Patient": 1,
+      "Procedure": 83,
+      "Provenance": 1,
+      "SupplyDelivery": 17
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

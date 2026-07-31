@@ -1,0 +1,302 @@
+{
+  "schema_version": "2.0",
+  "source_record": {
+    "patient": {
+      "id": "demo-ready-001",
+      "display_name": "Elena Rivera",
+      "birth_date": "1950-01-01",
+      "age_at_dataset_reference_date": 76,
+      "gender": "female",
+      "preferred_language": "en-US",
+      "timezone": "America/New_York"
+    },
+    "conditions": {
+      "clinical_conditions": [],
+      "historical_conditions": [],
+      "social_context": [
+        {
+          "display": "Sensitive synthetic social context",
+          "visibility": {
+            "include_in_medication_context": false,
+            "show_in_patient_ui": false
+          }
+        }
+      ],
+      "administrative_flags": []
+    },
+    "allergies": [],
+    "allergy_status": "not_recorded",
+    "medications": [
+      {
+        "id": "src_metoprolol",
+        "fhir_resource_id": "metoprolol",
+        "raw_display": "Metoprolol succinate ER 100 mg",
+        "patient_friendly_name": "Metoprolol succinate ER",
+        "ingredients": [
+          {
+            "name": "metoprolol succinate er",
+            "strength": "100 mg"
+          }
+        ],
+        "strength": "100 mg",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "Take according to the verified saved plan.",
+        "schedule_type": "scheduled",
+        "fhir_status": "active",
+        "current_use_status": "unverified",
+        "included_in_daily_plan": false,
+        "reconciliation_status": "needs_review",
+        "validation_flags": [
+          "missing_reason"
+        ],
+        "source": "synthetic_demo_source_record"
+      },
+      {
+        "id": "src_metformin",
+        "fhir_resource_id": "metformin",
+        "raw_display": "Metformin 500 mg",
+        "patient_friendly_name": "Metformin",
+        "ingredients": [
+          {
+            "name": "metformin",
+            "strength": "500 mg"
+          }
+        ],
+        "strength": "500 mg",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "Take according to the verified saved plan.",
+        "schedule_type": "scheduled",
+        "fhir_status": "active",
+        "current_use_status": "unverified",
+        "included_in_daily_plan": false,
+        "reconciliation_status": "needs_review",
+        "validation_flags": [
+          "missing_reason"
+        ],
+        "source": "synthetic_demo_source_record"
+      },
+      {
+        "id": "src_vitamin_d",
+        "fhir_resource_id": "vitamin_d",
+        "raw_display": "Vitamin D3 1000 IU",
+        "patient_friendly_name": "Vitamin D3",
+        "ingredients": [
+          {
+            "name": "vitamin d3",
+            "strength": "1000 iu"
+          }
+        ],
+        "strength": "1000 IU",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "Take according to the verified saved plan.",
+        "schedule_type": "scheduled",
+        "fhir_status": "active",
+        "current_use_status": "unverified",
+        "included_in_daily_plan": false,
+        "reconciliation_status": "needs_review",
+        "validation_flags": [
+          "missing_reason"
+        ],
+        "source": "synthetic_demo_source_record"
+      }
+    ],
+    "clinical_administrations": [],
+    "reconciliation_flags": [],
+    "provenance": {
+      "source": "curated_synthetic_demo_source"
+    }
+  },
+  "medication_plan": {
+    "medications": [
+      {
+        "id": "plan_src_metoprolol",
+        "source_medication_request_ids": [
+          "src_metoprolol"
+        ],
+        "patient_friendly_name": "Metoprolol succinate ER",
+        "aliases": [
+          "heart tablet"
+        ],
+        "strength": "100 mg",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "Take according to the verified saved plan.",
+        "schedule_type": "scheduled",
+        "reminder_schedule": [
+          {
+            "time": "08:00",
+            "period": "morning",
+            "meal_context": null,
+            "source": "synthetic_reconciliation_profile",
+            "verified": true,
+            "verified_by": "synthetic_caregiver",
+            "verified_at": "2026-07-28T14:00:00-04:00"
+          }
+        ],
+        "current_use_status": "confirmed_current",
+        "included_in_daily_plan": true,
+        "reconciliation_status": "verified",
+        "verified_by": "synthetic_caregiver",
+        "verified_at": "2026-07-28T14:00:00-04:00",
+        "source": "synthetic_reconciliation_profile"
+      },
+      {
+        "id": "plan_src_metformin",
+        "source_medication_request_ids": [
+          "src_metformin"
+        ],
+        "patient_friendly_name": "Metformin",
+        "aliases": [
+          "evening tablet"
+        ],
+        "strength": "500 mg",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "Take according to the verified saved plan.",
+        "schedule_type": "scheduled",
+        "reminder_schedule": [
+          {
+            "time": "20:00",
+            "period": "evening",
+            "meal_context": null,
+            "source": "synthetic_reconciliation_profile",
+            "verified": true,
+            "verified_by": "synthetic_caregiver",
+            "verified_at": "2026-07-28T14:00:00-04:00"
+          }
+        ],
+        "current_use_status": "confirmed_current",
+        "included_in_daily_plan": true,
+        "reconciliation_status": "verified",
+        "verified_by": "synthetic_caregiver",
+        "verified_at": "2026-07-28T14:00:00-04:00",
+        "source": "synthetic_reconciliation_profile"
+      },
+      {
+        "id": "plan_src_vitamin_d",
+        "source_medication_request_ids": [
+          "src_vitamin_d"
+        ],
+        "patient_friendly_name": "Vitamin D3",
+        "aliases": [
+          "lunch tablet"
+        ],
+        "strength": "1000 IU",
+        "purpose_labels": [],
+        "purpose_source": "not_recorded",
+        "source_instruction": "Take according to the verified saved plan.",
+        "schedule_type": "scheduled",
+        "reminder_schedule": [
+          {
+            "time": "13:00",
+            "period": "afternoon",
+            "meal_context": null,
+            "source": "synthetic_reconciliation_profile",
+            "verified": true,
+            "verified_by": "synthetic_caregiver",
+            "verified_at": "2026-07-28T14:00:00-04:00"
+          }
+        ],
+        "current_use_status": "confirmed_current",
+        "included_in_daily_plan": true,
+        "reconciliation_status": "verified",
+        "verified_by": "synthetic_caregiver",
+        "verified_at": "2026-07-28T14:00:00-04:00",
+        "source": "synthetic_reconciliation_profile"
+      }
+    ],
+    "source": "synthetic_reconciliation_profile",
+    "patient_id": "demo-ready-001",
+    "status": "verified"
+  },
+  "dose_logs": [
+    {
+      "id": "dose_plan_src_metoprolol_20260731T0800-0400",
+      "medication_id": "plan_src_metoprolol",
+      "scheduled_at": "2026-07-31T08:00:00-04:00",
+      "status": "taken_late",
+      "taken_at": "2026-07-31T09:00:00-04:00",
+      "recorded_by": "synthetic_simulator",
+      "source": "synthetic_adherence_simulation",
+      "generation_parameters": {
+        "seed": 42,
+        "statement": "Synthetic demo scenario; not a real-world statistic."
+      }
+    },
+    {
+      "id": "dose_plan_src_vitamin_d_20260731T1300-0400",
+      "medication_id": "plan_src_vitamin_d",
+      "scheduled_at": "2026-07-31T13:00:00-04:00",
+      "status": "missed",
+      "taken_at": null,
+      "recorded_by": null,
+      "source": "app_event"
+    },
+    {
+      "id": "dose_plan_src_metformin_20260731T2000-0400",
+      "medication_id": "plan_src_metformin",
+      "scheduled_at": "2026-07-31T20:00:00-04:00",
+      "status": "missed",
+      "taken_at": null,
+      "recorded_by": null,
+      "source": "app_event"
+    },
+    {
+      "id": "dose_plan_src_metoprolol_20260801T0800-0400",
+      "medication_id": "plan_src_metoprolol",
+      "scheduled_at": "2026-08-01T08:00:00-04:00",
+      "status": "taken",
+      "taken_at": "2026-08-01T08:11:00-04:00",
+      "recorded_by": "synthetic_simulator",
+      "source": "synthetic_adherence_simulation",
+      "generation_parameters": {
+        "seed": 42,
+        "statement": "Synthetic demo scenario; not a real-world statistic."
+      }
+    },
+    {
+      "id": "dose_plan_src_vitamin_d_20260801T1300-0400",
+      "medication_id": "plan_src_vitamin_d",
+      "scheduled_at": "2026-08-01T13:00:00-04:00",
+      "status": "upcoming",
+      "taken_at": null,
+      "recorded_by": null,
+      "source": "app_event"
+    },
+    {
+      "id": "dose_plan_src_metformin_20260801T2000-0400",
+      "medication_id": "plan_src_metformin",
+      "scheduled_at": "2026-08-01T20:00:00-04:00",
+      "status": "upcoming",
+      "taken_at": null,
+      "recorded_by": null,
+      "source": "app_event"
+    }
+  ],
+  "support_profile": {
+    "caregiver": null,
+    "preferred_response_language": "en-US",
+    "accessibility": {
+      "large_text": true,
+      "high_contrast": true,
+      "voice_enabled": false
+    },
+    "confirmation_style": "explicit"
+  },
+  "provenance": {
+    "source": "curated_synthetic_demo_builder"
+  },
+  "import_summary": {
+    "ready_for_medication_tracking": true,
+    "blocking_issues": [],
+    "warnings": [
+      "allergy_status_not_recorded",
+      "missing_medication_reasons",
+      "sensitive_conditions_excluded_from_ai_context"
+    ],
+    "source": "deterministic_readiness_validation"
+  }
+}

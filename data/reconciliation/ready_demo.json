@@ -1,0 +1,9 @@
+{
+  "patient_id": "demo-ready-001",
+  "source": "synthetic_reconciliation_profile",
+  "decisions": [
+    {"medication_request_id":"src_metoprolol","current_use_status":"confirmed_current","included_in_daily_plan":true,"patient_friendly_name":"Metoprolol succinate ER","aliases":["heart tablet"],"reminder_schedule":[{"time":"08:00","period":"morning","source":"synthetic_reconciliation_profile","verified":true,"verified_by":"synthetic_caregiver","verified_at":"2026-07-28T14:00:00-04:00"}],"verified_by":"synthetic_caregiver","verified_at":"2026-07-28T14:00:00-04:00","source":"synthetic_reconciliation_profile"},
+    {"medication_request_id":"src_metformin","current_use_status":"confirmed_current","included_in_daily_plan":true,"patient_friendly_name":"Metformin","aliases":["evening tablet"],"reminder_schedule":[{"time":"20:00","period":"evening","source":"synthetic_reconciliation_profile","verified":true,"verified_by":"synthetic_caregiver","verified_at":"2026-07-28T14:00:00-04:00"}],"verified_by":"synthetic_caregiver","verified_at":"2026-07-28T14:00:00-04:00","source":"synthetic_reconciliation_profile"},
+    {"medication_request_id":"src_vitamin_d","current_use_status":"confirmed_current","included_in_daily_plan":true,"patient_friendly_name":"Vitamin D3","aliases":["lunch tablet"],"reminder_schedule":[{"time":"13:00","period":"afternoon","source":"synthetic_reconciliation_profile","verified":true,"verified_by":"synthetic_caregiver","verified_at":"2026-07-28T14:00:00-04:00"}],"verified_by":"synthetic_caregiver","verified_at":"2026-07-28T14:00:00-04:00","source":"synthetic_reconciliation_profile"}
+  ]
+}

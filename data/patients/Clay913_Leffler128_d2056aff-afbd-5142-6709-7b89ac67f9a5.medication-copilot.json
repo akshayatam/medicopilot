@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:05.889948+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "d2056aff-afbd-5142-6709-7b89ac67f9a5",
+    "display_name": "Clay913 Matt836 Leffler128",
+    "birth_date": "1961-08-03",
+    "age_at_dataset_reference_date": 64,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "d2056aff-afbd-5142-ccf2-26fa6f128c06",
+        "code_system": "http://snomed.info/sct",
+        "code": "473461003",
+        "display": "Educated to high school level (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1979-09-27T20:09:33-04:00",
+        "abatement": null,
+        "recorded_date": "1979-09-27T20:09:33-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-d9a0-1c3e17ca7a6f",
+        "code_system": "http://snomed.info/sct",
+        "code": "128613002",
+        "display": "Seizure disorder (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1988-04-21T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "1988-04-21T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-607a-9cf6b0500257",
+        "code_system": "http://snomed.info/sct",
+        "code": "84757009",
+        "display": "Epilepsy (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1993-04-29T23:04:03-04:00",
+        "abatement": null,
+        "recorded_date": "1993-04-29T23:04:03-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-9445-456308a98e7a",
+        "code_system": "http://snomed.info/sct",
+        "code": "414545008",
+        "display": "Ischemic heart disease (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2003-08-14T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "2003-08-14T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-860f-123d3e0e8f02",
+        "code_system": "http://snomed.info/sct",
+        "code": "274531002",
+        "display": "Abnormal findings diagnostic imaging heart+coronary circulat (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2003-08-24T21:13:57-04:00",
+        "abatement": null,
+        "recorded_date": "2003-08-24T21:13:57-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-20f7-2f55df21d1d0",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2005-08-18T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "2005-08-18T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-a686-a7f767b04793",
+        "code_system": "http://snomed.info/sct",
+        "code": "64859006",
+        "display": "Osteoporosis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-09-30T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "2021-09-30T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-2a1c-785a652601c8",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-10-21T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "2021-10-21T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-fc0f-0447061b73c5",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-10-12T20:11:34-04:00",
+        "abatement": null,
+        "recorded_date": "2023-10-12T20:11:34-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "d2056aff-afbd-5142-64ea-22de188ab426",
+        "code_system": "http://snomed.info/sct",
+        "code": "1290882004",
+        "display": "History of seizure (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1988-04-21T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "1988-04-21T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d2056aff-afbd-5142-8db8-66d72867da5e",
+        "code_system": "http://snomed.info/sct",
+        "code": "399261000",
+        "display": "History of coronary artery bypass grafting (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2003-09-25T15:01:40-04:00",
+        "abatement": null,
+        "recorded_date": "2003-09-25T15:01:40-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "d2056aff-afbd-5142-7530-e17d18ef799e",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-10-23T19:51:25-04:00",
+        "abatement": null,
+        "recorded_date": "2025-10-23T19:51:25-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "d2056aff-afbd-5142-a9b4-1ebdb5cbef8a",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-10-23T19:13:56-04:00",
+        "abatement": null,
+        "recorded_date": "2025-10-23T19:13:56-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_d2056aff-afbd-5142-fda1-20f9cd7ea8e2",
+      "source_ids": [
+        "d2056aff-afbd-5142-fda1-20f9cd7ea8e2"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "904419",
+      "raw_display": "Alendronic acid 10 MG Oral Tablet",
+      "name": "Alendronic acid",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoporosis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:d2056aff-afbd-5142-a686-a7f767b04793",
+          "code_system": "http://snomed.info/sct",
+          "code": "64859006",
+          "display": "Osteoporosis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-10-23T19:13:56-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999959890",
+          "display": "Dr. Chris95 Haag279"
+        },
+        "encounter_reference": "urn:uuid:d2056aff-afbd-5142-36b6-992a35a559fa"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_d2056aff-afbd-5142-ad9f-03974283f240",
+      "source_ids": [
+        "d2056aff-afbd-5142-ad9f-03974283f240"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "309362",
+      "raw_display": "Clopidogrel 75 MG Oral Tablet",
+      "name": "Clopidogrel",
+      "strength": "75 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2003-08-21T19:13:56-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999959890",
+          "display": "Dr. Chris95 Haag279"
+        },
+        "encounter_reference": "urn:uuid:d2056aff-afbd-5142-9c72-362d6b5a5b4e"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_d2056aff-afbd-5142-724c-d8ed990c2af3",
+      "source_ids": [
+        "d2056aff-afbd-5142-724c-d8ed990c2af3"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "312961",
+      "raw_display": "Simvastatin 20 MG Oral Tablet",
+      "name": "Simvastatin",
+      "strength": "20 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2003-08-21T19:13:56-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999959890",
+          "display": "Dr. Chris95 Haag279"
+        },
+        "encounter_reference": "urn:uuid:d2056aff-afbd-5142-9c72-362d6b5a5b4e"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_d2056aff-afbd-5142-6bef-df1bf2b9ff25",
+      "source_ids": [
+        "d2056aff-afbd-5142-6bef-df1bf2b9ff25"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "866412",
+      "raw_display": "24 HR metoprolol succinate 100 MG Extended Release Oral Tablet",
+      "name": "24 HR metoprolol succinate",
+      "strength": "100 MG",
+      "dose_form": "Extended Release Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2003-08-21T19:13:56-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999959890",
+          "display": "Dr. Chris95 Haag279"
+        },
+        "encounter_reference": "urn:uuid:d2056aff-afbd-5142-9c72-362d6b5a5b4e"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_d2056aff-afbd-5142-2866-3256d9810c6c",
+      "source_ids": [
+        "d2056aff-afbd-5142-2866-3256d9810c6c"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "705129",
+      "raw_display": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "name": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2003-08-21T19:13:56-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999959890",
+          "display": "Dr. Chris95 Haag279"
+        },
+        "encounter_reference": "urn:uuid:d2056aff-afbd-5142-9c72-362d6b5a5b4e"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "Claim": 52,
+      "Condition": 43,
+      "Device": 11,
+      "DiagnosticReport": 64,
+      "DocumentReference": 36,
+      "Encounter": 36,
+      "ExplanationOfBenefit": 52,
+      "ImagingStudy": 5,
+      "Immunization": 13,
+      "Medication": 6,
+      "MedicationAdministration": 6,
+      "MedicationRequest": 16,
+      "Observation": 152,
+      "Patient": 1,
+      "Procedure": 140,
+      "Provenance": 1,
+      "SupplyDelivery": 23
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

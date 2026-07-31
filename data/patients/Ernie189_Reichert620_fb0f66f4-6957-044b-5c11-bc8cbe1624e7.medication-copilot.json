@@ -1,0 +1,266 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:12.329774+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "fb0f66f4-6957-044b-5c11-bc8cbe1624e7",
+    "display_name": "Ernie189 Reichert620",
+    "birth_date": "1917-02-26",
+    "age_at_dataset_reference_date": 109,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "fb0f66f4-6957-044b-1f1a-ed3c5cee3362",
+        "code_system": "http://snomed.info/sct",
+        "code": "1187604002",
+        "display": "Serving in military service (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1935-04-22T07:35:46-05:00",
+        "abatement": null,
+        "recorded_date": "1935-04-22T07:35:46-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-eb8d-fd72347d6f1a",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1948-05-10T07:59:45-04:00",
+        "abatement": null,
+        "recorded_date": "1948-05-10T07:59:45-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-376a-3af40b5ad323",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1951-05-14T07:59:45-04:00",
+        "abatement": null,
+        "recorded_date": "1951-05-14T07:59:45-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-abdc-4750890ed32f",
+        "code_system": "http://snomed.info/sct",
+        "code": "7200002",
+        "display": "Alcoholism (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1954-05-17T07:59:45-04:00",
+        "abatement": null,
+        "recorded_date": "1954-05-17T07:59:45-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-9ade-b6e790f85021",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1959-03-09T06:59:45-05:00",
+        "abatement": null,
+        "recorded_date": "1959-03-09T06:59:45-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-19af-e06e6c2ac56b",
+        "code_system": "http://snomed.info/sct",
+        "code": "126906006",
+        "display": "Neoplasm of prostate (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1994-08-08T08:29:45-04:00",
+        "abatement": null,
+        "recorded_date": "1994-08-08T08:29:45-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-4f39-14b7b0ae43d2",
+        "code_system": "http://snomed.info/sct",
+        "code": "92691004",
+        "display": "Carcinoma in situ of prostate (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1994-08-08T08:29:45-04:00",
+        "abatement": null,
+        "recorded_date": "1994-08-08T08:29:45-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [],
+    "social_context": [
+      {
+        "id": "fb0f66f4-6957-044b-7a54-a4612bd243d1",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1935-04-22T07:35:46-05:00",
+        "abatement": null,
+        "recorded_date": "1935-04-22T07:35:46-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-58b7-f79e84b4ed89",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2022-01-03T07:45:55-05:00",
+        "abatement": null,
+        "recorded_date": "2022-01-03T07:45:55-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "fb0f66f4-6957-044b-222c-4f8b5575fbc9",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-01-20T07:35:03-05:00",
+        "abatement": null,
+        "recorded_date": "2025-01-20T07:35:03-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [
+    {
+      "id": "fb0f66f4-6957-044b-359f-b4c4e18b541a",
+      "code_system": "http://snomed.info/sct",
+      "code": "609328004",
+      "substance": "Allergic disposition (finding)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1918-07-13T10:59:45-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "fb0f66f4-6957-044b-c108-06befda8e03d",
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "29046",
+      "substance": "Lisinopril",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "intolerance",
+      "category": [
+        "medication"
+      ],
+      "criticality": "low",
+      "recorded_date": "1918-07-13T10:59:45-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "fb0f66f4-6957-044b-6dcc-f799c77f9b87",
+      "code_system": "http://snomed.info/sct",
+      "code": "762952008",
+      "substance": "Peanut (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "food"
+      ],
+      "criticality": "low",
+      "recorded_date": "1918-07-13T10:59:45-04:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Wheezing (finding)"
+          ],
+          "severity": "mild",
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    }
+  ],
+  "allergy_status": "recorded",
+  "medications": [],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "AllergyIntolerance": 3,
+      "CarePlan": 7,
+      "CareTeam": 7,
+      "Claim": 37,
+      "Condition": 37,
+      "Device": 4,
+      "DiagnosticReport": 75,
+      "DocumentReference": 30,
+      "Encounter": 30,
+      "ExplanationOfBenefit": 37,
+      "ImagingStudy": 1,
+      "Immunization": 4,
+      "Medication": 4,
+      "MedicationAdministration": 4,
+      "MedicationRequest": 7,
+      "Observation": 269,
+      "Patient": 1,
+      "Procedure": 116,
+      "Provenance": 1,
+      "SupplyDelivery": 28
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

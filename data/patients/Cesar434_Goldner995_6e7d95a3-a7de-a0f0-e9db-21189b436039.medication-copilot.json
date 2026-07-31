@@ -1,0 +1,309 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:05.306821+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "6e7d95a3-a7de-a0f0-e9db-21189b436039",
+    "display_name": "Cesar434 Goldner995",
+    "birth_date": "1951-10-13",
+    "age_at_dataset_reference_date": 74,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "6e7d95a3-a7de-a0f0-68d7-9f5de2827fa3",
+        "code_system": "http://snomed.info/sct",
+        "code": "59621000",
+        "display": "Essential hypertension (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2011-12-10T12:57:29-05:00",
+        "abatement": null,
+        "recorded_date": "2011-12-10T12:57:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-28c8-9f4407383208",
+        "code_system": "http://snomed.info/sct",
+        "code": "64859006",
+        "display": "Osteoporosis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2022-02-05T12:57:29-05:00",
+        "abatement": null,
+        "recorded_date": "2022-02-05T12:57:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-6cf7-8b953c5fea8f",
+        "code_system": "http://snomed.info/sct",
+        "code": "431855005",
+        "display": "Chronic kidney disease stage 1 (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-02-11T12:57:29-05:00",
+        "abatement": null,
+        "recorded_date": "2023-02-11T12:57:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-eb0c-30393268f493",
+        "code_system": "http://snomed.info/sct",
+        "code": "127013003",
+        "display": "Disorder of kidney due to diabetes mellitus (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-02-11T12:57:29-05:00",
+        "abatement": null,
+        "recorded_date": "2023-02-11T12:57:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-8be4-18642a16adbc",
+        "code_system": "http://snomed.info/sct",
+        "code": "423315002",
+        "display": "Limited social contact (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-02-28T13:51:28-05:00",
+        "abatement": null,
+        "recorded_date": "2026-02-28T13:51:28-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [],
+    "social_context": [
+      {
+        "id": "6e7d95a3-a7de-a0f0-ca3e-3d36c7b84fb7",
+        "code_system": "http://snomed.info/sct",
+        "code": "105531004",
+        "display": "Housing unsatisfactory (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1969-12-13T13:43:00-05:00",
+        "abatement": null,
+        "recorded_date": "1969-12-13T13:43:00-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-23bb-4ebd779b77fe",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1969-12-13T13:43:00-05:00",
+        "abatement": null,
+        "recorded_date": "1969-12-13T13:43:00-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-4db2-3fc778b02097",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1983-01-01T13:57:18-05:00",
+        "abatement": null,
+        "recorded_date": "1983-01-01T13:57:18-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "6e7d95a3-a7de-a0f0-34d5-87aeacf07eb2",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-02-28T13:51:28-05:00",
+        "abatement": null,
+        "recorded_date": "2026-02-28T13:51:28-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_6e7d95a3-a7de-a0f0-6bde-25ea3cb95fc4",
+      "source_ids": [
+        "6e7d95a3-a7de-a0f0-6bde-25ea3cb95fc4"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "308136",
+      "raw_display": "amLODIPine 2.5 MG Oral Tablet",
+      "name": "amLODIPine",
+      "strength": "2.5 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Essential hypertension (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:6e7d95a3-a7de-a0f0-68d7-9f5de2827fa3",
+          "code_system": "http://snomed.info/sct",
+          "code": "59621000",
+          "display": "Essential hypertension (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-07-04T13:57:29-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999992198",
+          "display": "Dr. Randy380 Bergstrom287"
+        },
+        "encounter_reference": "urn:uuid:6e7d95a3-a7de-a0f0-6996-c073d15366c4"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_6e7d95a3-a7de-a0f0-a022-9aa209440b00",
+      "source_ids": [
+        "6e7d95a3-a7de-a0f0-a022-9aa209440b00"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "904419",
+      "raw_display": "Alendronic acid 10 MG Oral Tablet",
+      "name": "Alendronic acid",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoporosis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:6e7d95a3-a7de-a0f0-28c8-9f4407383208",
+          "code_system": "http://snomed.info/sct",
+          "code": "64859006",
+          "display": "Osteoporosis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-07-04T13:57:29-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999992198",
+          "display": "Dr. Randy380 Bergstrom287"
+        },
+        "encounter_reference": "urn:uuid:6e7d95a3-a7de-a0f0-6996-c073d15366c4"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 2,
+      "CareTeam": 2,
+      "Claim": 56,
+      "Condition": 40,
+      "Device": 3,
+      "DiagnosticReport": 81,
+      "DocumentReference": 30,
+      "Encounter": 30,
+      "ExplanationOfBenefit": 56,
+      "ImagingStudy": 2,
+      "Immunization": 16,
+      "Medication": 3,
+      "MedicationAdministration": 3,
+      "MedicationRequest": 26,
+      "Observation": 379,
+      "Patient": 1,
+      "Procedure": 128,
+      "Provenance": 1,
+      "SupplyDelivery": 21
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

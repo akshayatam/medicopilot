@@ -1,0 +1,507 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:14.907058+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "0fe15ee2-9160-ed82-71f6-8c74959a71ab",
+    "display_name": "Hildegarde627 Kerstin790 Stoltenberg489",
+    "birth_date": "1959-10-16",
+    "age_at_dataset_reference_date": 66,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "0fe15ee2-9160-ed82-2ebf-5ecbf9a355e7",
+        "code_system": "http://snomed.info/sct",
+        "code": "195967001",
+        "display": "Asthma (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1979-12-21T02:05:01-05:00",
+        "abatement": null,
+        "recorded_date": "1979-12-21T02:05:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-eebe-61d931dd9fd0",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2004-05-07T03:05:01-04:00",
+        "abatement": null,
+        "recorded_date": "2004-05-07T03:05:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-5aab-6d53dda0a911",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2007-05-25T03:05:01-04:00",
+        "abatement": null,
+        "recorded_date": "2007-05-25T03:05:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-34aa-633e21da9682",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2007-05-25T03:05:01-04:00",
+        "abatement": null,
+        "recorded_date": "2007-05-25T03:05:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-8710-76fe05964fbc",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-02T02:05:01-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-02T02:05:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-b4cb-ac265dac3a5c",
+        "code_system": "http://snomed.info/sct",
+        "code": "278860009",
+        "display": "Chronic low back pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-02T02:05:01-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-02T02:05:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-0983-fc47b69293ab",
+        "code_system": "http://snomed.info/sct",
+        "code": "1121000119107",
+        "display": "Chronic neck pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-02T02:05:01-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-02T02:05:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-7566-d2279e3fcf4c",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-07-25T03:05:01-04:00",
+        "abatement": null,
+        "recorded_date": "2014-07-25T03:05:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-5f35-a0654d369865",
+        "code_system": "http://snomed.info/sct",
+        "code": "40055000",
+        "display": "Chronic sinusitis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-12-19T08:05:01-05:00",
+        "abatement": null,
+        "recorded_date": "2021-12-19T08:05:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-2d42-c2d31474e752",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-08-30T03:59:10-04:00",
+        "abatement": null,
+        "recorded_date": "2024-08-30T03:59:10-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "0fe15ee2-9160-ed82-2754-d6769aa34647",
+        "code_system": "http://snomed.info/sct",
+        "code": "267020005",
+        "display": "History of tubal ligation (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1985-08-27T06:44:21-04:00",
+        "abatement": null,
+        "recorded_date": "1985-08-27T06:44:21-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "0fe15ee2-9160-ed82-dd60-6c179e8789f9",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1977-12-09T02:37:29-05:00",
+        "abatement": null,
+        "recorded_date": "1977-12-09T02:37:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-5c17-f5b7db533e32",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2010-06-11T03:46:48-04:00",
+        "abatement": null,
+        "recorded_date": "2010-06-11T03:46:48-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "0fe15ee2-9160-ed82-cc45-f8f011f20203",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-08-25T03:59:17-04:00",
+        "abatement": null,
+        "recorded_date": "2023-08-25T03:59:17-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_0fe15ee2-9160-ed82-68b1-60719ec44b4a",
+      "source_ids": [
+        "0fe15ee2-9160-ed82-68b1-60719ec44b4a"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "859088",
+      "raw_display": "NDA020983 200 ACTUAT albuterol 0.09 MG/ACTUAT Metered Dose Inhaler [Ventolin]",
+      "name": "NDA020983 200 ACTUAT albuterol 0.09 MG/ACTUAT Metered Dose Inhaler [Ventolin]",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Childhood asthma (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": null,
+          "code_system": "http://snomed.info/sct",
+          "code": "233678006",
+          "display": "Childhood asthma (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-09-05T03:05:01-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944090",
+          "display": "Dr. Ivonne773 Turcotte120"
+        },
+        "encounter_reference": "urn:uuid:0fe15ee2-9160-ed82-e355-c7a7ad4c3d87"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_0fe15ee2-9160-ed82-eb68-eba3e9651ecf",
+      "source_ids": [
+        "0fe15ee2-9160-ed82-eb68-eba3e9651ecf"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "206905",
+      "raw_display": "Ibuprofen 400 MG Oral Tablet [Ibu]",
+      "name": "Ibuprofen",
+      "strength": "400 MG",
+      "dose_form": "Oral Tablet [Ibu]",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-09-05T03:05:01-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944090",
+          "display": "Dr. Ivonne773 Turcotte120"
+        },
+        "encounter_reference": "urn:uuid:0fe15ee2-9160-ed82-e355-c7a7ad4c3d87"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_0fe15ee2-9160-ed82-4c7d-5c28ac219106",
+      "source_ids": [
+        "0fe15ee2-9160-ed82-4c7d-5c28ac219106"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "209387",
+      "raw_display": "Acetaminophen 325 MG Oral Tablet [Tylenol]",
+      "name": "Acetaminophen",
+      "strength": "325 MG",
+      "dose_form": "Oral Tablet [Tylenol]",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-09-05T03:05:01-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944090",
+          "display": "Dr. Ivonne773 Turcotte120"
+        },
+        "encounter_reference": "urn:uuid:0fe15ee2-9160-ed82-e355-c7a7ad4c3d87"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Every four to six hours (qualifier value)",
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 4,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [
+            "Every four to six hours (qualifier value)"
+          ],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_0fe15ee2-9160-ed82-de8a-837858e9d3f1",
+      "source_ids": [
+        "0fe15ee2-9160-ed82-de8a-837858e9d3f1"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "895996",
+      "raw_display": "120 ACTUAT fluticasone propionate 0.044 MG/ACTUAT Metered Dose Inhaler [Flovent]",
+      "name": "120 ACTUAT fluticasone propionate 0.044 MG/ACTUAT Metered Dose Inhaler [Flovent]",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Childhood asthma (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": null,
+          "code_system": "http://snomed.info/sct",
+          "code": "233678006",
+          "display": "Childhood asthma (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-09-05T03:05:01-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944090",
+          "display": "Dr. Ivonne773 Turcotte120"
+        },
+        "encounter_reference": "urn:uuid:0fe15ee2-9160-ed82-e355-c7a7ad4c3d87"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 4,
+      "CareTeam": 4,
+      "Claim": 105,
+      "Condition": 47,
+      "Device": 9,
+      "DiagnosticReport": 93,
+      "DocumentReference": 52,
+      "Encounter": 52,
+      "ExplanationOfBenefit": 105,
+      "ImagingStudy": 3,
+      "Immunization": 13,
+      "MedicationRequest": 53,
+      "Observation": 276,
+      "Patient": 1,
+      "Procedure": 121,
+      "Provenance": 1,
+      "SupplyDelivery": 32
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

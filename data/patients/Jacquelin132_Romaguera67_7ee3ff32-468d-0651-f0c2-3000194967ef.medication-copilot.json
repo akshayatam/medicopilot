@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:16.228013+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "7ee3ff32-468d-0651-f0c2-3000194967ef",
+    "display_name": "Jacquelin132 Romaguera67",
+    "birth_date": "1933-02-22",
+    "age_at_dataset_reference_date": 93,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "7ee3ff32-468d-0651-7d57-43943df09661",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1970-11-04T03:17:01-05:00",
+        "abatement": null,
+        "recorded_date": "1970-11-04T03:17:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-9441-114f153bcbde",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-02-02T03:17:01-05:00",
+        "abatement": null,
+        "recorded_date": "1990-02-02T03:17:01-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-e19c-f00532a92fc1",
+        "code_system": "http://snomed.info/sct",
+        "code": "196416002",
+        "display": "Impacted molars (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-04-10T04:17:01-04:00",
+        "abatement": null,
+        "recorded_date": "1990-04-10T04:17:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-bf74-5f1d49e4bb70",
+        "code_system": "http://snomed.info/sct",
+        "code": "6525002",
+        "display": "Dependent drug abuse (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1991-05-06T04:17:01-04:00",
+        "abatement": null,
+        "recorded_date": "1991-05-06T04:17:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-00ff-43946b12867e",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1992-05-06T04:17:01-04:00",
+        "abatement": null,
+        "recorded_date": "1992-05-06T04:17:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-de52-d7b95ab615ee",
+        "code_system": "http://snomed.info/sct",
+        "code": "64859006",
+        "display": "Osteoporosis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2013-08-21T04:17:01-04:00",
+        "abatement": null,
+        "recorded_date": "2013-08-21T04:17:01-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [],
+    "social_context": [
+      {
+        "id": "7ee3ff32-468d-0651-b56e-308c1e380967",
+        "code_system": "http://snomed.info/sct",
+        "code": "224295006",
+        "display": "Only received primary school education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1951-04-18T03:56:58-05:00",
+        "abatement": null,
+        "recorded_date": "1951-04-18T03:56:58-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-d6be-62fa59cd2168",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1958-04-30T04:52:42-04:00",
+        "abatement": null,
+        "recorded_date": "1958-04-30T04:52:42-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "7ee3ff32-468d-0651-c83c-9c4d76aa58d0",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-03-18T04:49:12-04:00",
+        "abatement": null,
+        "recorded_date": "2026-03-18T04:49:12-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "7ee3ff32-468d-0651-ced3-cd2169ed3730",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-03-18T04:17:01-04:00",
+        "abatement": null,
+        "recorded_date": "2026-03-18T04:17:01-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_7ee3ff32-468d-0651-d787-9c3d24709064",
+      "source_ids": [
+        "7ee3ff32-468d-0651-d787-9c3d24709064"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "904419",
+      "raw_display": "Alendronic acid 10 MG Oral Tablet",
+      "name": "Alendronic acid",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoporosis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:7ee3ff32-468d-0651-de52-d7b95ab615ee",
+          "code_system": "http://snomed.info/sct",
+          "code": "64859006",
+          "display": "Osteoporosis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-03-18T04:17:01-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999988493",
+          "display": "Dr. Saundra460 Kuphal363"
+        },
+        "encounter_reference": "urn:uuid:7ee3ff32-468d-0651-bc39-74af5bfed9f5"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 3,
+      "CareTeam": 3,
+      "Claim": 99,
+      "Condition": 43,
+      "Device": 10,
+      "DiagnosticReport": 114,
+      "DocumentReference": 80,
+      "Encounter": 80,
+      "ExplanationOfBenefit": 99,
+      "ImagingStudy": 7,
+      "Immunization": 13,
+      "Medication": 4,
+      "MedicationAdministration": 4,
+      "MedicationRequest": 19,
+      "Observation": 185,
+      "Patient": 1,
+      "Procedure": 254,
+      "Provenance": 1,
+      "SupplyDelivery": 22
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

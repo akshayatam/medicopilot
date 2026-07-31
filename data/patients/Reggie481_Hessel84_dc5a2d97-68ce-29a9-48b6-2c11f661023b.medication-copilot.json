@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:26.833006+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "dc5a2d97-68ce-29a9-48b6-2c11f661023b",
+    "display_name": "Reggie481 Freddy176 Hessel84",
+    "birth_date": "1954-04-10",
+    "age_at_dataset_reference_date": 72,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "dc5a2d97-68ce-29a9-4b91-ca83a38bb2a0",
+        "code_system": "http://snomed.info/sct",
+        "code": "473461003",
+        "display": "Educated to high school level (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1972-06-03T19:12:01-04:00",
+        "abatement": null,
+        "recorded_date": "1972-06-03T19:12:01-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-fea3-4b9da44eff26",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1982-06-19T18:31:19-04:00",
+        "abatement": null,
+        "recorded_date": "1982-06-19T18:31:19-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-bc3e-04ef280a9601",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1984-08-18T18:31:19-04:00",
+        "abatement": null,
+        "recorded_date": "1984-08-18T18:31:19-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-cb6d-31ad8b1cb722",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1998-04-25T18:31:19-04:00",
+        "abatement": null,
+        "recorded_date": "1998-04-25T18:31:19-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-7a4a-764a73f65e75",
+        "code_system": "http://snomed.info/sct",
+        "code": "706893006",
+        "display": "Victim of intimate partner abuse (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2010-05-15T19:59:03-04:00",
+        "abatement": null,
+        "recorded_date": "2010-05-15T19:59:03-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-cf4c-3712750e3d05",
+        "code_system": "http://snomed.info/sct",
+        "code": "44054006",
+        "display": "Diabetes mellitus type 2 (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2022-07-23T18:31:19-04:00",
+        "abatement": null,
+        "recorded_date": "2022-07-23T18:31:19-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-e5bc-2b2ba35250e6",
+        "code_system": "http://snomed.info/sct",
+        "code": "302870006",
+        "display": "Hypertriglyceridemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-07-29T18:31:19-04:00",
+        "abatement": null,
+        "recorded_date": "2023-07-29T18:31:19-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-d40a-c10dcb589664",
+        "code_system": "http://snomed.info/sct",
+        "code": "237602007",
+        "display": "Metabolic syndrome X (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-07-29T18:31:19-04:00",
+        "abatement": null,
+        "recorded_date": "2023-07-29T18:31:19-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-3448-57a9d872e2b8",
+        "code_system": "http://snomed.info/sct",
+        "code": "741062008",
+        "display": "Not in labor force (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-08-09T19:05:28-04:00",
+        "abatement": null,
+        "recorded_date": "2025-08-09T19:05:28-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-7868-fbacf2e158fe",
+        "code_system": "http://snomed.info/sct",
+        "code": "423315002",
+        "display": "Limited social contact (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-08-09T19:05:28-04:00",
+        "abatement": null,
+        "recorded_date": "2025-08-09T19:05:28-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dc5a2d97-68ce-29a9-1079-b4673e47bffe",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-08-09T19:05:28-04:00",
+        "abatement": null,
+        "recorded_date": "2025-08-09T19:05:28-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [],
+    "social_context": [
+      {
+        "id": "dc5a2d97-68ce-29a9-9b1e-8821b9eb2fc9",
+        "code_system": "http://snomed.info/sct",
+        "code": "105531004",
+        "display": "Housing unsatisfactory (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1972-06-03T19:12:01-04:00",
+        "abatement": null,
+        "recorded_date": "1972-06-03T19:12:01-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_dc5a2d97-68ce-29a9-4267-fc01364c11e5",
+      "source_ids": [
+        "dc5a2d97-68ce-29a9-4267-fc01364c11e5"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "2001499",
+      "raw_display": "Vitamin B12 5 MG/ML Injectable Solution",
+      "name": "Vitamin B12 5 MG/ML Injectable Solution",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1984-08-25T19:43:59-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999998690",
+          "display": "Dr. Jeromy156 Okuneva707"
+        },
+        "encounter_reference": "urn:uuid:dc5a2d97-68ce-29a9-9613-ee13e96d4c4d"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 1,
+      "CareTeam": 1,
+      "Claim": 49,
+      "Condition": 38,
+      "Device": 6,
+      "DiagnosticReport": 78,
+      "DocumentReference": 38,
+      "Encounter": 38,
+      "ExplanationOfBenefit": 49,
+      "ImagingStudy": 7,
+      "Immunization": 12,
+      "Medication": 7,
+      "MedicationAdministration": 7,
+      "MedicationRequest": 11,
+      "Observation": 292,
+      "Patient": 1,
+      "Procedure": 155,
+      "Provenance": 1,
+      "SupplyDelivery": 33
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

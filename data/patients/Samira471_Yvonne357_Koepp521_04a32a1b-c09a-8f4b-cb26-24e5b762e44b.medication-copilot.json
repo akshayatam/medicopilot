@@ -1,0 +1,323 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:28.186225+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "04a32a1b-c09a-8f4b-cb26-24e5b762e44b",
+    "display_name": "Samira471 Yvonne357 Koepp521",
+    "birth_date": "1957-11-27",
+    "age_at_dataset_reference_date": 68,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "04a32a1b-c09a-8f4b-464a-27f0982102d8",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1983-02-02T20:58:46-05:00",
+        "abatement": null,
+        "recorded_date": "1983-02-02T20:58:46-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "04a32a1b-c09a-8f4b-242e-413939f568b5",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1983-02-02T20:58:46-05:00",
+        "abatement": null,
+        "recorded_date": "1983-02-02T20:58:46-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "04a32a1b-c09a-8f4b-18a5-3c900df45574",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1986-02-05T20:58:46-05:00",
+        "abatement": null,
+        "recorded_date": "1986-02-05T20:58:46-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "04a32a1b-c09a-8f4b-fa14-89cc9b21f29e",
+        "code_system": "http://snomed.info/sct",
+        "code": "64859006",
+        "display": "Osteoporosis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2018-01-24T20:58:46-05:00",
+        "abatement": null,
+        "recorded_date": "2018-01-24T20:58:46-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "04a32a1b-c09a-8f4b-e59e-9c00f91835bb",
+        "code_system": "http://snomed.info/sct",
+        "code": "55822004",
+        "display": "Hyperlipidemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-03-11T21:58:46-04:00",
+        "abatement": null,
+        "recorded_date": "2026-03-11T21:58:46-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "04a32a1b-c09a-8f4b-5755-e7a936b49910",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-04-01T21:58:46-04:00",
+        "abatement": null,
+        "recorded_date": "2026-04-01T21:58:46-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "04a32a1b-c09a-8f4b-4c62-bb30f220db07",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2007-02-15T20:58:46-05:00",
+        "abatement": null,
+        "recorded_date": "2007-02-15T20:58:46-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "04a32a1b-c09a-8f4b-7b1d-3ba50e3210d8",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1976-01-21T21:49:59-05:00",
+        "abatement": null,
+        "recorded_date": "1976-01-21T21:49:59-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "04a32a1b-c09a-8f4b-d649-dd4df9764a37",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-03-05T21:31:25-05:00",
+        "abatement": null,
+        "recorded_date": "2025-03-05T21:31:25-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "04a32a1b-c09a-8f4b-10b2-d160eaf8fdfa",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-02-22T20:58:46-05:00",
+        "abatement": null,
+        "recorded_date": "2023-02-22T20:58:46-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_04a32a1b-c09a-8f4b-b1f6-797bbd2c30ae",
+      "source_ids": [
+        "04a32a1b-c09a-8f4b-b1f6-797bbd2c30ae"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "314231",
+      "raw_display": "Simvastatin 10 MG Oral Tablet",
+      "name": "Simvastatin",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Hyperlipidemia (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:04a32a1b-c09a-8f4b-e59e-9c00f91835bb",
+          "code_system": "http://snomed.info/sct",
+          "code": "55822004",
+          "display": "Hyperlipidemia (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-08T21:58:46-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999986893",
+          "display": "Dr. Santina680 Dicki44"
+        },
+        "encounter_reference": "urn:uuid:04a32a1b-c09a-8f4b-687e-880416468e2c"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_04a32a1b-c09a-8f4b-28ed-5f90edfc144f",
+      "source_ids": [
+        "04a32a1b-c09a-8f4b-28ed-5f90edfc144f"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "904419",
+      "raw_display": "Alendronic acid 10 MG Oral Tablet",
+      "name": "Alendronic acid",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoporosis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:04a32a1b-c09a-8f4b-fa14-89cc9b21f29e",
+          "code_system": "http://snomed.info/sct",
+          "code": "64859006",
+          "display": "Osteoporosis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-03-11T21:58:46-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999943795",
+          "display": "Dr. Delena885 Robel940"
+        },
+        "encounter_reference": "urn:uuid:04a32a1b-c09a-8f4b-30ee-17144d04cb4e"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 5,
+      "CareTeam": 5,
+      "Claim": 59,
+      "Condition": 41,
+      "Device": 11,
+      "DiagnosticReport": 92,
+      "DocumentReference": 38,
+      "Encounter": 38,
+      "ExplanationOfBenefit": 59,
+      "ImagingStudy": 6,
+      "Immunization": 15,
+      "Medication": 4,
+      "MedicationAdministration": 4,
+      "MedicationRequest": 21,
+      "Observation": 300,
+      "Patient": 1,
+      "Procedure": 303,
+      "Provenance": 1,
+      "SupplyDelivery": 29
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:15.608221+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "db307b4f-d37d-4dd1-b680-d44371012f6d",
+    "display_name": "Ione925 Raynor401",
+    "birth_date": "1958-07-30",
+    "age_at_dataset_reference_date": 67,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "db307b4f-d37d-4dd1-412d-2328bdeeac1f",
+        "code_system": "http://snomed.info/sct",
+        "code": "160968000",
+        "display": "Risk activity involvement (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1975-09-24T15:25:38-04:00",
+        "abatement": null,
+        "recorded_date": "1975-09-24T15:25:38-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "db307b4f-d37d-4dd1-5ed3-2106d5ffa654",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1992-10-21T14:42:15-04:00",
+        "abatement": null,
+        "recorded_date": "1992-10-21T14:42:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "db307b4f-d37d-4dd1-8a07-83cb975fde08",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1995-10-25T14:42:15-04:00",
+        "abatement": null,
+        "recorded_date": "1995-10-25T14:42:15-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "db307b4f-d37d-4dd1-655b-79c9436935fc",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1996-07-12T14:42:15-04:00",
+        "abatement": null,
+        "recorded_date": "1996-07-12T14:42:15-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "db307b4f-d37d-4dd1-5dda-37da8910040f",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1976-09-29T15:23:03-04:00",
+        "abatement": null,
+        "recorded_date": "1976-09-29T15:23:03-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "db307b4f-d37d-4dd1-72ff-6e2d45ef5c4d",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-10-25T15:20:40-04:00",
+        "abatement": null,
+        "recorded_date": "2023-10-25T15:20:40-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "db307b4f-d37d-4dd1-6e17-cb0254146e84",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-11-05T13:42:15-05:00",
+        "abatement": null,
+        "recorded_date": "2025-11-05T13:42:15-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 1,
+      "CareTeam": 1,
+      "Claim": 25,
+      "Condition": 28,
+      "Device": 6,
+      "DiagnosticReport": 64,
+      "DocumentReference": 22,
+      "Encounter": 22,
+      "ExplanationOfBenefit": 25,
+      "ImagingStudy": 3,
+      "Immunization": 15,
+      "Medication": 3,
+      "MedicationAdministration": 3,
+      "MedicationRequest": 3,
+      "Observation": 244,
+      "Patient": 1,
+      "Procedure": 101,
+      "Provenance": 1,
+      "SupplyDelivery": 21
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

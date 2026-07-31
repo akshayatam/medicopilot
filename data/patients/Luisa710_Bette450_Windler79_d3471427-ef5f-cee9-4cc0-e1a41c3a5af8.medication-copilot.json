@@ -1,0 +1,375 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:21.295431+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "d3471427-ef5f-cee9-4cc0-e1a41c3a5af8",
+    "display_name": "Luisa710 Bette450 Windler79",
+    "birth_date": "1958-04-21",
+    "age_at_dataset_reference_date": 68,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "d3471427-ef5f-cee9-3200-9cc338aada04",
+        "code_system": "http://snomed.info/sct",
+        "code": "473461003",
+        "display": "Educated to high school level (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1976-06-14T21:39:06-04:00",
+        "abatement": null,
+        "recorded_date": "1976-06-14T21:39:06-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-2b1e-27d018bfc719",
+        "code_system": "http://snomed.info/sct",
+        "code": "266934004",
+        "display": "Transport problem (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1976-06-14T21:39:06-04:00",
+        "abatement": null,
+        "recorded_date": "1976-06-14T21:39:06-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-99e2-c5ac11a8900c",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1989-07-03T20:46:17-04:00",
+        "abatement": null,
+        "recorded_date": "1989-07-03T20:46:17-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-b054-09bdb13583ec",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-01-31T19:46:17-05:00",
+        "abatement": null,
+        "recorded_date": "1990-01-31T19:46:17-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-fbdd-e3f5087f1adb",
+        "code_system": "http://snomed.info/sct",
+        "code": "6525002",
+        "display": "Dependent drug abuse (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-05-16T20:46:17-04:00",
+        "abatement": null,
+        "recorded_date": "1990-05-16T20:46:17-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-30ce-61ec9b04045f",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2006-02-13T19:46:17-05:00",
+        "abatement": null,
+        "recorded_date": "2006-02-13T19:46:17-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "d3471427-ef5f-cee9-b637-721e10853b10",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-08-19T21:46:17-04:00",
+        "abatement": null,
+        "recorded_date": "1990-08-19T21:46:17-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "d3471427-ef5f-cee9-4914-c3daf16ba089",
+        "code_system": "http://snomed.info/sct",
+        "code": "713458007",
+        "display": "Lack of access to transportation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1977-06-20T21:30:25-04:00",
+        "abatement": null,
+        "recorded_date": "1977-06-20T21:30:25-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-dd73-da76873f68c5",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2000-05-01T21:45:09-04:00",
+        "abatement": null,
+        "recorded_date": "2000-05-01T21:45:09-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "d3471427-ef5f-cee9-e2bd-4a24cd3646a2",
+        "code_system": "http://snomed.info/sct",
+        "code": "160904001",
+        "display": "Part-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-07-28T21:20:31-04:00",
+        "abatement": null,
+        "recorded_date": "2025-07-28T21:20:31-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [
+    {
+      "id": "d3471427-ef5f-cee9-eb30-043b5784fcc6",
+      "code_system": "http://snomed.info/sct",
+      "code": "609328004",
+      "substance": "Allergic disposition (finding)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1985-11-23T09:46:17-05:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "d3471427-ef5f-cee9-57cb-c84c69a155ee",
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "10831",
+      "substance": "Sulfamethoxazole / Trimethoprim",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "medication"
+      ],
+      "criticality": "low",
+      "recorded_date": "1985-11-23T09:46:17-05:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Wheal (finding)"
+          ],
+          "severity": null,
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    }
+  ],
+  "allergy_status": "recorded",
+  "medications": [
+    {
+      "id": "med_d3471427-ef5f-cee9-c700-1b068e311180",
+      "source_ids": [
+        "d3471427-ef5f-cee9-c700-1b068e311180"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1363309",
+      "raw_display": "Chlorpheniramine Maleate 4 MG Oral Tablet",
+      "name": "Chlorpheniramine Maleate",
+      "strength": "4 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1985-11-23T10:15:31-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999997999",
+          "display": "Dr. Blanca837 Verdugo724"
+        },
+        "encounter_reference": "urn:uuid:d3471427-ef5f-cee9-3f6d-501b34c72449"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_d3471427-ef5f-cee9-7bf6-cb3860257a19",
+      "source_ids": [
+        "d3471427-ef5f-cee9-7bf6-cb3860257a19"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "106258",
+      "raw_display": "Hydrocortisone 10 MG/ML Topical Cream",
+      "name": "Hydrocortisone 10 MG/ML Topical Cream",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Contact dermatitis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": null,
+          "code_system": "http://snomed.info/sct",
+          "code": "40275004",
+          "display": "Contact dermatitis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1985-11-08T00:46:17-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999997999",
+          "display": "Dr. Blanca837 Verdugo724"
+        },
+        "encounter_reference": "urn:uuid:d3471427-ef5f-cee9-31bb-33262acb2ee7"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "AllergyIntolerance": 2,
+      "CarePlan": 8,
+      "CareTeam": 8,
+      "Claim": 84,
+      "Condition": 50,
+      "Device": 4,
+      "DiagnosticReport": 114,
+      "DocumentReference": 75,
+      "Encounter": 75,
+      "ExplanationOfBenefit": 84,
+      "ImagingStudy": 1,
+      "Immunization": 14,
+      "Medication": 3,
+      "MedicationAdministration": 3,
+      "MedicationRequest": 9,
+      "Observation": 312,
+      "Patient": 1,
+      "Procedure": 138,
+      "Provenance": 1,
+      "SupplyDelivery": 36
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

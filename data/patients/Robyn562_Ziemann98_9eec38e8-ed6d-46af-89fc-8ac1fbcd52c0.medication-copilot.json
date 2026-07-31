@@ -1,0 +1,473 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:27.134780+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "9eec38e8-ed6d-46af-89fc-8ac1fbcd52c0",
+    "display_name": "Robyn562 Ziemann98",
+    "birth_date": "1942-11-12",
+    "age_at_dataset_reference_date": 83,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "9eec38e8-ed6d-46af-7d51-c50be11618ef",
+        "code_system": "http://snomed.info/sct",
+        "code": "239873007",
+        "display": "Osteoarthritis of knee (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1995-04-27T07:13:10-04:00",
+        "abatement": null,
+        "recorded_date": "1995-04-27T07:13:10-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-24da-068c3741d188",
+        "code_system": "http://snomed.info/sct",
+        "code": "423315002",
+        "display": "Limited social contact (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2020-04-16T08:06:31-04:00",
+        "abatement": null,
+        "recorded_date": "2020-04-16T08:06:31-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-d6f4-1db8fddda5b7",
+        "code_system": "http://snomed.info/sct",
+        "code": "26929004",
+        "display": "Alzheimer's disease (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-04-22T07:13:10-04:00",
+        "abatement": null,
+        "recorded_date": "2021-04-22T07:13:10-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-2998-47947bc0be15",
+        "code_system": "http://snomed.info/sct",
+        "code": "414545008",
+        "display": "Ischemic heart disease (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-04-22T07:13:10-04:00",
+        "abatement": null,
+        "recorded_date": "2021-04-22T07:13:10-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-c2ed-1ea30b1c1a10",
+        "code_system": "http://snomed.info/sct",
+        "code": "274531002",
+        "display": "Abnormal findings diagnostic imaging heart+coronary circulat (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2021-05-03T01:37:44-04:00",
+        "abatement": null,
+        "recorded_date": "2021-05-03T01:37:44-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-8bff-19c8c8ead213",
+        "code_system": "http://snomed.info/sct",
+        "code": "64859006",
+        "display": "Osteoporosis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-05-04T07:13:10-04:00",
+        "abatement": null,
+        "recorded_date": "2023-05-04T07:13:10-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-1f6c-18a4f19ce79b",
+        "code_system": "http://snomed.info/sct",
+        "code": "741062008",
+        "display": "Not in labor force (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-05-15T07:55:27-04:00",
+        "abatement": null,
+        "recorded_date": "2025-05-15T07:55:27-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-dba2-78fe193ff943",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-05-21T08:06:06-04:00",
+        "abatement": null,
+        "recorded_date": "2026-05-21T08:06:06-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "9eec38e8-ed6d-46af-dfd2-56dff6ba665c",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1985-10-16T07:13:10-04:00",
+        "abatement": null,
+        "recorded_date": "1985-10-16T07:13:10-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "9eec38e8-ed6d-46af-4a09-a8ccadef438e",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1961-01-05T07:08:14-05:00",
+        "abatement": null,
+        "recorded_date": "1961-01-05T07:08:14-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "9eec38e8-ed6d-46af-d6ce-ca3d3e020c73",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2003-01-09T06:44:51-05:00",
+        "abatement": null,
+        "recorded_date": "2003-01-09T06:44:51-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_9eec38e8-ed6d-46af-cbba-87000d60829e",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-cbba-87000d60829e"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "904419",
+      "raw_display": "Alendronic acid 10 MG Oral Tablet",
+      "name": "Alendronic acid",
+      "strength": "10 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoporosis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:9eec38e8-ed6d-46af-8bff-19c8c8ead213",
+          "code_system": "http://snomed.info/sct",
+          "code": "64859006",
+          "display": "Osteoporosis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-05-21T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999964494",
+          "display": "Dr. Janee223 Harvey63"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-55b2-5073921692a6"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_9eec38e8-ed6d-46af-9ca8-9eedb0d72ad6",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-9ca8-9eedb0d72ad6"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1599803",
+      "raw_display": "24 HR Donepezil hydrochloride 10 MG / Memantine hydrochloride 28 MG Extended Release Oral Capsule",
+      "name": "24 HR Donepezil hydrochloride",
+      "strength": "10 MG",
+      "dose_form": "/ Memantine hydrochloride 28 MG Extended Release Oral Capsule",
+      "purpose_labels": [
+        "Alzheimer's disease (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:9eec38e8-ed6d-46af-d6f4-1db8fddda5b7",
+          "code_system": "http://snomed.info/sct",
+          "code": "26929004",
+          "display": "Alzheimer's disease (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2022-03-26T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999994491",
+          "display": "Dr. Alysha630 Koch169"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-07af-4bbcc36bfafb"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_9eec38e8-ed6d-46af-21eb-6459560879fd",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-21eb-6459560879fd"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "309362",
+      "raw_display": "Clopidogrel 75 MG Oral Tablet",
+      "name": "Clopidogrel",
+      "strength": "75 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2021-04-29T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999964494",
+          "display": "Dr. Janee223 Harvey63"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-193b-79c1d93268c6"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_9eec38e8-ed6d-46af-b7ac-e129cfceb715",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-b7ac-e129cfceb715"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "312961",
+      "raw_display": "Simvastatin 20 MG Oral Tablet",
+      "name": "Simvastatin",
+      "strength": "20 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2021-04-29T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999964494",
+          "display": "Dr. Janee223 Harvey63"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-193b-79c1d93268c6"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_9eec38e8-ed6d-46af-0d63-e444db08e4d2",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-0d63-e444db08e4d2"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "866412",
+      "raw_display": "24 HR metoprolol succinate 100 MG Extended Release Oral Tablet",
+      "name": "24 HR metoprolol succinate",
+      "strength": "100 MG",
+      "dose_form": "Extended Release Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2021-04-29T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999964494",
+          "display": "Dr. Janee223 Harvey63"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-193b-79c1d93268c6"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_9eec38e8-ed6d-46af-4994-eb9f8fc46098",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-4994-eb9f8fc46098"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "705129",
+      "raw_display": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "name": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2021-04-29T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999964494",
+          "display": "Dr. Janee223 Harvey63"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-193b-79c1d93268c6"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_9eec38e8-ed6d-46af-e0c7-379dd1f743cc",
+      "source_ids": [
+        "9eec38e8-ed6d-46af-e0c7-379dd1f743cc"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "849574",
+      "raw_display": "Naproxen sodium 220 MG Oral Tablet",
+      "name": "Naproxen sodium",
+      "strength": "220 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoarthritis of knee (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:9eec38e8-ed6d-46af-7d51-c50be11618ef",
+          "code_system": "http://snomed.info/sct",
+          "code": "239873007",
+          "display": "Osteoarthritis of knee (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1995-04-27T07:13:10-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999994491",
+          "display": "Dr. Alysha630 Koch169"
+        },
+        "encounter_reference": "urn:uuid:9eec38e8-ed6d-46af-9726-01628bd5f5ac"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 3,
+      "CareTeam": 3,
+      "Claim": 59,
+      "Condition": 38,
+      "Device": 9,
+      "DiagnosticReport": 80,
+      "DocumentReference": 41,
+      "Encounter": 41,
+      "ExplanationOfBenefit": 59,
+      "ImagingStudy": 3,
+      "Immunization": 13,
+      "Medication": 1,
+      "MedicationAdministration": 1,
+      "MedicationRequest": 18,
+      "Observation": 204,
+      "Patient": 1,
+      "Procedure": 290,
+      "Provenance": 1,
+      "SupplyDelivery": 12
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

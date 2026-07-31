@@ -1,0 +1,487 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:27.586011+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "c846d587-ba48-3772-a8c1-c0b12c3b3e20",
+    "display_name": "Rosemary734 Lilli892 Funk324",
+    "birth_date": "1926-01-12",
+    "age_at_dataset_reference_date": 100,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "c846d587-ba48-3772-52fa-c3151f541348",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1954-03-23T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "1954-03-23T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-3eaf-6d4ef132f917",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1963-04-02T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "1963-04-02T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-717d-774add3e94c7",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1963-04-02T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "1963-04-02T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-0373-362611a482b3",
+        "code_system": "http://snomed.info/sct",
+        "code": "239873007",
+        "display": "Osteoarthritis of knee (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1984-02-19T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "1984-02-19T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-be94-9ea52c2f71e3",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2009-08-11T01:01:29-04:00",
+        "abatement": null,
+        "recorded_date": "2009-08-11T01:01:29-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-6fa6-90c66e2099cb",
+        "code_system": "http://snomed.info/sct",
+        "code": "706893006",
+        "display": "Victim of intimate partner abuse (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2012-08-07T02:54:24-04:00",
+        "abatement": null,
+        "recorded_date": "2012-08-07T02:54:24-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-b86d-85c27ddc4cf1",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-06T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-06T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-c12a-56024cb19f1c",
+        "code_system": "http://snomed.info/sct",
+        "code": "278860009",
+        "display": "Chronic low back pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-06T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-06T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-f1cf-25736f7f6c6d",
+        "code_system": "http://snomed.info/sct",
+        "code": "5602001",
+        "display": "Opioid abuse",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-05-03T01:01:29-04:00",
+        "abatement": null,
+        "recorded_date": "2014-05-03T01:01:29-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "c846d587-ba48-3772-25d1-15261e21e7fe",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1967-01-25T00:01:29-05:00",
+        "abatement": null,
+        "recorded_date": "1967-01-25T00:01:29-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "c846d587-ba48-3772-ddf3-f9c5396129d5",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1944-03-07T01:52:59-04:00",
+        "abatement": null,
+        "recorded_date": "1944-03-07T01:52:59-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "c846d587-ba48-3772-c040-dc8c85b7449a",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-04-07T01:35:41-04:00",
+        "abatement": null,
+        "recorded_date": "2026-04-07T01:35:41-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "c846d587-ba48-3772-1134-2d2e208c90a9",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-04-07T01:01:29-04:00",
+        "abatement": null,
+        "recorded_date": "2026-04-07T01:01:29-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_c846d587-ba48-3772-c578-30b9df4df233",
+      "source_ids": [
+        "c846d587-ba48-3772-c578-30b9df4df233"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1049625",
+      "raw_display": "Acetaminophen 325 MG / Oxycodone Hydrochloride 10 MG Oral Tablet [Percocet]",
+      "name": "Acetaminophen",
+      "strength": "325 MG",
+      "dose_form": "/ Oxycodone Hydrochloride 10 MG Oral Tablet [Percocet]",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-07T01:01:29-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999992297",
+          "display": "Dr. Warren653 O'Keefe54"
+        },
+        "encounter_reference": "urn:uuid:c846d587-ba48-3772-2efd-3d0f8ccf3c3e"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Every six hours (qualifier value)",
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 4,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [
+            "Every six hours (qualifier value)"
+          ],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_c846d587-ba48-3772-7596-76e2bd178ed4",
+      "source_ids": [
+        "c846d587-ba48-3772-7596-76e2bd178ed4"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "245134",
+      "raw_display": "72 HR Fentanyl 0.025 MG/HR Transdermal System",
+      "name": "72 HR Fentanyl 0.025 MG/HR Transdermal System",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-07T01:01:29-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999992297",
+          "display": "Dr. Warren653 O'Keefe54"
+        },
+        "encounter_reference": "urn:uuid:c846d587-ba48-3772-2efd-3d0f8ccf3c3e"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Every seventy two hours (qualifier value)",
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 3.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [
+            "Every seventy two hours (qualifier value)"
+          ],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_c846d587-ba48-3772-9fdf-0e65e42f8032",
+      "source_ids": [
+        "c846d587-ba48-3772-9fdf-0e65e42f8032"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "351266",
+      "raw_display": "buprenorphine 2 MG / naloxone 0.5 MG Sublingual Tablet",
+      "name": "buprenorphine",
+      "strength": "2 MG",
+      "dose_form": "/ naloxone 0.5 MG Sublingual Tablet",
+      "purpose_labels": [
+        "Opioid abuse"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:c846d587-ba48-3772-f1cf-25736f7f6c6d",
+          "code_system": "http://snomed.info/sct",
+          "code": "5602001",
+          "display": "Opioid abuse"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-04-07T01:01:29-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999992297",
+          "display": "Dr. Warren653 O'Keefe54"
+        },
+        "encounter_reference": "urn:uuid:c846d587-ba48-3772-2efd-3d0f8ccf3c3e"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_c846d587-ba48-3772-3b1e-27066ab21258",
+      "source_ids": [
+        "c846d587-ba48-3772-3b1e-27066ab21258"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "849574",
+      "raw_display": "Naproxen sodium 220 MG Oral Tablet",
+      "name": "Naproxen sodium",
+      "strength": "220 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Osteoarthritis of knee (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:c846d587-ba48-3772-0373-362611a482b3",
+          "code_system": "http://snomed.info/sct",
+          "code": "239873007",
+          "display": "Osteoarthritis of knee (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1984-02-19T00:01:29-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999997296",
+          "display": "Dr. Harlan808 Langosh790"
+        },
+        "encounter_reference": "urn:uuid:c846d587-ba48-3772-bf40-35e93596f7c4"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 3,
+      "CareTeam": 3,
+      "Claim": 95,
+      "Condition": 45,
+      "Device": 12,
+      "DiagnosticReport": 91,
+      "DocumentReference": 42,
+      "Encounter": 42,
+      "ExplanationOfBenefit": 95,
+      "ImagingStudy": 6,
+      "Immunization": 13,
+      "Medication": 3,
+      "MedicationAdministration": 3,
+      "MedicationRequest": 53,
+      "Observation": 311,
+      "Patient": 1,
+      "Procedure": 130,
+      "Provenance": 1,
+      "SupplyDelivery": 44
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

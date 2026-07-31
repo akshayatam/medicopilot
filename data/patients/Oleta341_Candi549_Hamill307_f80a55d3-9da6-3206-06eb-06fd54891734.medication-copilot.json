@@ -1,0 +1,560 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:25.543928+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "f80a55d3-9da6-3206-06eb-06fd54891734",
+    "display_name": "Oleta341 Candi549 Hamill307",
+    "birth_date": "1955-12-24",
+    "age_at_dataset_reference_date": 70,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "f80a55d3-9da6-3206-2ba5-ef6f49f04e05",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1984-03-03T03:25:36-05:00",
+        "abatement": null,
+        "recorded_date": "1984-03-03T03:25:36-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-b9a4-785e1d60eb50",
+        "code_system": "http://snomed.info/sct",
+        "code": "271737000",
+        "display": "Anemia (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1984-03-03T03:25:36-05:00",
+        "abatement": null,
+        "recorded_date": "1984-03-03T03:25:36-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-756d-40a0be8ac377",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1996-01-06T03:25:36-05:00",
+        "abatement": null,
+        "recorded_date": "1996-01-06T03:25:36-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-a2f3-9eb186af8a9b",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2009-01-31T03:25:36-05:00",
+        "abatement": null,
+        "recorded_date": "2009-01-31T03:25:36-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-2698-1b90014f6ab0",
+        "code_system": "http://snomed.info/sct",
+        "code": "414545008",
+        "display": "Ischemic heart disease (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-04-12T04:25:36-04:00",
+        "abatement": null,
+        "recorded_date": "2025-04-12T04:25:36-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-9c22-a3c2186a5f04",
+        "code_system": "http://snomed.info/sct",
+        "code": "274531002",
+        "display": "Abnormal findings diagnostic imaging heart+coronary circulat (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-04-25T01:57:51-04:00",
+        "abatement": null,
+        "recorded_date": "2025-04-25T01:57:51-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-8b90-eded72fa818e",
+        "code_system": "http://snomed.info/sct",
+        "code": "68496003",
+        "display": "Polyp of colon (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-01-09T04:37:51-05:00",
+        "abatement": null,
+        "recorded_date": "2026-01-09T04:37:51-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "f80a55d3-9da6-3206-0c51-a4926077a7b0",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1997-09-21T04:25:36-04:00",
+        "abatement": null,
+        "recorded_date": "1997-09-21T04:25:36-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "f80a55d3-9da6-3206-4bdd-db005af019b7",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1974-02-16T05:25:03-04:00",
+        "abatement": null,
+        "recorded_date": "1974-02-16T05:25:03-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "f80a55d3-9da6-3206-130d-fcc384291781",
+        "code_system": "http://snomed.info/sct",
+        "code": "160904001",
+        "display": "Part-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-04-18T05:21:07-04:00",
+        "abatement": null,
+        "recorded_date": "2026-04-18T05:21:07-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": []
+  },
+  "allergies": [
+    {
+      "id": "f80a55d3-9da6-3206-b9f3-5cf99163a76e",
+      "code_system": "http://snomed.info/sct",
+      "code": "609328004",
+      "substance": "Allergic disposition (finding)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1988-08-15T21:25:36-04:00",
+      "reactions": [],
+      "source": "Synthea FHIR AllergyIntolerance"
+    },
+    {
+      "id": "f80a55d3-9da6-3206-747d-5c60a0e9b156",
+      "code_system": "http://snomed.info/sct",
+      "code": "264287008",
+      "substance": "Animal dander (substance)",
+      "clinical_status": "active",
+      "verification_status": "confirmed",
+      "type": "allergy",
+      "category": [
+        "environment"
+      ],
+      "criticality": "low",
+      "recorded_date": "1988-08-15T21:25:36-04:00",
+      "reactions": [
+        {
+          "manifestations": [
+            "Rhinoconjunctivitis (disorder)"
+          ],
+          "severity": "moderate",
+          "onset": null
+        }
+      ],
+      "source": "Synthea FHIR AllergyIntolerance"
+    }
+  ],
+  "allergy_status": "recorded",
+  "medications": [
+    {
+      "id": "med_f80a55d3-9da6-3206-c08b-e64d66ebd79f",
+      "source_ids": [
+        "f80a55d3-9da6-3206-c08b-e64d66ebd79f"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "309362",
+      "raw_display": "Clopidogrel 75 MG Oral Tablet",
+      "name": "Clopidogrel",
+      "strength": "75 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-04-19T04:25:36-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-d6be-325973e5c729"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_f80a55d3-9da6-3206-a5cc-bb012b827054",
+      "source_ids": [
+        "f80a55d3-9da6-3206-a5cc-bb012b827054"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "312961",
+      "raw_display": "Simvastatin 20 MG Oral Tablet",
+      "name": "Simvastatin",
+      "strength": "20 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-04-19T04:25:36-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-d6be-325973e5c729"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_f80a55d3-9da6-3206-1c69-4d3155b6bcc6",
+      "source_ids": [
+        "f80a55d3-9da6-3206-1c69-4d3155b6bcc6"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "866412",
+      "raw_display": "24 HR metoprolol succinate 100 MG Extended Release Oral Tablet",
+      "name": "24 HR metoprolol succinate",
+      "strength": "100 MG",
+      "dose_form": "Extended Release Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-04-19T04:25:36-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-d6be-325973e5c729"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_f80a55d3-9da6-3206-c759-adb7cc651961",
+      "source_ids": [
+        "f80a55d3-9da6-3206-c759-adb7cc651961"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "705129",
+      "raw_display": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "name": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-04-19T04:25:36-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-d6be-325973e5c729"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_f80a55d3-9da6-3206-1dc1-ea8fa6ca1164",
+      "source_ids": [
+        "f80a55d3-9da6-3206-1dc1-ea8fa6ca1164"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1049630",
+      "raw_display": "diphenhydrAMINE Hydrochloride 25 MG Oral Tablet",
+      "name": "diphenhydrAMINE Hydrochloride",
+      "strength": "25 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1988-08-15T22:00:37-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999998294",
+          "display": "Dr. Bennett146 Rippin620"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-a3dd-d6656aade2b0"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_f80a55d3-9da6-3206-7ec5-174083ece8e9",
+      "source_ids": [
+        "f80a55d3-9da6-3206-7ec5-174083ece8e9"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1870230",
+      "raw_display": "NDA020800 0.3 ML Epinephrine 1 MG/ML Auto-Injector",
+      "name": "NDA020800",
+      "strength": "0.3 ML",
+      "dose_form": "Epinephrine 1 MG/ML Auto-Injector",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1988-08-15T22:00:37-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999998294",
+          "display": "Dr. Bennett146 Rippin620"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-a3dd-d6656aade2b0"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_f80a55d3-9da6-3206-05b1-5ae68b477f9a",
+      "source_ids": [
+        "f80a55d3-9da6-3206-05b1-5ae68b477f9a"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "106258",
+      "raw_display": "Hydrocortisone 10 MG/ML Topical Cream",
+      "name": "Hydrocortisone 10 MG/ML Topical Cream",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Contact dermatitis (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": null,
+          "code_system": "http://snomed.info/sct",
+          "code": "40275004",
+          "display": "Contact dermatitis (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1988-07-31T19:25:36-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999998294",
+          "display": "Dr. Bennett146 Rippin620"
+        },
+        "encounter_reference": "urn:uuid:f80a55d3-9da6-3206-f73a-1150f55d42c4"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "AllergyIntolerance": 2,
+      "CarePlan": 4,
+      "CareTeam": 4,
+      "Claim": 47,
+      "Condition": 38,
+      "Device": 8,
+      "DiagnosticReport": 78,
+      "DocumentReference": 36,
+      "Encounter": 36,
+      "ExplanationOfBenefit": 47,
+      "ImagingStudy": 4,
+      "Immunization": 15,
+      "Medication": 2,
+      "MedicationAdministration": 2,
+      "MedicationRequest": 11,
+      "Observation": 264,
+      "Patient": 1,
+      "Procedure": 133,
+      "Provenance": 1,
+      "SupplyDelivery": 40
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:05.978769+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "a34d659e-1620-3137-f35e-ae349b8a33c1",
+    "display_name": "Cole117 Jamie386 Volkman526",
+    "birth_date": "1925-03-28",
+    "age_at_dataset_reference_date": 101,
+    "gender": "male",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "a34d659e-1620-3137-acc9-5a7bd28f69fb",
+        "code_system": "http://snomed.info/sct",
+        "code": "40055000",
+        "display": "Chronic sinusitis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1935-08-29T00:15:28-04:00",
+        "abatement": null,
+        "recorded_date": "1935-08-29T00:15:28-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-32ba-a5391f3acc76",
+        "code_system": "http://snomed.info/sct",
+        "code": "1187604002",
+        "display": "Serving in military service (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1943-05-23T00:08:08-04:00",
+        "abatement": null,
+        "recorded_date": "1943-05-23T00:08:08-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-af33-6fbabe632753",
+        "code_system": "http://snomed.info/sct",
+        "code": "449868002",
+        "display": "Smokes tobacco daily (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1947-12-20T22:15:28-05:00",
+        "abatement": null,
+        "recorded_date": "1947-12-20T22:15:28-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-e11d-15fcc9cd5adf",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1964-02-22T22:15:28-05:00",
+        "abatement": null,
+        "recorded_date": "1964-02-22T22:15:28-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-6171-7b4632bc85b4",
+        "code_system": "http://snomed.info/sct",
+        "code": "414545008",
+        "display": "Ischemic heart disease (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1985-05-25T23:15:28-04:00",
+        "abatement": null,
+        "recorded_date": "1985-05-25T23:15:28-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-24c3-3ed80999c2c0",
+        "code_system": "http://snomed.info/sct",
+        "code": "274531002",
+        "display": "Abnormal findings diagnostic imaging heart+coronary circulat (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1985-06-06T00:52:21-04:00",
+        "abatement": null,
+        "recorded_date": "1985-06-06T00:52:21-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-a1ea-ef14489459f3",
+        "code_system": "http://snomed.info/sct",
+        "code": "401303003",
+        "display": "Acute ST segment elevation myocardial infarction (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1991-06-10T23:43:14-04:00",
+        "abatement": null,
+        "recorded_date": "1991-06-10T23:43:14-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-136f-a0d343b9fe01",
+        "code_system": "http://snomed.info/sct",
+        "code": "126906006",
+        "display": "Neoplasm of prostate (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1999-08-14T23:49:37-04:00",
+        "abatement": null,
+        "recorded_date": "1999-08-14T23:49:37-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-46e7-d898250d593b",
+        "code_system": "http://snomed.info/sct",
+        "code": "92691004",
+        "display": "Carcinoma in situ of prostate (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1999-08-14T23:49:37-04:00",
+        "abatement": null,
+        "recorded_date": "1999-08-14T23:49:37-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-a2ed-95be1c75db86",
+        "code_system": "http://snomed.info/sct",
+        "code": "37320007",
+        "display": "Loss of teeth (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2013-11-23T22:15:28-05:00",
+        "abatement": null,
+        "recorded_date": "2013-11-23T22:15:28-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-6b55-74d53e2c1ca4",
+        "code_system": "http://snomed.info/sct",
+        "code": "82423001",
+        "display": "Chronic pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-03T22:15:28-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-03T22:15:28-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-721a-6d08c851affe",
+        "code_system": "http://snomed.info/sct",
+        "code": "278860009",
+        "display": "Chronic low back pain (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2014-02-03T22:15:28-05:00",
+        "abatement": null,
+        "recorded_date": "2014-02-03T22:15:28-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-3a87-f0fdc3475e0d",
+        "code_system": "http://snomed.info/sct",
+        "code": "423315002",
+        "display": "Limited social contact (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2022-12-24T22:59:37-05:00",
+        "abatement": null,
+        "recorded_date": "2022-12-24T22:59:37-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-5a60-d5fc16da85ee",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-01-10T23:14:22-05:00",
+        "abatement": null,
+        "recorded_date": "2026-01-10T23:14:22-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "a34d659e-1620-3137-f69f-41a9f5c7f040",
+        "code_system": "http://snomed.info/sct",
+        "code": "399211009",
+        "display": "History of myocardial infarction (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1991-06-19T02:53:06-04:00",
+        "abatement": null,
+        "recorded_date": "1991-06-19T02:53:06-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "a34d659e-1620-3137-53f2-7b2bb3204e8d",
+        "code_system": "http://snomed.info/sct",
+        "code": "105531004",
+        "display": "Housing unsatisfactory (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1943-05-23T00:08:08-04:00",
+        "abatement": null,
+        "recorded_date": "1943-05-23T00:08:08-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-a159-0c604bc406f9",
+        "code_system": "http://snomed.info/sct",
+        "code": "224295006",
+        "display": "Only received primary school education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1943-05-23T00:08:08-04:00",
+        "abatement": null,
+        "recorded_date": "1943-05-23T00:08:08-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "a34d659e-1620-3137-ecc7-fbf32a27d1e0",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2026-01-10T23:14:22-05:00",
+        "abatement": null,
+        "recorded_date": "2026-01-10T23:14:22-05:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "a34d659e-1620-3137-948c-e79611673ae6",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-05-04T23:15:28-04:00",
+        "abatement": null,
+        "recorded_date": "2024-05-04T23:15:28-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_a34d659e-1620-3137-1661-02dfc5e71334",
+      "source_ids": [
+        "a34d659e-1620-3137-1661-02dfc5e71334"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "835603",
+      "raw_display": "tramadol hydrochloride 50 MG Oral Tablet",
+      "name": "tramadol hydrochloride",
+      "strength": "50 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2026-01-10T22:15:28-05:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999983890",
+          "display": "Dr. Lady554 Kovacek682"
+        },
+        "encounter_reference": "urn:uuid:a34d659e-1620-3137-ffdf-c928a2cde5fa"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": "Take as needed.",
+          "patient_instruction": null,
+          "schedule_type": "as_needed",
+          "as_needed": true,
+          "frequency": null,
+          "frequency_max": null,
+          "period": null,
+          "period_max": null,
+          "period_unit": null,
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": null,
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "No fixed reminder generated because medication is as-needed."
+        }
+      ],
+      "schedule_type": "as_needed",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_a34d659e-1620-3137-9686-0a5a60ea9460",
+      "source_ids": [
+        "a34d659e-1620-3137-9686-0a5a60ea9460"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "309362",
+      "raw_display": "Clopidogrel 75 MG Oral Tablet",
+      "name": "Clopidogrel",
+      "strength": "75 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2006-04-22T23:15:28-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999984591",
+          "display": "Dr. Ted955 Reilly981"
+        },
+        "encounter_reference": "urn:uuid:a34d659e-1620-3137-fe2a-06724c21a5d3"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_a34d659e-1620-3137-4199-02517fb7167e",
+      "source_ids": [
+        "a34d659e-1620-3137-4199-02517fb7167e"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "1804799",
+      "raw_display": "Alteplase 100 MG Injection",
+      "name": "Alteplase",
+      "strength": "100 MG",
+      "dose_form": "Injection",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2006-04-22T23:15:28-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999984591",
+          "display": "Dr. Ted955 Reilly981"
+        },
+        "encounter_reference": "urn:uuid:a34d659e-1620-3137-fe2a-06724c21a5d3"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_a34d659e-1620-3137-7d30-c083267117d2",
+      "source_ids": [
+        "a34d659e-1620-3137-7d30-c083267117d2"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "866412",
+      "raw_display": "24 HR metoprolol succinate 100 MG Extended Release Oral Tablet",
+      "name": "24 HR metoprolol succinate",
+      "strength": "100 MG",
+      "dose_form": "Extended Release Oral Tablet",
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1985-06-01T23:15:28-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999983890",
+          "display": "Dr. Lady554 Kovacek682"
+        },
+        "encounter_reference": "urn:uuid:a34d659e-1620-3137-3fb9-aebb27e5ec6d"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_a34d659e-1620-3137-e19f-8b16cfa970e3",
+      "source_ids": [
+        "a34d659e-1620-3137-e19f-8b16cfa970e3"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "705129",
+      "raw_display": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "name": "Nitroglycerin 0.4 MG/ACTUAT Mucosal Spray",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1985-06-01T23:15:28-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999983890",
+          "display": "Dr. Lady554 Kovacek682"
+        },
+        "encounter_reference": "urn:uuid:a34d659e-1620-3137-3fb9-aebb27e5ec6d"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_a34d659e-1620-3137-74f3-0be7d870f0da",
+      "source_ids": [
+        "a34d659e-1620-3137-74f3-0be7d870f0da"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "198031",
+      "raw_display": "24 HR nicotine 0.292 MG/HR Transdermal System",
+      "name": "24 HR nicotine 0.292 MG/HR Transdermal System",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [],
+      "reasons": [],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1947-05-31T23:15:28-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999983890",
+          "display": "Dr. Lady554 Kovacek682"
+        },
+        "encounter_reference": "urn:uuid:a34d659e-1620-3137-e5c0-c315cd6abd19"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 3,
+      "CareTeam": 3,
+      "Claim": 66,
+      "Condition": 55,
+      "Device": 8,
+      "DiagnosticReport": 82,
+      "DocumentReference": 43,
+      "Encounter": 43,
+      "ExplanationOfBenefit": 66,
+      "ImagingStudy": 6,
+      "Immunization": 11,
+      "Medication": 4,
+      "MedicationAdministration": 4,
+      "MedicationRequest": 23,
+      "Observation": 177,
+      "Patient": 1,
+      "Procedure": 150,
+      "Provenance": 1,
+      "SupplyDelivery": 31
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}

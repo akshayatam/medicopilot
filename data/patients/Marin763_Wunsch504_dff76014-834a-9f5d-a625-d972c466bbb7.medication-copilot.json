@@ -1,0 +1,431 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "name": "Medication Copilot Synthetic Dataset",
+    "source_dataset": "Synthea FHIR R4",
+    "synthetic": true,
+    "converted_at": "2026-07-28T21:22:22.667764+00:00",
+    "reference_date": "2026-07-28",
+    "minimum_patient_age": 60,
+    "guardrails": {
+      "absence_of_allergy_resource_means": "not_recorded",
+      "medication_order_is_not_dose_administration": true,
+      "prn_medications_receive_fixed_schedule": false,
+      "missing_exact_times_are_invented": false,
+      "family_caregiver_inferred_from_careteam": false
+    }
+  },
+  "patient": {
+    "id": "dff76014-834a-9f5d-a625-d972c466bbb7",
+    "display_name": "Marin763 Wunsch504",
+    "birth_date": "1965-05-12",
+    "age_at_dataset_reference_date": 61,
+    "gender": "female",
+    "preferred_language": "en-US",
+    "timezone": "America/New_York",
+    "caregiver": null
+  },
+  "conditions": {
+    "clinical_conditions": [
+      {
+        "id": "dff76014-834a-9f5d-a264-5ad1764bbb23",
+        "code_system": "http://snomed.info/sct",
+        "code": "128613002",
+        "display": "Seizure disorder (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1977-06-20T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "1977-06-20T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-c165-19d25775a6b9",
+        "code_system": "http://snomed.info/sct",
+        "code": "40055000",
+        "display": "Chronic sinusitis (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1979-08-11T14:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "1979-08-11T14:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-ef21-5ac989f43cbe",
+        "code_system": "http://snomed.info/sct",
+        "code": "162864005",
+        "display": "Body mass index 30+ - obesity (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1987-07-15T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "1987-07-15T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-a67e-c77c567aeeb4",
+        "code_system": "http://snomed.info/sct",
+        "code": "714628002",
+        "display": "Prediabetes (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1999-07-28T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "1999-07-28T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-c548-2e9cd547fa34",
+        "code_system": "http://snomed.info/sct",
+        "code": "59621000",
+        "display": "Essential hypertension (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2007-05-23T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "2007-05-23T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-5d77-9b058ae78fdb",
+        "code_system": "http://snomed.info/sct",
+        "code": "237602007",
+        "display": "Metabolic syndrome X (disorder)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2008-05-28T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "2008-05-28T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-9201-1e38aca9a347",
+        "code_system": "http://snomed.info/sct",
+        "code": "706893006",
+        "display": "Victim of intimate partner abuse (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2008-05-28T17:27:35-04:00",
+        "abatement": null,
+        "recorded_date": "2008-05-28T17:27:35-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-6886-ecbc4e4a9619",
+        "code_system": "http://snomed.info/sct",
+        "code": "73595000",
+        "display": "Stress (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2020-08-05T16:42:50-04:00",
+        "abatement": null,
+        "recorded_date": "2020-08-05T16:42:50-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-b6b4-ede87f389c63",
+        "code_system": "http://snomed.info/sct",
+        "code": "424393004",
+        "display": "Reports of violence in the environment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-09-03T16:56:17-04:00",
+        "abatement": null,
+        "recorded_date": "2025-09-03T16:56:17-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-6e1e-4b8c21e43da1",
+        "code_system": "http://snomed.info/sct",
+        "code": "80583007",
+        "display": "Severe anxiety (panic) (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2025-09-03T17:21:35-04:00",
+        "abatement": null,
+        "recorded_date": "2025-09-03T17:21:35-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "historical_conditions": [
+      {
+        "id": "dff76014-834a-9f5d-4a66-3c1585ff48c1",
+        "code_system": "http://snomed.info/sct",
+        "code": "1290882004",
+        "display": "History of seizure (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1977-06-20T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "1977-06-20T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-2c3d-c29c68855542",
+        "code_system": "http://snomed.info/sct",
+        "code": "161744009",
+        "display": "Past pregnancy history of miscarriage (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1994-04-01T15:03:15-05:00",
+        "abatement": null,
+        "recorded_date": "1994-04-01T15:03:15-05:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-9ad2-e915933fef9f",
+        "code_system": "http://snomed.info/sct",
+        "code": "267020005",
+        "display": "History of tubal ligation (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2000-06-26T18:55:01-04:00",
+        "abatement": null,
+        "recorded_date": "2000-06-26T18:55:01-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "social_context": [
+      {
+        "id": "dff76014-834a-9f5d-abdb-319bdb0ef1cc",
+        "code_system": "http://snomed.info/sct",
+        "code": "105531004",
+        "display": "Housing unsatisfactory (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1983-07-06T16:58:48-04:00",
+        "abatement": null,
+        "recorded_date": "1983-07-06T16:58:48-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-f6cb-917c714d7bde",
+        "code_system": "http://snomed.info/sct",
+        "code": "224299000",
+        "display": "Received higher education (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1983-07-06T16:58:48-04:00",
+        "abatement": null,
+        "recorded_date": "1983-07-06T16:58:48-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-80ac-21d37815adfd",
+        "code_system": "http://snomed.info/sct",
+        "code": "266948004",
+        "display": "Has a criminal record (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "1990-07-18T16:50:59-04:00",
+        "abatement": null,
+        "recorded_date": "1990-07-18T16:50:59-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-d505-2b2c134eec3c",
+        "code_system": "http://snomed.info/sct",
+        "code": "422650009",
+        "display": "Social isolation (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2020-08-05T16:42:50-04:00",
+        "abatement": null,
+        "recorded_date": "2020-08-05T16:42:50-04:00",
+        "source": "Synthea FHIR Condition"
+      },
+      {
+        "id": "dff76014-834a-9f5d-1ff7-d64488a345e5",
+        "code_system": "http://snomed.info/sct",
+        "code": "160903007",
+        "display": "Full-time employment (finding)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2023-08-23T16:35:35-04:00",
+        "abatement": null,
+        "recorded_date": "2023-08-23T16:35:35-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ],
+    "administrative_flags": [
+      {
+        "id": "dff76014-834a-9f5d-ec4a-4bcbc5318f2e",
+        "code_system": "http://snomed.info/sct",
+        "code": "314529007",
+        "display": "Medication review due (situation)",
+        "clinical_status": "active",
+        "verification_status": "confirmed",
+        "onset": "2024-08-28T16:03:15-04:00",
+        "abatement": null,
+        "recorded_date": "2024-08-28T16:03:15-04:00",
+        "source": "Synthea FHIR Condition"
+      }
+    ]
+  },
+  "allergies": [],
+  "allergy_status": "not_recorded",
+  "medications": [
+    {
+      "id": "med_dff76014-834a-9f5d-4e4a-3cae8b6e3395",
+      "source_ids": [
+        "dff76014-834a-9f5d-4e4a-3cae8b6e3395"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "308136",
+      "raw_display": "amLODIPine 2.5 MG Oral Tablet",
+      "name": "amLODIPine",
+      "strength": "2.5 MG",
+      "dose_form": "Oral Tablet",
+      "purpose_labels": [
+        "Essential hypertension (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:dff76014-834a-9f5d-c548-2e9cd547fa34",
+          "code_system": "http://snomed.info/sct",
+          "code": "59621000",
+          "display": "Essential hypertension (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "2025-09-03T16:03:15-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:dff76014-834a-9f5d-02f7-fa6fae39f24a"
+      },
+      "dosage_instructions": [
+        {
+          "sequence": 1,
+          "text": null,
+          "patient_instruction": null,
+          "schedule_type": "scheduled",
+          "as_needed": false,
+          "frequency": 1,
+          "frequency_max": null,
+          "period": 1.0,
+          "period_max": null,
+          "period_unit": "d",
+          "days_of_week": [],
+          "exact_times": [],
+          "event_relationships": [],
+          "bounds": null,
+          "dose_quantity": {
+            "value": 1.0,
+            "unit": null,
+            "system": null,
+            "code": null
+          },
+          "route": null,
+          "method": null,
+          "site": null,
+          "additional_instructions": [],
+          "schedule": [],
+          "meal_context": null,
+          "schedule_guardrail": "FHIR contains no exact clock time; no reminder time was invented."
+        }
+      ],
+      "schedule_type": "scheduled",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    },
+    {
+      "id": "med_dff76014-834a-9f5d-0695-ca161c7aedc4",
+      "source_ids": [
+        "dff76014-834a-9f5d-0695-ca161c7aedc4"
+      ],
+      "code_system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+      "code": "308971",
+      "raw_display": "carbamazepine 20 MG/ML Oral Suspension [Tegretol]",
+      "name": "carbamazepine 20 MG/ML Oral Suspension [Tegretol]",
+      "strength": null,
+      "dose_form": null,
+      "purpose_labels": [
+        "Seizure disorder (disorder)"
+      ],
+      "reasons": [
+        {
+          "reference": "urn:uuid:dff76014-834a-9f5d-a264-5ad1764bbb23",
+          "code_system": "http://snomed.info/sct",
+          "code": "128613002",
+          "display": "Seizure disorder (disorder)"
+        }
+      ],
+      "prescription": {
+        "status": "active",
+        "intent": "order",
+        "authored_on": "1979-06-13T16:03:15-04:00",
+        "validity_start": null,
+        "validity_end": null,
+        "requester": {
+          "reference": "Practitioner?identifier=http://hl7.org/fhir/sid/us-npi|9999944496",
+          "display": "Dr. Ricky354 Renner328"
+        },
+        "encounter_reference": "urn:uuid:dff76014-834a-9f5d-69b4-3774e406f223"
+      },
+      "dosage_instructions": [],
+      "schedule_type": "unknown",
+      "has_exact_reminder_time": false,
+      "active": true,
+      "source": "Synthea FHIR MedicationRequest",
+      "renewal_count": 1
+    }
+  ],
+  "dose_logs": [],
+  "provenance": {
+    "source_bundle_type": "transaction",
+    "source_resource_counts": {
+      "CarePlan": 4,
+      "CareTeam": 4,
+      "Claim": 47,
+      "Condition": 38,
+      "Device": 6,
+      "DiagnosticReport": 69,
+      "DocumentReference": 33,
+      "Encounter": 33,
+      "ExplanationOfBenefit": 47,
+      "ImagingStudy": 3,
+      "Immunization": 9,
+      "Medication": 2,
+      "MedicationAdministration": 2,
+      "MedicationRequest": 14,
+      "Observation": 218,
+      "Patient": 1,
+      "Procedure": 95,
+      "Provenance": 1,
+      "SupplyDelivery": 31
+    },
+    "resources_used": [
+      "Patient",
+      "MedicationRequest",
+      "Condition",
+      "AllergyIntolerance"
+    ],
+    "resources_not_used_for_medication_copilot": [
+      "CarePlan",
+      "CareTeam",
+      "Claim",
+      "Device",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Encounter",
+      "ExplanationOfBenefit",
+      "ImagingStudy",
+      "Immunization",
+      "Medication",
+      "MedicationAdministration",
+      "Observation",
+      "Procedure",
+      "Provenance",
+      "SupplyDelivery"
+    ]
+  }
+}
