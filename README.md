@@ -1,175 +1,151 @@
-# MediCopilot
+# Medication Copilot
 
-MediCopilot is an offline, synthetic-data medication navigation and adherence-support demo. It uses local Gemma E2B only to classify text into approved actions. Medication facts, readiness, schedules, resolution, allergy meaning, and dose history come from validated local data and deterministic Python services.
+Medication Copilot is a privacy-first, local medication-navigation and adherence-support prototype for older adults and caregivers. It helps a user inspect a verified schedule, look up the next dose, review recorded adherence, and safely record a dose as taken.
 
-It is not a diagnostic, prescribing, interaction-checking, treatment, or dose-adjustment system. Unsafe requests receive a deterministic refusal, and emergency language receives an escalation message.
+It does **not** diagnose, prescribe, recommend treatment, check interactions, or change dosages. It is a synthetic-data prototype, not a medical device.
 
-## Integrated architecture
+## Motivation
+
+Managing several medicines can make it difficult to remember what is scheduled and whether a dose was already taken. Medication Copilot explores a deliberately narrow approach: natural-language navigation over a locally stored, human-reconciled medication plan, with deterministic safety and readiness controls around every patient-facing action.
+
+## Architecture
 
 ```mermaid
-flowchart LR
-    A[Synthea FHIR] --> B[Converter]
-    B --> C[Source Record]
-    C --> D[Reconciliation]
-    D --> E[Verified Medication Plan]
-    E --> F[Dose Ledger]
-    F --> G[Deterministic Medication Service]
-    H[Validated Gemma Intent] --> G
-    I[Gradio Text Input] --> H
+flowchart TD
+    A[Synthetic patient source / Synthea FHIR] --> B[Conversion]
+    B --> C[Unverified source record]
+    C --> D[Explicit reconciliation]
+    D --> E[Verified medication plan]
+    E --> F[Schema-v2 runtime patient]
+    F --> G[Gradio text input]
+    G --> H[Deterministic safety screening]
+    H --> I[Local Gemma 4 intent routing]
+    I --> J[Pydantic intent validation]
+    J --> K[Deterministic medication service]
+    K --> L[Grounded local response]
 ```
 
-The runtime flow is:
+The repeatable live demo uses curated synthetic runtime data. Synthea FHIR ingestion remains supported, but imported orders stay in an unverified source-record layer. They cannot drive reminders or adherence answers until an explicit reconciliation profile creates a verified plan. Gemma routes language into approved actions; it is never the source of medication facts.
 
-```text
-User text
-  -> deterministic safety screening
-  -> local Gemma structured intent
-  -> Pydantic validation
-  -> deterministic readiness check
-  -> deterministic medication resolver
-  -> exactly one deterministic service operation
-  -> deterministic grounded response
-```
+See [Architecture](docs/architecture.md) for the detailed request, persistence, and safety flows.
 
-Intent `confidence` is optional diagnostic metadata (`null`, missing, or a
-number from 0.0 through 1.0). It is never used to authorize a tool, resolve a
-medicine, determine readiness, or change safety behavior. Invalid model output
-gets one bounded repair containing the concrete validation error; a failed
-repair produces a deterministic no-action response with details confined to
-debug output.
+## Current features
 
-Removing Gemma reduces natural-language convenience but does not change medication facts or state.
+- Local Gemma intent routing through Ollama
+- Curated, verified medication plans and deterministic medication resolution
+- Today's schedule, next-dose, dose-status, saved-instruction, and history lookup
+- Idempotent mark-taken workflow with ambiguity blocking
+- Ready/unready patient enforcement
+- Deterministic medication-safety refusals
+- Ready and review-required synthetic demo patients
+- Local Gradio text interface with source review, health, and debug information
+- Reproducible demo reset and verification commands
+- Supported Synthea FHIR conversion and reconciliation pipeline
 
-## Data boundaries
+Production reminders, voice, image scanning, hospital integration, and native mobile deployment are not implemented.
 
-Runtime files use schema version `2.0`:
+## Setup
 
-```json
-{
-  "schema_version": "2.0",
-  "source_record": {
-    "patient": {},
-    "conditions": {},
-    "allergies": [],
-    "allergy_status": "not_recorded",
-    "medications": [],
-    "clinical_administrations": [],
-    "provenance": {}
-  },
-  "medication_plan": {
-    "patient_id": "...",
-    "status": "verified",
-    "medications": []
-  },
-  "dose_logs": [],
-  "import_summary": {
-    "ready_for_medication_tracking": true,
-    "blocking_issues": [],
-    "warnings": []
-  }
-}
-```
-
-- `source_record.medications` preserves imported FHIR orders for review. An active FHIR status never means confirmed current use.
-- `medication_plan.medications` contains explicit reconciliation decisions and verified schedules.
-- `dose_logs` contains app events or explicitly seeded synthetic events only. Clinical `MedicationAdministration` remains separate.
-- Unsupported schema versions and invalid cross-field combinations are rejected by the patient-data service.
-
-The patient-facing repository exposes confirmed medicines, verified schedules, app/synthetic dose logs, and allergy status. Source orders are available through a separate read-only review method and never enter medication resolution or daily answers.
-
-## Reconciliation and readiness
-
-Imported medicines begin `unverified`, excluded from the daily plan, and marked for review. A separate reconciliation profile can confirm current use, provide aliases, and add verified synthetic reminder times with provenance. It never overwrites the source instruction.
-
-Reminder and adherence actions are blocked unless `import_summary.ready_for_medication_tracking` is true. Readiness is calculated deterministically and requires confirmed medicines, verified schedules, a timezone, and no blocking conflicts affecting included medicines.
-
-PRN medicines cannot have recurring reminders. Frequency-only FHIR instructions never become clock times. Missing allergy resources mean `not_recorded`, not “no allergies.”
-
-## Curated demo data
-
-Generate the ready and unready runtime patients from the documented reconciliation profiles:
+Python 3.10 or newer is supported.
 
 ```bash
-python scripts/prepare_demo_data.py
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-This creates:
-
-- Elena Rivera: ready, three confirmed medicines, verified schedules, alias resolution, and deterministic dose history.
-- Marcus Chen: review-only, unreconciled conflicting source orders, and no usable reminder plan.
-
-Profiles are stored under `data/reconciliation/`; runtime files are under `data/runtime_patients/`.
-
-## CLI
-
-Set a reproducible demo time when desired:
+Install and start [Ollama](https://ollama.com/), then pull the configured local model:
 
 ```bash
-export DEMO_NOW=2026-08-01T10:00:00-04:00
+ollama pull gemma4:e2b
 ```
 
-`DEMO_NOW` must be timezone-aware. The same injected clock controls CLI and
-Gradio runtime services. “Today” filters dose instances to that exact local
-date; if none exist, the app reports no data and never substitutes another day.
+The defaults can be overridden with `OLLAMA_BASE_URL`, `OLLAMA_MODEL`, and `OLLAMA_TIMEOUT_SECONDS`. The demo remains verifiable without Ollama; only natural-language routing is unavailable.
 
-List and inspect runtime patients:
+Prepare and verify the demo:
+
+```bash
+python app.py reset-demo
+python app.py verify-demo
+python app.py verify-demo --require-model  # strict local-model check
+```
+
+For reproducible dates and dose state:
+
+```bash
+export DEMO_NOW="2026-08-01T10:00:00-04:00"
+python app.py verify-demo
+```
+
+`DEMO_NOW` must include a timezone offset.
+
+## Demo
+
+```bash
+python app.py reset-demo
+python app.py verify-demo
+python app.py serve
+```
+
+Open `http://127.0.0.1:7860`. Public sharing is disabled. A five-minute walkthrough and offline fallback are in [Demo script](docs/demo_script.md).
+
+Useful CLI checks include:
 
 ```bash
 python app.py list-patients
 python app.py patient-status demo-ready-001
 python app.py health
-```
-
-Ask through the integrated orchestrator:
-
-```bash
 python app.py ask --patient demo-ready-001 "What medicine comes next?"
-python app.py ask --patient demo-ready-001 "Did I take my heart tablet this morning?"
 ```
 
-The existing legacy deterministic commands and safe pipeline commands remain available, including `today`, `status`, `next`, `mark-taken`, `instructions`, `history`, `convert-fhir`, `reconcile-patient`, `build-plan`, `generate-dose-logs`, `validate-patient`, and `readiness`.
-
-## Gradio
-
-Start Ollama locally and ensure the configured model exists, then run:
-
-```bash
-python app.py serve
-```
-
-Open `http://127.0.0.1:7860`. Public sharing is disabled. The application includes:
-
-- session-specific patient selection;
-- patient readiness and allergy status;
-- confirmed medicines scheduled today;
-- text-based intent routing;
-- recent app/synthetic dose history;
-- isolated read-only source-order review;
-- collapsed debug metadata without hidden reasoning;
-- combined local-model and patient-data health.
-
-If Ollama is unavailable, deterministic patient and review data still load. The ask panel displays a local-model error instead of crashing.
-
-## Health checks
-
-`python app.py health` reports Ollama reachability, configured model availability, runtime-directory readability, loaded and ready patient counts, schema validation errors, and deterministic-use health. Model failure does not invalidate local patient data.
+The legacy deterministic commands and pipeline commands remain available; run `python app.py --help` for the complete list.
 
 ## Testing
 
-Standard tests do not require Ollama:
+The standard suite does not require Ollama:
 
 ```bash
 pytest -m "not integration"
-python -m compileall -q app.py medication gemma ui scripts
-python app.py --help
+python -m compileall -q app.py medication gemma ui scripts evaluation
+git diff --check
 ```
 
-The end-to-end mocked tests cover readiness, verified next-dose answers, alias resolution, ambiguous mutation blocking, PRN behavior, unsafe requests, idempotent mark-taken, schema validation, and session isolation.
+Live-model verification is intentionally separate:
 
-## Privacy and limitations
+```bash
+python app.py verify-demo --require-model
+```
 
-All included records are synthetic. The runtime AI path excludes raw FHIR bundles, source medications, claims, billing data, exact addresses, phone numbers, sensitive social conditions, and full condition history. No cloud API, analytics, or public Gradio sharing is enabled.
+## Screenshots
 
-The local intent model was not clinically validated and cannot establish medication correctness. Human reconciliation is the source of verified-plan status. Live Ollama behavior should be tested separately on the target machine.
+> Screenshot placeholder — ready-patient medication copilot view.
 
-Voice and image input are intentionally not implemented. Future voice support should normalize speech into text for the same router. Future image extraction must be verified before it can modify a medication plan; neither modality may bypass the deterministic safety or validation layers.
+> Screenshot placeholder — review-required patient and isolated source-order view.
+
+## Safety and privacy
+
+- All included patient records are synthetic.
+- The LLM runs locally through Ollama; no cloud LLM is configured.
+- Patient-facing actions use only confirmed medicines, verified schedules, and app/simulated dose logs.
+- Raw FHIR orders remain isolated for review and do not become a daily plan automatically.
+- Missing allergy data means `not_recorded`, never “no allergies.”
+- Gemma selects an approved action but cannot invent facts, resolve medication ambiguity, bypass readiness, or authorize unsafe advice.
+
+The permanent safety and data specification is [rules.md](rules.md).
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Roadmap](docs/roadmap.md)
+- [Demo script](docs/demo_script.md)
+- [Contributing](CONTRIBUTING.md)
+
+## Future work
+
+These capabilities are planned, not implemented:
+
+- Voice input and output
+- Image/document input with human verification
+- Native Android deployment
+- Healthcare-system integration

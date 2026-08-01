@@ -5,12 +5,43 @@ build/
 dist/
 wheels/
 *.egg-info
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
 
 # Virtual environments
-.venv
+.venv/
+venv/
+env/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs, temporary files, and local backups
+*.log
+*.tmp
+*.bak
+*.orig
+data/runtime_patients.backup*/
+data/runtime_patients/*.runtime.json.tmp
+
+# Local model artifacts and evaluation output
+*.gguf
+*.safetensors
+evaluation/results/
 
 # Raw generated Synthea datasets
 data/synthea/output/
+data/patients/
 
 # Keep small curated application datasets elsewhere
 # data/runtime_patients/ remains tracked

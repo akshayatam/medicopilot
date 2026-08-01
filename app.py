@@ -37,6 +37,9 @@ def build_parser() -> argparse.ArgumentParser:
     history = commands.add_parser("history"); history.add_argument("medicine", nargs="?")
     ask = commands.add_parser("ask"); ask.add_argument("question"); ask.add_argument("--now"); ask.add_argument("--patient")
     commands.add_parser("health")
+    commands.add_parser("reset-demo")
+    verify = commands.add_parser("verify-demo")
+    verify.add_argument("--require-model", action="store_true")
     serve = commands.add_parser("serve"); serve.add_argument("--now")
     convert = commands.add_parser("convert-fhir"); convert.add_argument("input"); convert.add_argument("output"); convert.add_argument("--min-age", type=int, default=60); convert.add_argument("--as-of-date", type=date.fromisoformat, default=date.today()); convert.add_argument("--default-timezone"); convert.add_argument("--old-active-order-days", type=int, default=730); convert.add_argument("--pretty", action="store_true"); convert.add_argument("--include-inactive-medications", action="store_true"); convert.add_argument("--include-all-conditions", action="store_true")
     inspect = commands.add_parser("inspect-patient"); inspect.add_argument("patient")
@@ -66,6 +69,20 @@ def _write(path: str, value: dict) -> None:
 
 def main() -> None:
     args = build_parser().parse_args()
+    if args.command in {"reset-demo", "verify-demo"}:
+        from scripts.demo_management import reset_demo, verify_demo
+        if args.command == "reset-demo":
+            result = reset_demo(settings.runtime_patients_directory)
+        else:
+            client = OllamaClient(settings.ollama_base_url, settings.ollama_model, settings.ollama_timeout_seconds)
+            result = verify_demo(
+                client, settings.runtime_patients_directory, settings.demo_now,
+                require_model=args.require_model,
+            )
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        if result["status"] != "ok":
+            raise SystemExit(1)
+        return
     if args.command == "convert-fhir":
         from scripts.convert_synthea_fhir import main as converter_main
         import sys

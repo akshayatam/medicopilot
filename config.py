@@ -15,7 +15,6 @@ class Settings:
     ollama_timeout_seconds: float = float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "45"))
     demo_now: str | None = os.getenv("DEMO_NOW")
     data_file: Path = ROOT / "data" / "synthetic_patient.json"
-    patients_directory: Path = ROOT / "data" / "patients"
     runtime_patients_directory: Path = ROOT / "data" / "runtime_patients"
 
     def __post_init__(self) -> None:

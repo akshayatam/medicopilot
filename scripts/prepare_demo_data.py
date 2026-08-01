@@ -40,8 +40,14 @@ def canonical(document: dict) -> dict:
     return document
 
 
-def main() -> None:
-    output = ROOT / "data" / "runtime_patients"; output.mkdir(parents=True, exist_ok=True)
+def prepare_demo_data(output: Path | None = None) -> list[Path]:
+    """Generate and validate the two deterministic schema-v2 demo patients.
+
+    ``output`` may point at a staging directory, which lets callers validate a
+    complete generation before replacing the active runtime directory.
+    """
+    output = output or ROOT / "data" / "runtime_patients"
+    output.mkdir(parents=True, exist_ok=True)
     ready = source("demo-ready-001", "Elena Rivera", [med("src_metoprolol", "Metoprolol succinate ER", "100 mg", "Take according to the verified saved plan."), med("src_metformin", "Metformin", "500 mg", "Take according to the verified saved plan."), med("src_vitamin_d", "Vitamin D3", "1000 IU", "Take according to the verified saved plan.")])
     profile = json.loads((ROOT / "data/reconciliation/ready_demo.json").read_text())
     apply_reconciliation(ready, profile); build_plan(ready); ready["import_summary"] = calculate_readiness(ready)
@@ -58,6 +64,11 @@ def main() -> None:
     unready["source_record"]["reconciliation_flags"] = [{"type": "same_normalized_ingredient_multiple_strengths", "related_medication_ids": ["src_order_a", "src_order_b"], "source": "deterministic_conflict_detection"}]
     unready["import_summary"] = calculate_readiness(unready); unready = canonical(unready); RuntimePatient.model_validate(unready)
     (output / "unready.runtime.json").write_text(json.dumps(unready, indent=2) + "\n")
+    return [output / "ready.runtime.json", output / "unready.runtime.json"]
+
+
+def main() -> None:
+    prepare_demo_data()
 
 
 if __name__ == "__main__": main()
