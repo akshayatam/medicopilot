@@ -171,10 +171,21 @@ function App() {
       .finally(() => setLoading(false));
   }, [patientId]);
 
-  useEffect(() => conversationEnd.current?.scrollIntoView({ behavior: "smooth" }), [conversation]);
-  useEffect(() => localStorage.setItem("medicopilot-simplified", String(simplified)), [simplified]);
-  useEffect(() => localStorage.setItem("medicopilot-large-text", String(largeText)), [largeText]);
-  useEffect(() => localStorage.setItem("medicopilot-high-contrast", String(highContrast)), [highContrast]);
+  useEffect(() => {
+    conversationEnd.current?.scrollIntoView({ behavior: "smooth" });
+  }, [conversation]);
+
+  useEffect(() => {
+    localStorage.setItem("medicopilot-simplified", String(simplified));
+  }, [simplified]);
+
+  useEffect(() => {
+    localStorage.setItem("medicopilot-large-text", String(largeText));
+  }, [largeText]);
+
+  useEffect(() => {
+    localStorage.setItem("medicopilot-high-contrast", String(highContrast));
+  }, [highContrast]);
 
   async function refreshHealth() {
     try { setHealth(await api.health()); } catch (cause) { setHealth({ error: cause instanceof Error ? cause.message : "Health check failed" }); }

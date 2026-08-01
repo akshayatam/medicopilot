@@ -1,6 +1,4 @@
 import json
-import shutil
-from pathlib import Path
 
 import pytest
 import app as cli_app
@@ -14,6 +12,7 @@ from medication.runtime_service import RuntimeMedicationService, UNREADY_MESSAGE
 from medication.schemas import UserInput
 from medication.schemas import MedicationPlanItem
 from gemma.intent_router import IntentRouter
+from scripts.prepare_demo_data import prepare_demo_data
 
 
 class Router:
@@ -25,8 +24,8 @@ class Router:
 
 @pytest.fixture
 def runtime_patients(tmp_path):
-    source = Path(__file__).parents[1] / "data" / "runtime_patients"
-    target = tmp_path / "patients"; shutil.copytree(source, target)
+    target = tmp_path / "patients"
+    prepare_demo_data(target)
     return PatientDataService(target)
 
 
@@ -104,7 +103,7 @@ def test_failed_repair_is_safe_and_does_not_mutate(runtime_patients):
         def chat(self, *_): return next(self.values)
     before = runtime_patients.load_patient("demo-ready-001").model_dump_json()
     service = RuntimeMedicationService(runtime_patients, "demo-ready-001", FixedClock("2026-08-01T10:00:00-04:00"))
-    result = MedicationOrchestrator(service, IntentRouter(InvalidClient())).handle(UserInput(text="What comes next?"))
+    result = MedicationOrchestrator(service, IntentRouter(InvalidClient())).handle(UserInput(text="Could you identify the upcoming item?"))
     assert result.action == "ROUTING_ERROR" and result.tool_output is None and result.repair_used
     assert result.raw_model_json == "not json" and result.repair_model_json
     assert runtime_patients.reload_patient("demo-ready-001").model_dump_json() == before
@@ -143,7 +142,7 @@ def test_cli_routing_failure_has_no_traceback(monkeypatch, capsys):
         def __init__(self, *_): self.values = iter(["bad", "still bad"])
         def chat(self, *_): return next(self.values)
     monkeypatch.setattr(cli_app, "OllamaClient", InvalidClient)
-    monkeypatch.setattr("sys.argv", ["app.py", "ask", "--patient", "demo-ready-001", "What comes next?"])
+    monkeypatch.setattr("sys.argv", ["app.py", "ask", "--patient", "demo-ready-001", "Could you identify the upcoming item?"])
     cli_app.main()
     captured = capsys.readouterr()
     assert "Traceback" not in captured.out + captured.err

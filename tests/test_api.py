@@ -1,8 +1,8 @@
-import shutil
 from pathlib import Path
 
 from fastapi.testclient import TestClient
 
+from scripts.prepare_demo_data import prepare_demo_data
 from ui.api import create_api
 
 
@@ -19,9 +19,8 @@ class OfflineClient:
 
 
 def api_client(tmp_path: Path) -> TestClient:
-    source = Path(__file__).parents[1] / "data" / "runtime_patients"
     target = tmp_path / "patients"
-    shutil.copytree(source, target)
+    prepare_demo_data(target)
     return TestClient(create_api(OfflineClient(), target, "2026-08-01T10:00:00-04:00"))
 
 
@@ -103,3 +102,31 @@ def test_unsafe_chat_remains_deterministic_and_non_mutating(tmp_path):
     assert response.json()["result"]["outcome"] == "unsafe_request"
     assert "cannot recommend" in response.json()["answer"]
     assert before["today"] == after["today"]
+
+
+def test_common_schedule_question_works_without_local_model(tmp_path):
+    client = api_client(tmp_path)
+    response = client.post(
+        "/api/patients/demo-ready-001/ask",
+        json={"text": "what does my schedule look like?", "simplified": False},
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["result"]["action"] == "LIST_TODAY_MEDICATIONS"
+    assert payload["result"]["model_latency_ms"] is None
+    assert "Metoprolol" in payload["answer"]
+    assert "Vitamin D3" in payload["answer"]
+
+
+def test_common_next_medication_question_works_without_local_model(tmp_path):
+    client = api_client(tmp_path)
+    response = client.post(
+        "/api/patients/demo-ready-001/ask",
+        json={"text": "What is my next medication?", "simplified": False},
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["result"]["action"] == "FIND_NEXT_DOSE"
+    assert payload["result"]["model_latency_ms"] is None
+    assert "Vitamin D3" in payload["answer"]
+    assert "01:00 PM" in payload["answer"]
