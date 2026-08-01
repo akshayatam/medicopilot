@@ -22,6 +22,7 @@ _EMERGENCY = (
 _UNSAFE = (
     r"\b(double|increase|decrease|change|reduce) (?:my |the )?(?:dose|dosage)",
     r"\b(two|2) (?:tablets|pills|doses)\b", r"\bskip (?:my |the )?(?:dose|pill)",
+    r"\btake (?:two|2) today\b",
     r"\bstop (?:taking )?", r"\breplace .+ with\b", r"\boverride\b",
     r"\b(interaction|interact)\b", r"\b(combine|mix|together)\b",
     r"\bwhat (?:medicine|medication|pill) (?:should|can) i take\b",

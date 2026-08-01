@@ -19,6 +19,7 @@ def test_safe_schedule_request():
 @pytest.mark.parametrize("text", [
     "I missed yesterday's dose. What should I do?",
     "How much insulin should I take?",
+    "I missed yesterday's shot, I take two today.",
 ])
 def test_missed_dose_and_insulin_advice_are_refused(text):
     assert check_safety(text).unsafe

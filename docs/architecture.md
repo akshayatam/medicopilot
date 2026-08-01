@@ -2,7 +2,7 @@
 
 ## System overview
 
-Medication Copilot is a local text prototype with three strict data layers: an imported source record, an explicitly reconciled medication plan, and an adherence ledger. The local model interprets language but never supplies medication facts. Pydantic schemas and deterministic services enforce boundaries before any patient-facing response or mutation.
+Medication Copilot is a local text-and-reviewed-voice prototype with three strict data layers: an imported source record, an explicitly reconciled medication plan, and an adherence ledger. The local model interprets approved text but never supplies medication facts. Pydantic schemas and deterministic services enforce boundaries before any patient-facing response or mutation.
 
 ## Repository structure
 
@@ -16,6 +16,7 @@ medication/            conversion, reconciliation, schemas, repositories, safety
 scripts/               Synthea converter and deterministic demo tooling
 tests/                 non-live unit and integration-style regression tests
 ui/                    local Gradio application
+voice/                 ephemeral audio validation, provider, capability probe, and confirmation workflow
 ```
 
 ## Runtime request flow
@@ -47,6 +48,20 @@ sequenceDiagram
 ```
 
 Invalid model output receives one bounded repair attempt. Failed repair produces a no-action routing result. Medication-specific phrases are preserved for the deterministic resolver, which alone returns `MATCHED`, `AMBIGUOUS`, or `NOT_FOUND`.
+
+## Voice request flow
+
+```text
+microphone/upload → local ffmpeg normalization → Gemma transcription only
+→ visible editable transcript → explicit transcript submission
+→ existing safety/router/Pydantic/resolver/readiness path
+→ read-only response OR session-bound exact-dose proposal
+→ explicit confirmation → revalidation → existing runtime service
+```
+
+Audio is limited to 30 seconds and 10 MiB, normalized to mono 16 kHz PCM WAV in a non-identifying temporary directory, and deleted during unconditional cleanup. Neither raw audio nor transcript-review state is written to runtime patient JSON. The provider sends only the transcription instruction and audio—no patient record. Gradio state holds transcript and pending action per browser session; patient changes and cancellation replace that state. Pending mutations expire after five minutes and are revalidated against patient ID, readiness, deterministic resolution, and the exact scheduled ledger entry.
+
+Ollama capability is established by a generated speech request whose returned content must match expected words. With Ollama 0.32.4 and `gemma4:e2b`, WAV audio works through the multimodal `images` compatibility field; a native `audios` field request was ignored. Thinking is disabled for transcription. No cloud provider or TTS is present.
 
 ## Source record and verified plan
 
@@ -88,5 +103,4 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 
 ## Future insertion points
 
-Voice and image input are not implemented. A future voice adapter may produce text before the existing safety/router boundary. A future image/document extractor must create an unverified candidate for human reconciliation; it must never write directly to the verified plan. Neither modality may bypass safety, schemas, readiness, resolution, or deterministic services.
-
+Image input is not implemented. A future image/document extractor must create an unverified candidate for human reconciliation; it must never write directly to the verified plan. Additional voice languages and local TTS remain future work. Neither modality may bypass safety, schemas, readiness, resolution, or deterministic services.

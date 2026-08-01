@@ -31,11 +31,11 @@ Before opening a pull request, run:
 
 ```bash
 pytest -m "not integration"
-python -m compileall -q app.py medication gemma ui scripts evaluation
+python -m compileall -q app.py medication gemma ui scripts evaluation voice
 git diff --check
 ```
 
-Use `python app.py verify-demo --require-model` only when Ollama and the configured model are available.
+Use `python app.py verify-demo --require-model` only when Ollama and the configured model are available. Use `python app.py voice-health` for the separate live, content-verifying local audio probe; standard tests must mock the provider.
 
 ## Code organization
 
@@ -43,6 +43,7 @@ Use `python app.py verify-demo --require-model` only when Ollama and the configu
 - `gemma/`: local model client and bounded intent-routing layer
 - `scripts/`: conversion and demo lifecycle tools
 - `ui/`: local Gradio interface
+- `voice/`: ephemeral local audio validation, transcription providers, capability probing, and confirmation staging
 - `tests/`: non-live regression coverage
 
 Preserve source-record, verified-plan, and adherence-ledger separation. Never let model output become medication fact, resolve ambiguity clinically, invent a schedule, bypass readiness, or weaken deterministic safety. New voice/image work belongs to future phases and must not bypass these boundaries.
@@ -56,4 +57,3 @@ Preserve source-record, verified-plan, and adherence-ledger separation. Never le
 - [ ] Demo reset and verification pass when relevant.
 - [ ] Documentation distinguishes current functionality from future work.
 - [ ] I did not include raw Synthea output, patient corpora, model artifacts, logs, caches, or secrets.
-

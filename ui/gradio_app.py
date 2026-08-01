@@ -30,6 +30,13 @@ def new_session_state(patient_id: str) -> dict:
         "debug_visible": False,
         "debug": {},
         "pending_clarification": None,
+        "voice_transcript": "",
+        "voice_transcript_approved": False,
+        "pending_voice_action": None,
+        "voice_language": "English",
+        "last_transcription_result": None,
+        "last_voice_error": None,
+        "spoken_output_enabled": False,
     }
 
 
@@ -365,6 +372,11 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
     choices = [(p.label, p.patient_id) for p in summaries]
     initial = summaries[0].patient_id
     health_service = ApplicationHealthService(client, patients, demo_now)
+    from voice.audio import AudioValidationError, normalized_audio
+    from voice.providers import GemmaAudioTranscriptionProvider
+    from voice.schemas import PendingVoiceAction
+    from voice.service import VoiceInteractionService
+    voice_provider = GemmaAudioTranscriptionProvider(client.base_url, client.model, max(client.timeout, 90))
 
     def service_for(patient_id: str):
         patient_record = patients.load_patient(patient_id)
@@ -454,7 +466,72 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
     def select(patient_id: str, simplified: bool, large_text: bool, high_contrast: bool):
         state = new_session_state(patient_id)
         state.update(simplified_mode=simplified, large_text=large_text, high_contrast=high_contrast)
-        return state, dashboard(patient_id), [], json.dumps(review_payload(patient_id), indent=2), "{}", ""
+        return state, dashboard(patient_id), [], json.dumps(review_payload(patient_id), indent=2), "{}", "", "", gr.update(visible=False), gr.update(visible=False), ""
+
+    def transcribe_voice(state: dict, audio_path: str | None, language: str):
+        state = dict(state)
+        state.update(voice_transcript="", voice_transcript_approved=False, pending_voice_action=None, voice_language=language, last_voice_error=None)
+        if not audio_path:
+            state["last_voice_error"] = "No audio recording was provided."
+            return state, "", "No audio recording was provided.", gr.update(visible=False), gr.update(visible=False)
+        try:
+            with normalized_audio(audio_path) as (normalized, _metadata):
+                result = voice_provider.transcribe(normalized, language)
+            state["last_transcription_result"] = result.model_dump(mode="json", exclude={"text"})
+            if not result.success:
+                message = result.warning or "The recording could not be transcribed locally."
+                state["last_voice_error"] = message
+                return state, "", message, gr.update(visible=False), gr.update(visible=False)
+            state["voice_transcript"] = result.text
+            return state, result.text, "I heard the text below. Review or edit it before submitting.", gr.update(visible=True), gr.update(visible=False)
+        except (AudioValidationError, ValueError) as exc:
+            state["last_voice_error"] = str(exc)
+            return state, "", str(exc), gr.update(visible=False), gr.update(visible=False)
+
+    def cancel_voice(state: dict):
+        state = dict(state)
+        state.update(voice_transcript="", voice_transcript_approved=False, pending_voice_action=None, last_voice_error=None)
+        return state, None, "", "Voice request cancelled.", gr.update(visible=False), gr.update(visible=False), ""
+
+    def submit_voice(state: dict, transcript: str):
+        state = dict(state)
+        patient_id = state.get("patient_id", initial)
+        transcript = (transcript or "").strip()
+        state["voice_transcript"] = transcript
+        state["voice_transcript_approved"] = True
+        interaction = VoiceInteractionService(service_for(patient_id), IntentRouter(client))
+        try:
+            result, pending = interaction.submit_transcript(transcript)
+            if pending:
+                state["pending_voice_action"] = pending.model_dump(mode="json")
+                when = _display_time(pending.scheduled_at.isoformat())
+                prompt = f"Record {pending.medication_display}, scheduled at {when} on {pending.scheduled_at.date().isoformat()}, as taken?"
+                return state, _chat_messages(state.get("conversation", [])), debug_text(state), dashboard(patient_id), prompt, gr.update(visible=True), "Transcript approved. Confirm the exact proposed action below."
+            payload = result.as_dict()
+            payload.update(selected_patient_id=patient_id, voice_input=True, transcription_metadata=state.get("last_transcription_result"))
+            state = append_answer(state, transcript, result.response, payload)
+            state.update(voice_transcript="", pending_voice_action=None)
+            return state, _chat_messages(state["conversation"]), debug_text(state), dashboard(patient_id), "", gr.update(visible=False), "Transcript submitted."
+        except (OllamaError, IntentParseError, ValueError) as exc:
+            state["pending_voice_action"] = None
+            return state, _chat_messages(state.get("conversation", [])), debug_text(state), dashboard(patient_id), "", gr.update(visible=False), str(exc)
+
+    def confirm_voice(state: dict):
+        state = dict(state)
+        patient_id = state.get("patient_id", initial)
+        raw = state.get("pending_voice_action")
+        if not raw:
+            return state, _chat_messages(state.get("conversation", [])), debug_text(state), dashboard(patient_id), "No pending voice action remains.", gr.update(visible=False), ""
+        try:
+            pending = PendingVoiceAction.model_validate(raw)
+            output = VoiceInteractionService(service_for(patient_id), IntentRouter(client)).confirm(pending)
+            payload = {"selected_patient_id": patient_id, "action": pending.action, "selected_tool": pending.action, "tool_output": output, "active_clock": service_for(patient_id).clock.now().isoformat(), "outcome": "success", "response_source": "deterministic_runtime_service", "voice_input": True, "errors": None}
+            state = append_answer(state, pending.transcript, output["message"], payload)
+            state.update(pending_voice_action=None, voice_transcript="", voice_transcript_approved=False)
+            return state, _chat_messages(state["conversation"]), debug_text(state), dashboard(patient_id), "Dose recorded through the existing runtime service.", gr.update(visible=False), ""
+        except ValueError as exc:
+            state["pending_voice_action"] = None
+            return state, _chat_messages(state.get("conversation", [])), debug_text(state), dashboard(patient_id), str(exc), gr.update(visible=False), ""
 
     def ask(state: dict, question: str):
         question = (question or "").strip()
@@ -567,12 +644,27 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
                         question = gr.Textbox(label="Medication question", placeholder="For example: Did I take my heart tablet this morning?", scale=4, elem_classes="dashboard-input")
                         submit = gr.Button("Ask", variant="primary", scale=1, elem_classes=["ask-button", "primary-action"])
                     conversation = gr.Chatbot(label="Conversation", height=280, elem_classes="dashboard-chat")
+                    gr.Markdown("### Voice input")
+                    gr.Markdown("Voice is processed locally and is not saved by default. Recording limit: 30 seconds.")
+                    voice_language = gr.Dropdown(["English"], value="English", label="Voice language")
+                    voice_audio = gr.Audio(sources=["microphone", "upload"], type="filepath", label="Record a voice question or upload audio")
+                    voice_status = gr.Markdown("Record or upload audio; nothing is submitted automatically.")
+                    transcript = gr.Textbox(label="I heard — review and edit before submitting", interactive=True)
+                    with gr.Row(visible=False) as transcript_controls:
+                        submit_transcript = gr.Button("Submit transcript", variant="primary", elem_classes="primary-action")
+                        record_again = gr.Button("Record again", elem_classes="secondary-action")
+                        cancel_transcript = gr.Button("Cancel", elem_classes="secondary-action")
+                    with gr.Group(visible=False) as confirmation_controls:
+                        confirmation_text = gr.Markdown("")
+                        with gr.Row():
+                            confirm_voice_action = gr.Button("Confirm and record", variant="primary", elem_classes="primary-action")
+                            cancel_voice_action = gr.Button("Cancel proposed action", elem_classes="secondary-action")
 
                 with gr.Accordion("Accessibility settings", open=False, elem_classes=["accessibility-card", "dashboard-accordion"]):
                     simplified = gr.Checkbox(False, label="Simplified language")
                     large_text = gr.Checkbox(True, label="Large text")
                     high_contrast = gr.Checkbox(True, label="High contrast")
-                    gr.Markdown("Voice support is planned for a future version; it is not available in this prototype.", elem_classes="future-voice")
+                    gr.Markdown("Spoken output (TTS) is not implemented. Repeat last answer remains text-only.", elem_classes="future-voice")
 
                 with gr.Accordion("Source record review (not used for reminders)", open=False, elem_classes="dashboard-accordion"):
                     gr.Markdown("Read-only imported-order review. These records are never used as the daily medication plan.")
@@ -584,7 +676,7 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
                     health_box = gr.Code(health(), language="json", label="Local system health", elem_classes="developer-code")
                     gr.Button("Refresh system health", elem_classes="secondary-action").click(health, outputs=health_box)
 
-        patient.change(select, inputs=[patient, simplified, large_text, high_contrast], outputs=[session, dashboard_box, conversation, review, debug, question])
+        patient.change(select, inputs=[patient, simplified, large_text, high_contrast], outputs=[session, dashboard_box, conversation, review, debug, question, transcript, transcript_controls, confirmation_controls, confirmation_text])
         refresh.click(lambda state: dashboard(state.get("patient_id", initial)), inputs=session, outputs=dashboard_box)
         submit.click(ask, inputs=[session, question], outputs=[session, conversation, debug, dashboard_box, question])
         question.submit(ask, inputs=[session, question], outputs=[session, conversation, debug, dashboard_box, question])
@@ -593,6 +685,12 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
         history_button.click(lambda state: direct_action(state, "history"), inputs=session, outputs=[session, conversation, debug, dashboard_box])
         mark_next.click(lambda state: direct_action(state, "mark_next"), inputs=session, outputs=[session, conversation, debug, dashboard_box])
         repeat_button.click(repeat, inputs=session, outputs=[session, conversation, debug])
+        voice_audio.change(transcribe_voice, inputs=[session, voice_audio, voice_language], outputs=[session, transcript, voice_status, transcript_controls, confirmation_controls])
+        submit_transcript.click(submit_voice, inputs=[session, transcript], outputs=[session, conversation, debug, dashboard_box, confirmation_text, confirmation_controls, voice_status])
+        confirm_voice_action.click(confirm_voice, inputs=session, outputs=[session, conversation, debug, dashboard_box, voice_status, confirmation_controls, confirmation_text])
+        cancel_transcript.click(cancel_voice, inputs=session, outputs=[session, voice_audio, transcript, voice_status, transcript_controls, confirmation_controls, confirmation_text])
+        record_again.click(cancel_voice, inputs=session, outputs=[session, voice_audio, transcript, voice_status, transcript_controls, confirmation_controls, confirmation_text])
+        cancel_voice_action.click(cancel_voice, inputs=session, outputs=[session, voice_audio, transcript, voice_status, transcript_controls, confirmation_controls, confirmation_text])
         for control in (simplified, large_text, high_contrast):
             control.change(update_preferences, inputs=[session, simplified, large_text, high_contrast], outputs=[session, accessibility_style])
     return demo

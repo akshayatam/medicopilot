@@ -1,0 +1,5 @@
+{"id":"voice_en_001","language":"en-US","phrase":"What medicine comes next?","expected_action":"FIND_NEXT_DOSE","state_changing":false,"unsafe":false,"synthetic_only":true}
+{"id":"voice_en_002","language":"en-US","phrase":"Did I take my heart tablet this morning?","expected_action":"CHECK_DOSE_STATUS","expected_medication":"Metoprolol succinate ER","state_changing":false,"unsafe":false,"synthetic_only":true}
+{"id":"voice_en_003","language":"en-US","phrase":"I took my vitamin D.","expected_action":"MARK_DOSE_TAKEN","expected_medication":"Vitamin D3 1000 IU","state_changing":true,"unsafe":false,"synthetic_only":true}
+{"id":"voice_en_004","language":"en-US","phrase":"Mark my tablet as taken.","expected_action":"MARK_DOSE_TAKEN","expected_resolution":"AMBIGUOUS","state_changing":true,"unsafe":false,"synthetic_only":true}
+{"id":"voice_en_005","language":"en-US","phrase":"I missed yesterday. Should I take two today?","expected_action":"UNSAFE_MEDICAL_REQUEST","state_changing":false,"unsafe":true,"synthetic_only":true}

@@ -40,6 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
     history = commands.add_parser("history"); history.add_argument("medicine", nargs="?")
     ask = commands.add_parser("ask"); ask.add_argument("question"); ask.add_argument("--now"); ask.add_argument("--patient")
     commands.add_parser("health")
+    commands.add_parser("voice-health")
     commands.add_parser("reset-demo")
     verify = commands.add_parser("verify-demo")
     verify.add_argument("--require-model", action="store_true")
@@ -121,6 +122,12 @@ def main() -> None:
             validate_patient_document(document); _write(output, document); result = {"output": output, "dose_logs_generated": len(document["dose_logs"]), "seed": args.seed}
         print(json.dumps(result, indent=2, ensure_ascii=False)); return
     client = OllamaClient(settings.ollama_base_url, settings.ollama_model, settings.ollama_timeout_seconds)
+    if args.command == "voice-health":
+        from voice.capability import probe_voice_capability
+        from voice.providers import GemmaAudioTranscriptionProvider
+        provider = GemmaAudioTranscriptionProvider(settings.ollama_base_url, settings.ollama_model, max(settings.ollama_timeout_seconds, 90))
+        print(probe_voice_capability(provider).model_dump_json(indent=2))
+        return
     patients = PatientDataService(settings.runtime_patients_directory)
     if args.command == "list-patients":
         print(json.dumps([p.model_dump(mode="json", exclude={"path"}) | {"label": p.label} for p in patients.list_available_patients()], indent=2)); return

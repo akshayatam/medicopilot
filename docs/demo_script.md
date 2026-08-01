@@ -13,6 +13,8 @@ python app.py serve
 
 Open `http://127.0.0.1:7860` and select Elena Rivera, the ready patient.
 
+Before demonstrating voice, run `python app.py voice-health`. Continue with voice only when `transcription_succeeded` is true. Voice processing is local, uses a 30-second limit, and does not retain audio by default.
+
 ## Walkthrough
 
 ### 0:00–0:40 — Problem and boundary
@@ -57,7 +59,7 @@ Expected: medication tracking is blocked until review. Raw orders cannot drive r
 
 ### 4:05–5:00 — Architecture and close
 
-Summarize the source-record → reconciliation → verified-plan boundary, deterministic safety before Gemma, Pydantic intent validation, and deterministic medication service. Mention voice and verified image/document ingestion only as future extensions.
+Optionally record “What medicine comes next?”, review the visible transcript, and submit it. For “I took my vitamin D,” show the exact Vitamin D3 1000 IU 1:00 PM proposal and confirm it; reset demo afterward. Summarize the source-record → reconciliation → verified-plan boundary, deterministic safety before Gemma, Pydantic intent validation, and deterministic medication service. Verified image/document ingestion and TTS remain future extensions.
 
 ## If Ollama is unavailable
 
@@ -78,7 +80,7 @@ Summarize the source-record → reconciliation → verified-plan boundary, deter
 
 - Do not claim diagnosis, prescribing, treatment recommendations, interaction checking, or clinical validation.
 - Do not call imported source orders a verified current medication list.
-- Do not claim production reminders, voice, image scanning, hospital integration, mobile deployment, or real patient support.
+- Do not claim production reminders, always-listening/real-time voice, image scanning, hospital integration, mobile deployment, or real patient support. Do not claim working local voice when the live probe fails.
+- Do not call this real-time voice chat. It is record–transcribe–review–submit, English-only as tested, and voice support is conditional on the live capability probe.
 - Do not claim “no allergies” when the file says allergy information is not recorded.
 - Do not claim model availability unless strict live verification actually passed.
-

@@ -17,7 +17,7 @@ flowchart TD
     C --> D[Explicit reconciliation]
     D --> E[Verified medication plan]
     E --> F[Schema-v2 runtime patient]
-    F --> G[Gradio text input]
+    F --> G[Gradio text or approved voice transcript]
     G --> H[Deterministic safety screening]
     H --> I[Local Gemma 4 intent routing]
     I --> J[Pydantic intent validation]
@@ -39,10 +39,11 @@ See [Architecture](docs/architecture.md) for the detailed request, persistence, 
 - Deterministic medication-safety refusals
 - Ready and review-required synthetic demo patients
 - Local Gradio text interface with source review, health, and debug information
+- Local record–transcribe–review–submit voice input with explicit mutation confirmation
 - Reproducible demo reset and verification commands
 - Supported Synthea FHIR conversion and reconciliation pipeline
 
-Production reminders, voice, image scanning, hospital integration, and native mobile deployment are not implemented.
+Production reminders, image scanning, hospital integration, native mobile deployment, and spoken output are not implemented.
 
 ## Setup
 
@@ -96,6 +97,7 @@ Useful CLI checks include:
 python app.py list-patients
 python app.py patient-status demo-ready-001
 python app.py health
+python app.py voice-health  # live local audio capability/transcription probe
 python app.py ask --patient demo-ready-001 "What medicine comes next?"
 ```
 
@@ -107,7 +109,7 @@ The standard suite does not require Ollama:
 
 ```bash
 pytest -m "not integration"
-python -m compileall -q app.py medication gemma ui scripts evaluation
+python -m compileall -q app.py medication gemma ui scripts evaluation voice
 git diff --check
 ```
 
@@ -131,6 +133,13 @@ python app.py verify-demo --require-model
 - Raw FHIR orders remain isolated for review and do not become a daily plan automatically.
 - Missing allergy data means `not_recorded`, never “no allergies.”
 - Gemma selects an approved action but cannot invent facts, resolve medication ambiguity, bypass readiness, or authorize unsafe advice.
+- Voice audio is normalized locally, limited to 30 seconds, deleted after transcription, and never added to patient JSON. A visible editable transcript must be submitted before routing. Voice mutations additionally show the exact scheduled dose and require confirmation.
+
+## Local voice compatibility
+
+Voice uses a provider abstraction backed by the configured `gemma4:e2b`. For Ollama 0.32.4, the verified local transport is a mono 16 kHz PCM WAV carried through Ollama's multimodal `images` compatibility field; the native `audios` field was observed to be ignored. `python app.py voice-health` generates a harmless English speech sample, sends no patient data, and accepts support only when returned words match the sample. A model capability flag or HTTP 200 alone is not considered success.
+
+The UI supports microphone recording and audio-file upload. The only currently tested language is English. No cloud speech provider or fallback is configured. TTS is not implemented.
 
 The permanent safety and data specification is [rules.md](rules.md).
 
@@ -145,7 +154,7 @@ The permanent safety and data specification is [rules.md](rules.md).
 
 These capabilities are planned, not implemented:
 
-- Voice input and output
+- Additional voice languages and spoken output
 - Image/document input with human verification
 - Native Android deployment
 - Healthcare-system integration

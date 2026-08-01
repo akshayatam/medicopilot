@@ -8,8 +8,8 @@ from medication.patient_data_service import PatientDataService
 
 
 class ApplicationHealthService:
-    def __init__(self, client: OllamaClient, patients: PatientDataService, demo_now: str | None = None) -> None:
-        self.client = client; self.patients = patients; self.demo_now = demo_now
+    def __init__(self, client: OllamaClient, patients: PatientDataService, demo_now: str | None = None, voice_report: dict[str, Any] | None = None) -> None:
+        self.client = client; self.patients = patients; self.demo_now = demo_now; self.voice_report = voice_report
 
     def check(self) -> dict[str, Any]:
         model = self.client.health_check()
@@ -27,4 +27,12 @@ class ApplicationHealthService:
             "schema_errors": self.patients.validation_errors,
             "healthy_for_deterministic_use": bool(summaries) and not self.patients.validation_errors and any(p.ready for p in summaries),
             "active_application_time": datetime.fromisoformat(self.demo_now).isoformat() if self.demo_now else "system_clock_per_patient_timezone",
+            "voice": self.voice_report or {
+                "configured": True,
+                "provider": "gemma4_audio",
+                "runtime_audio_supported": None,
+                "transcription_probe": "run python app.py voice-health",
+                "microphone_ui_available": True,
+                "tts_configured": False,
+            },
         }

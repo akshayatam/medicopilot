@@ -11,8 +11,8 @@
 
 ## Planned
 
-- Phase 3 — UI and accessibility polish
-- Phase 4 — Voice input/output
+- Phase 3 — UI and accessibility polish (completed)
+- Phase 4 — Local reviewed voice input (current; TTS deferred)
 - Phase 5 — Image and prescription verification
 - Post-hackathon native deployment work
 
@@ -26,4 +26,3 @@
 | `v1.0.0` | Hackathon submission |
 
 Future milestones remain planned and are not claims of implemented functionality.
-
