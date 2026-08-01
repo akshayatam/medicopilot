@@ -15,6 +15,7 @@ from medication.schemas import UserInput
 from medication.schemas import MedicationPlanItem
 from ui.gradio_app import new_session_state
 from ui.gradio_app import routing_failure_payload
+from ui.gradio_app import APP_CSS, _accessibility_style, _dashboard_html, _simplify_response
 from gemma.intent_router import IntentRouter
 
 
@@ -99,6 +100,83 @@ def test_schema_versions_and_session_state_are_isolated(tmp_path):
     assert "Unsupported patient schema" in service.validation_errors["bad.runtime.json"]
     a = new_session_state("a"); b = new_session_state("b"); a["conversation"].append("x")
     assert b["patient_id"] == "b" and b["conversation"] == []
+    assert b["last_assistant_answer"] == "" and b["large_text"] is True
+    assert b["high_contrast"] is True and b["simplified_mode"] is False
+
+
+def test_dashboard_progress_uses_only_runtime_ledger_statuses():
+    status = {"display_name": "Elena Rivera", "readiness": "Ready"}
+    today = [
+        {"name": "Medicine A", "strength": "10 mg", "scheduled_at": "2026-08-01T08:00:00-04:00", "status": "taken", "taken_at": "2026-08-01T08:11:00-04:00"},
+        {"name": "Medicine B", "strength": "", "scheduled_at": "2026-08-01T13:00:00-04:00", "status": "due", "taken_at": ""},
+        {"name": "Medicine C", "strength": "5 mg", "scheduled_at": "2026-08-01T20:00:00-04:00", "status": "unknown", "taken_at": ""},
+    ]
+    next_dose = {"status": "upcoming", "medication": "Medicine B", "scheduled_at": "2026-08-01T13:00:00-04:00"}
+    rendered = _dashboard_html(status, today, next_dose, FixedClock("2026-08-01T10:00:00-04:00").now(), [])
+    assert "1 of 3 doses completed" in rendered and "2 remaining" in rendered
+    assert "33% complete" in rendered
+    assert 'aria-valuenow="1"' in rendered and "Due now" in rendered
+    assert "Taken at 8:11 AM" in rendered
+
+
+def test_dashboard_date_and_future_statuses_match_active_demo_clock(runtime_patients):
+    clock = FixedClock("2026-08-01T10:00:00-04:00")
+    service = RuntimeMedicationService(runtime_patients, "demo-ready-001", clock)
+    today = service.list_today_medications()
+    by_time = {item["scheduled_at"][11:16]: item for item in today}
+
+    assert by_time["08:00"]["status"] in {"taken", "taken_late"}
+    assert by_time["13:00"]["status"] == "upcoming"
+    assert by_time["20:00"]["status"] == "upcoming"
+
+    status = {"display_name": "Elena Rivera", "readiness": "Ready"}
+    rendered = _dashboard_html(status, today, service.find_next_dose(), clock.now(), [])
+    assert "Saturday, August 1" in rendered
+    assert "Friday, July 31" not in rendered
+    assert "✓ Taken" in rendered
+    assert rendered.count("○ Upcoming") == 3  # next-dose summary plus two future dose rows
+    assert "! Missed" not in rendered
+
+
+def test_dashboard_css_uses_stable_ids_responsive_columns_and_explicit_contrast():
+    assert "#app-root.gradio-container" in APP_CSS
+    assert "#dashboard-layout" in APP_CSS and "@media (max-width: 900px)" in APP_CSS
+    assert ".safety-banner" in APP_CSS
+    assert "--page-bg:#f6f8f7" in APP_CSS and "--text-primary:#17231c" in APP_CSS
+    assert ".medicine-row { display:grid" in APP_CSS
+    high_contrast = _accessibility_style(True, True)
+    assert "background:#fff" in high_contrast and "color:#000" in high_contrast
+    assert "filter:" not in high_contrast
+
+
+def test_light_theme_reset_uses_semantic_palette_and_no_internal_selectors():
+    semantic_classes = (
+        "safety-banner", "patient-card", "next-dose-card", "progress-card",
+        "medicine-list-card", "medicine-row", "quick-actions-card", "chat-card",
+        "accessibility-card", "dashboard-select", "dashboard-input", "dashboard-chat",
+        "dashboard-accordion", "primary-action", "secondary-action",
+    )
+    assert all(f".{name}" in APP_CSS for name in semantic_classes)
+    assert "color-scheme:light" in APP_CSS
+    assert "--body-text-color:var(--text-primary)" in APP_CSS
+    assert "--input-background-fill:var(--card-bg)" in APP_CSS
+    assert ".message" not in APP_CSS and ".svelte" not in APP_CSS
+    assert "--ink:" not in APP_CSS and "--card:" not in APP_CSS
+
+
+def test_unready_dashboard_does_not_present_source_orders_as_schedule():
+    status = {"display_name": "Marcus Chen", "readiness": "Needs review"}
+    rendered = _dashboard_html(status, {"review_required": UNREADY_MESSAGE}, {"status": "review_required"}, FixedClock("2026-08-01T10:00:00-04:00").now(), [])
+    assert "Medication plan needs review" in rendered
+    assert "source orders cannot be used for reminders" in rendered
+    assert "0 of 0 doses completed" in rendered
+
+
+def test_simplified_mode_preserves_safety_response_and_shortens_known_schedule():
+    refusal = "I cannot recommend medication changes. Please contact a clinician or pharmacist."
+    assert _simplify_response(refusal, {"outcome": "unsafe_request"}) == refusal
+    payload = {"action": "LIST_TODAY_MEDICATIONS", "tool_output": [{"name": "Vitamin D3", "strength": "1000 IU", "scheduled_at": "2026-08-01T13:00:00-04:00"}]}
+    assert _simplify_response("long answer", payload) == "• Vitamin D3 1000 IU at 1:00 PM."
 
 
 def test_failed_repair_is_safe_and_does_not_mutate(runtime_patients):

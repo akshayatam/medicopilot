@@ -982,45 +982,90 @@ Examples:
 
 ---
 
-## 18. Recommended Codebase Architecture
+## 18. Current Codebase Architecture
 
 ```text
-data/
-├── source/
-│   └── synthea_fhir/
-├── converted/
-├── reconciliation/
-├── plans/
-└── dose_logs/
+├── app.py
+├── config.py
+├── CONTRIBUTING.md
+├── data
+│   ├── evaluation_cases.jsonl
+│   ├── reconciliation
+│   │   ├── ready_demo.json
+│   │   └── unready_demo.json
+│   ├── runtime_patients
+│   │   ├── ready.runtime.json
+│   │   └── unready.runtime.json
+│   └── synthetic_patient.json
+├── docs
+│   ├── architecture.md
+│   ├── demo_script.md
+│   ├── phase2_test_report.md
+│   └── roadmap.md
+├── evaluation
+│   ├── evaluate.py
+│   └── __init__.py
+├── gemma
+│   ├── client.py
+│   ├── __init__.py
+│   ├── intent_router.py
+│   ├── orchestrator.py
+│   ├── patient_qa.py
+│   ├── prompts.py
+│   ├── response_parser.py
+│   └── schemas.py
+├── main.py
+├── medication
+│   ├── adherence_simulator.py
+│   ├── clock.py
+│   ├── fhir_converter.py
+│   ├── health.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── normalization.py
+│   ├── patient_data_service.py
+│   ├── patient_records.py
+│   ├── plan_builder.py
+│   ├── reconciliation.py
+│   ├── repository.py
+│   ├── resolver.py
+│   ├── runtime.py
+│   ├── runtime_repository.py
+│   ├── runtime_service.py
+│   ├── safety.py
+│   ├── schemas.py
+│   ├── service.py
+│   ├── time_resolver.py
+│   └── validators.py
+├── prompts
+│   ├── phase2_5_demo_preparation.md
+│   ├── phase2_integration.md
+│   └── phase3_ui_accessibility.md
+├── pyproject.toml
+├── README.md
+├── requirements.txt
+├── rules.md
+├── scripts
+│   ├── convert_synthea_fhir.py
+│   ├── demo_management.py
+│   └── prepare_demo_data.py
+├── tests
+│   ├── conftest.py
+│   ├── test_client.py
+│   ├── test_demo_management.py
+│   ├── test_intent_parser.py
+│   ├── test_orchestrator.py
+│   ├── test_patient_records.py
+│   ├── test_phase2_integration.py
+│   ├── test_pipeline_rules.py
+│   ├── test_repository.py
+│   ├── test_safety.py
+│   └── test_service.py
+├── ui
+│   ├── gradio_app.py
+│   └── __init__.py
+└── uv.lock
 
-medication/
-├── fhir_converter.py
-├── normalization.py
-├── reconciliation.py
-├── plan_builder.py
-├── adherence_simulator.py
-├── repository.py
-├── service.py
-├── schemas.py
-├── validators.py
-└── safety.py
-
-gemma/
-├── client.py
-├── intent_router.py
-├── prompts.py
-├── schemas.py
-└── orchestrator.py
-
-tests/
-├── test_fhir_converter.py
-├── test_normalization.py
-├── test_reconciliation.py
-├── test_plan_builder.py
-├── test_adherence.py
-├── test_allergy_rules.py
-├── test_schedule_rules.py
-└── test_safety.py
 ```
 
 ### 18.1 Recommended processing pipeline
@@ -1049,37 +1094,55 @@ Minimal AI context
 
 ---
 
-## 19. Recommended CLI Commands
-
-The codebase should support commands similar to:
+## 19. Supported CLI Commands
 
 ```bash
-python app.py convert-fhir input/fhir output/converted
+python app.py serve
 ```
 
-```bash
-python app.py inspect-patient patient.json
-```
+Launch the Gradio interface.
 
 ```bash
-python app.py reconcile-patient patient.json reconciliation.json
+python app.py ask --patient demo-ready-001 "What medicine comes next?"
 ```
 
-```bash
-python app.py build-plan patient.json reconciliation.json plan.json
-```
+Run a natural-language medication query.
 
 ```bash
-python app.py generate-dose-logs plan.json --days 30 --seed 42
+python app.py health
 ```
 
-```bash
-python app.py validate-patient patient.json
-```
+Display runtime health.
 
 ```bash
-python app.py readiness patient.json
+python app.py verify-demo
 ```
+
+Verify demo integrity.
+
+```bash
+python app.py verify-demo --require-model
+```
+
+Verify demo and require a working local Gemma model.
+
+```bash
+python app.py reset-demo
+```
+
+Restore deterministic runtime demo data.
+
+```bash
+python app.py list-patients
+```
+
+List runtime patients.
+
+```bash
+python app.py patient-status demo-ready-001
+```
+
+Show readiness and validation status.
 
 ---
 
@@ -1154,29 +1217,195 @@ The implementation is acceptable only when:
 
 ---
 
-## 22. Agent Implementation Instructions
+## 22. Agent Development Rules
 
-When applying these rules:
+Before modifying code:
 
-1. Inspect the current repository before modifying code.
-2. Preserve existing working behavior unless it conflicts with these rules.
-3. Implement the data-layer separation before changing the UI.
-4. Add Pydantic schemas and validators first.
-5. Add conflict detection and import readiness.
-6. Add a separate reconciliation profile.
-7. Add a plan builder.
-8. Add dose-log simulation only after the verified plan exists.
-9. Update AI context construction to use only the reconciled plan and adherence ledger.
-10. Add tests for every guardrail.
-11. Do not silently “fix” or reinterpret source medical data.
-12. Report any unsupported or ambiguous FHIR structures instead of guessing.
-13. Clearly list all files changed.
-14. Run all tests and report failures honestly.
-15. Do not claim live model or clinical correctness unless actually tested.
+1. Inspect the existing implementation.
+2. Reuse existing runtime services whenever possible.
+3. Do not duplicate medication logic.
+4. Preserve deterministic behavior.
+5. Preserve runtime schemas.
+6. Preserve reconciliation behavior.
+7. Preserve readiness behavior.
+8. Preserve safety guardrails.
+9. Preserve idempotent mutations.
+10. Add regression tests for every safety-sensitive change.
+11. Run the complete non-live test suite.
+12. Report unsupported situations instead of guessing.
+13. Never claim live-model behavior unless actually tested.
+14. Clearly list every modified file.
+15. Treat this document as the project's authoritative specification.
 
 ---
 
-## 23. Final Rule
+## 23. Voice Interaction Rules
+
+Voice is only an alternative input/output method.
+
+It is never a source of medication truth.
+
+### Speech Input
+
+Audio must be processed locally.
+
+Voice-derived actions must pass through:
+
+Speech Recognition
+
+↓
+
+Intent Router
+
+↓
+
+Schema Validation
+
+↓
+
+Deterministic Medication Resolver
+
+↓
+
+Runtime Service
+
+↓
+
+Grounded Response
+
+Voice must never bypass deterministic validation.
+
+### Confirmation
+
+State-changing actions require explicit confirmation.
+
+Example:
+
+"I understood:
+
+Record the 1:00 PM Vitamin D3 dose as taken.
+
+Should I continue?"
+
+Only after confirmation may the runtime service mutate dose logs.
+
+### Spoken Output
+
+Speech synthesis must only read deterministic grounded responses.
+
+It must never speak:
+
+- chain of thought
+- debug output
+- raw FHIR
+- internal prompts
+
+Safety refusals must be spoken exactly as generated.
+
+### Low Confidence
+
+Uncertain transcription must never mutate medication data.
+
+Instead:
+
+"I didn't understand which medicine you meant."
+
+The application should request clarification.
+
+---
+
+## User Interface Rules
+
+The UI is a presentation layer only.
+
+It must not contain medication logic.
+
+The dashboard should always display:
+
+- patient name
+- readiness status
+- next medication
+- today's progress
+- today's medication schedule
+
+The UI may cache presentation state only.
+
+The UI must always reload medication state from the runtime service after any mutation.
+
+One-click actions must invoke existing runtime APIs.
+
+The UI must never calculate medication status itself.
+
+Accessibility remains a primary design goal.
+
+Preferred defaults include:
+
+- large fonts
+- high contrast
+- oversized controls
+- simplified language mode
+- repeat last answer
+
+---
+
+## Emergency Handling
+
+Medication Copilot is not an emergency-response application.
+
+Requests involving overdose, poisoning, unconsciousness,
+difficulty breathing, or other medical emergencies must
+return the application's emergency escalation response.
+
+The application must not:
+
+- calculate emergency risk
+- recommend medication
+- recommend dosage changes
+- provide treatment advice
+
+The application may:
+
+- recommend contacting emergency services
+- recommend contacting poison control
+- state that it cannot provide emergency medical advice
+
+Emergency handling must remain deterministic.
+
+---
+
+## Current Project Status
+
+Completed
+
+✓ Phase 1
+FHIR conversion and medication safety pipeline
+
+✓ Phase 2
+Runtime architecture and Gemma integration
+
+✓ Phase 2.5
+Repository cleanup and demo tooling
+
+✓ Phase 3
+Accessible dashboard and Gradio interface
+
+Planned
+
+Phase 4
+Voice interaction
+
+Phase 5
+Vision / medication recognition
+
+Phase 6
+Android deployment
+
+The medication runtime engine should now be considered stable.
+Future work should primarily extend user interaction layers rather than modifying deterministic medication behavior.
+
+---
+
+## 24. Final Rule
 
 When source data is missing, ambiguous, conflicting, or clinically uncertain:
 
