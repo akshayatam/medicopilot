@@ -31,7 +31,10 @@ Before opening a pull request, run:
 
 ```bash
 pytest -m "not integration"
-python -m compileall -q app.py medication gemma ui scripts evaluation voice
+python -m compileall -q app.py backend medication gemma ui scripts evaluation voice
+cd frontend && npm test && npm run build && cd ..
+python app.py reset-demo
+python app.py verify-demo
 git diff --check
 ```
 
@@ -41,6 +44,8 @@ Use `python app.py verify-demo --require-model` only when Ollama and the configu
 
 - `medication/`: deterministic schemas, safety, conversion, reconciliation, repositories, and services
 - `gemma/`: local model client and bounded intent-routing layer
+- `backend/`: FastAPI JSON adapter and server-held confirmation sessions
+- `frontend/`: React/Vite/TypeScript presentation layer
 - `scripts/`: conversion and demo lifecycle tools
 - `ui/`: local Gradio interface
 - `voice/`: ephemeral local audio validation, transcription providers, capability probing, and confirmation staging

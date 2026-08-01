@@ -1,5 +1,7 @@
 # Phase 4 — Local Voice Interaction
 
+> Historical implementation brief. Phase 4 voice input is complete for the tested English workflow; TTS remains future work.
+
 ## Required Reading
 
 Before making changes, read completely:

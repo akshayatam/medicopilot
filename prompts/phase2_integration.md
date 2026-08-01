@@ -1,3 +1,7 @@
+# Phase 2 — Runtime Integration
+
+> Historical implementation brief. Phase 2 is complete; current capabilities and commands are documented in `README.md` and `docs/architecture.md`.
+
 Read `rules.md` completely before making any changes. Treat it as the authoritative safety and data specification.
 
 The repository currently has:

@@ -1,5 +1,7 @@
 # Phase 4.1 — Verified Medication Appearance Descriptions
 
+> Historical implementation brief. Phase 4.1 is complete. Appearance remains a verified text memory aid, not medication identification.
+
 ## Required Reading
 
 Before making changes, read:

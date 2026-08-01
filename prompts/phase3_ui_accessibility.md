@@ -1,5 +1,7 @@
 # Phase 3 — Medication Dashboard, Accessibility, and Demo UX
 
+> Historical implementation brief. Phase 3 is complete; current interfaces are documented in `README.md`.
+
 ## Required Reading
 
 Read completely before making any changes:

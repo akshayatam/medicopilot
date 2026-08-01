@@ -8,10 +8,10 @@ Start Ollama, then restore and verify the deterministic scenario:
 export DEMO_NOW="2026-08-01T10:00:00-04:00"
 python app.py reset-demo
 python app.py verify-demo --require-model
-python app.py serve
+python -m backend
 ```
 
-Open `http://127.0.0.1:7860` and select Elena Rivera, the ready patient.
+In a second terminal run `cd frontend && npm run dev`. Open `http://127.0.0.1:5173` and select Elena Rivera, the ready patient. The preserved Gradio reference remains available with `python app.py serve` at `http://127.0.0.1:7860`.
 
 Before demonstrating voice, run `python app.py voice-health`. Continue with voice only when `transcription_succeeded` is true. Voice processing is local, uses a 30-second limit, and does not retain audio by default.
 
@@ -33,7 +33,7 @@ Prompt: **“What medicine comes next?”**
 
 Expected: Vitamin D3 1000 IU at 1:00 PM, according to the saved plan.
 
-For the time-aware follow-up demonstration, restart with `DEMO_NOW="2026-08-01T13:58:00-04:00"`. Vitamin D3 should display as missed/not recorded, while Metformin remains the next dose. Ask **“Have I missed any medicine?”** The response should state that Vitamin D3 was scheduled for 1:00 PM and is not recorded as taken. Reply **“yes”** only after the exact pending prompt is visible; the service records that exact dose once and progress becomes 2 of 3. Reset the demo afterward. This is record navigation, not advice to take a late dose.
+For the time-aware follow-up demonstration, restart the backend with `DEMO_NOW="2026-08-01T13:58:00-04:00"`. Vitamin D3 should display as missed/not recorded, while Metformin remains the next dose. Ask **“Have I missed any medicine?”** The response should state that Vitamin D3 was scheduled for 1:00 PM and is not recorded as taken. Select **“Yes, record as taken”** only after the exact pending prompt is visible; the service records that exact dose once as `taken_late`, and progress becomes 2 of 3. Reset the demo afterward. In Gradio, the equivalent contextual reply is **“yes.”** This is record navigation, not advice to take a late dose.
 
 ### 1:45–2:15 — Dose status and alias
 
@@ -63,7 +63,7 @@ Expected: medication tracking is blocked until review. Raw orders cannot drive r
 
 ### 4:05–5:00 — Architecture and close
 
-Optionally record “What medicine comes next?”, review the visible transcript, and submit it. For “I took my vitamin D,” show the exact Vitamin D3 1000 IU 1:00 PM proposal and confirm it; reset demo afterward. Summarize the source-record → reconciliation → verified-plan boundary, deterministic safety before Gemma, Pydantic intent validation, and deterministic medication service. Verified image/document ingestion and TTS remain future extensions.
+Optionally record “What medicine comes next?” with the browser microphone, review the visible transcript, and submit it. For “I took my vitamin D,” show the exact Vitamin D3 1000 IU 1:00 PM proposal and confirm it; reset demo afterward. Summarize the source-record → reconciliation → verified-plan boundary, deterministic safety before Gemma, Pydantic intent validation, and deterministic medication service. Verified image/document assistance and TTS remain future extensions.
 
 ## If Ollama is unavailable
 

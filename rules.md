@@ -986,6 +986,10 @@ Examples:
 
 ```text
 ├── app.py
+├── backend
+│   ├── app.py
+│   ├── __init__.py
+│   └── __main__.py
 ├── config.py
 ├── CONTRIBUTING.md
 ├── data
@@ -1001,10 +1005,15 @@ Examples:
 │   ├── architecture.md
 │   ├── demo_script.md
 │   ├── phase2_test_report.md
-│   └── roadmap.md
+│   ├── roadmap.md
+│   └── submission_checklist.md
 ├── evaluation
 │   ├── evaluate.py
 │   └── __init__.py
+├── frontend
+│   ├── package.json
+│   ├── src
+│   └── tests
 ├── gemma
 │   ├── client.py
 │   ├── __init__.py
@@ -1040,11 +1049,15 @@ Examples:
 ├── prompts
 │   ├── phase2_5_demo_preparation.md
 │   ├── phase2_integration.md
-│   └── phase3_ui_accessibility.md
+│   ├── phase3_ui_accessibility.md
+│   ├── phase4_1_medication_appearance.md
+│   ├── phase4_2_overdue_and_followup.md
+│   └── phase4_voice.md
 ├── pyproject.toml
 ├── README.md
 ├── requirements.txt
 ├── rules.md
+├── writeup.md
 ├── scripts
 │   ├── convert_synthea_fhir.py
 │   ├── demo_management.py
@@ -1064,6 +1077,12 @@ Examples:
 ├── ui
 │   ├── gradio_app.py
 │   └── __init__.py
+├── voice
+│   ├── audio.py
+│   ├── capability.py
+│   ├── providers.py
+│   ├── schemas.py
+│   └── service.py
 └── uv.lock
 
 ```
@@ -1389,16 +1408,25 @@ Repository cleanup and demo tooling
 ✓ Phase 3
 Accessible dashboard and Gradio interface
 
-Planned
-
-Phase 4
+✓ Phase 4
 Voice interaction
 
-Phase 5
-Vision / medication recognition
+✓ Phase 4.1
+Verified medication-appearance descriptions
 
-Phase 6
-Android deployment
+✓ Phase 4.2
+Time-aware dose status and exact missed-dose follow-up
+
+✓ Platform layer
+FastAPI JSON API and React/Vite/TypeScript interface, with Gradio preserved
+
+Future work
+
+- Local text-to-speech
+- Human-verified image or prescription-label assistance
+- Native Android deployment
+- Caregiver and healthcare-system integration
+- Formal usability and clinical validation
 
 The medication runtime engine should now be considered stable.
 Future work should primarily extend user interaction layers rather than modifying deterministic medication behavior.

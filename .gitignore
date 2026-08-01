@@ -13,6 +13,8 @@ htmlcov/
 .ruff_cache/
 .tox/
 .nox/
+node_modules/
+*.tsbuildinfo
 
 # Virtual environments
 .venv/

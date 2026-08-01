@@ -1,5 +1,7 @@
 # Phase 4.2 — Time-Aware Dose Status and Conversational Follow-Up
 
+> Historical implementation brief. Phase 4.2 is complete; current confirmation behavior is documented in `docs/architecture.md`.
+
 ## Required Reading
 
 Before modifying code, read:

@@ -1,5 +1,7 @@
 # Phase 2.5 — Demo Preparation and Repository Cleanup
 
+> Historical implementation brief. Phase 2.5 is complete; current capabilities and commands are documented in `README.md` and `docs/architecture.md`.
+
 ## Required reading
 
 Before making any changes:

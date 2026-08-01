@@ -2,17 +2,20 @@
 
 ## System overview
 
-Medication Copilot is a local text-and-reviewed-voice prototype with three strict data layers: an imported source record, an explicitly reconciled medication plan, and an adherence ledger. The local model interprets approved text but never supplies medication facts. Pydantic schemas and deterministic services enforce boundaries before any patient-facing response or mutation.
+Medication Copilot is a local text-and-reviewed-voice prototype with two presentation surfaces: a React/Vite client backed by FastAPI and a preserved Gradio reference application. Both use the same deterministic runtime services and three strict data layers: an imported source record, an explicitly reconciled medication plan, and an adherence ledger. The local model interprets approved text but never supplies medication facts.
 
 ## Repository structure
 
 ```text
 app.py                 CLI entry point
+backend/               FastAPI JSON adapter and server-side session confirmation state
 config.py              environment-backed local settings
 data/                  protected synthetic profiles, runtime patients, and evaluation data
 evaluation/            live intent-routing evaluation runner
 gemma/                 Ollama client, prompt, intent schema, parser, and orchestrator
 medication/            conversion, reconciliation, schemas, repositories, safety, and services
+frontend/              React/Vite/TypeScript application
+prompts/               completed implementation briefs retained as project history
 scripts/               Synthea converter and deterministic demo tooling
 tests/                 non-live unit and integration-style regression tests
 ui/                    local Gradio application
@@ -23,7 +26,8 @@ voice/                 ephemeral audio validation, provider, capability probe, a
 
 ```mermaid
 sequenceDiagram
-    participant U as User
+    participant U as Gradio / React user
+    participant A as UI adapter
     participant S as Safety screen
     participant G as Local Gemma
     participant V as Pydantic validator
@@ -32,9 +36,11 @@ sequenceDiagram
     participant M as Deterministic service
     participant P as Runtime repository
 
-    U->>S: Text request
+    U->>A: Text or approved transcript
+    A->>S: Normalized request
     alt unsafe request
-        S-->>U: Deterministic refusal
+        S-->>A: Deterministic refusal
+        A-->>U: Safety response
     else allowed navigation request
         S->>G: Minimal text only
         G->>V: Structured intent JSON
@@ -43,7 +49,8 @@ sequenceDiagram
         R->>P: Confirmed reconciled medicines only
         O->>M: At most one approved operation
         M->>P: Verified plan / adherence ledger
-        M-->>U: Grounded deterministic response
+        M-->>A: Grounded deterministic response
+        A-->>U: JSON or Gradio presentation
     end
 ```
 
@@ -59,9 +66,11 @@ microphone/upload → local ffmpeg normalization → Gemma transcription only
 → explicit confirmation → revalidation → existing runtime service
 ```
 
-Audio is limited to 30 seconds and 10 MiB, normalized to mono 16 kHz PCM WAV in a non-identifying temporary directory, and deleted during unconditional cleanup. Neither raw audio nor transcript-review state is written to runtime patient JSON. The provider sends only the transcription instruction and audio—no patient record. Gradio state holds transcript and pending action per browser session; patient changes and cancellation replace that state. Pending mutations expire after five minutes and are revalidated against patient ID, readiness, deterministic resolution, and the exact scheduled ledger entry.
+Audio is limited to 30 seconds and 10 MiB, normalized to mono 16 kHz PCM WAV in a non-identifying temporary directory, and deleted during unconditional cleanup. Neither raw audio nor transcript-review state is written to runtime patient JSON. The provider sends only the transcription instruction and audio—no patient record. Gradio uses browser-session state; FastAPI uses process-local, patient-bound session state referenced by an opaque session ID. Pending mutations expire after five minutes and are revalidated against patient ID, readiness, deterministic resolution, and the exact scheduled ledger entry.
 
 An exactly-one missed-dose query can also stage a five-minute, session-local exact-dose follow-up. The visible prompt names the medication, strength, date, time, and proposed record action. Deterministic affirmative, negative, and cancel replies are handled before model routing; approved voice transcripts use the same path. Multiple missed doses never create a blanket confirmation. Patient changes, expiry, cancellation, unrelated requests, and replacement of the underlying demo patient file invalidate pending state.
+
+The FastAPI affirmative endpoint accepts only patient and opaque session identity; medication IDs and times come from server-held pending state. It delegates to the shared follow-up and runtime services. Atomic session access and a replay receipt prevent duplicate-click mutations. React reloads the dashboard after mutation rather than calculating status or progress itself.
 
 Ollama capability is established by a generated speech request whose returned content must match expected words. With Ollama 0.32.4 and `gemma4:e2b`, WAV audio works through the multimodal `images` compatibility field; a native `audios` field request was ignored. Thinking is disabled for transcription. No cloud provider or TTS is present.
 
@@ -95,7 +104,7 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 
 ## Fixed clock
 
-`SystemClock` uses each patient's IANA timezone. `FixedClock` accepts a timezone-aware ISO-8601 value supplied by `DEMO_NOW` or `--now`. The same clock controls today, next-dose, status, mutation timestamps, history filtering, CLI, and Gradio behavior.
+`SystemClock` uses each patient's IANA timezone. `FixedClock` accepts a timezone-aware ISO-8601 value supplied by `DEMO_NOW` or `--now`. The same clock controls today, next-dose, status, mutation timestamps, history filtering, CLI, FastAPI, React results, and Gradio behavior.
 
 ## Demo-data generation and reset
 

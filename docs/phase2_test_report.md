@@ -1,4 +1,6 @@
-# Phase 2 Test Report
+# Phase 2 Test Report (Historical)
+
+This report records the Phase 2 checkpoint and is not the current submission test report. Later phases added accessibility, voice, appearance metadata, time-aware follow-up, FastAPI, and React. Use the current README verification commands and submission checklist for final results.
 
 ## Automated verification
 
@@ -23,9 +25,6 @@
 - Gemma used only for language routing
 - Deterministic logic controls safety and medication truth
 
-## Known limitations
+## Scope note
 
-- Text input only
-- Conservative string-based medication resolution
-- No cross-process file locking
-- Synthetic data only
+At this checkpoint the project was a synthetic-data, text-first prototype. This section is retained only to identify the historical test baseline; it does not describe the final submission feature set.

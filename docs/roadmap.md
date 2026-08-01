@@ -1,30 +1,33 @@
 # Roadmap
 
-## Completed
+## Completed for the hackathon submission
 
-- Phase 1 — Data pipeline and initial medication services
-- Phase 2 — Runtime integration, safety enforcement, Gemma routing, and Gradio
-
-## Current
-
-- Phase 2.5 — Repository hygiene, documentation, and demo reliability
-
-## Planned
-
-- Phase 3 — UI and accessibility polish (completed)
-- Phase 4 — Local reviewed voice input (current; TTS deferred)
-- Phase 4.1 — Verified medication-appearance text (memory aid only; completed)
-- Phase 4.2 — Time-aware dose status and exact missed-dose follow-up (completed)
-- Phase 5 — Image and prescription verification
-- Post-hackathon native deployment work
+- Phase 1 — Synthea FHIR conversion, medication normalization, validation, and safety pipeline
+- Phase 2 — Schema-v2 runtime integration, readiness, deterministic services, Gemma routing, and Gradio
+- Phase 2.5 — Repository hygiene, deterministic demo reset, verification, and documentation
+- Phase 3 — Accessible medication dashboard and session-scoped interaction design
+- Phase 4 — Local reviewed voice input and explicit mutation confirmation
+- Phase 4.1 — Optional verified medication-appearance descriptions as a memory aid
+- Phase 4.2 — Canonical time-aware dose status and exact missed-dose follow-up
+- Platform layer — FastAPI JSON APIs and a React/Vite/TypeScript interface with Gradio feature parity
+- Submission preparation — final documentation, Kaggle writeup, and release checklist
 
 ## Milestone map
 
-| Milestone | Scope |
-| --- | --- |
-| `v0.1.0` | Local text prototype |
-| `v0.2.0` | Verified runtime integration |
-| `v0.3.0` | Demo-ready interface |
-| `v1.0.0` | Hackathon submission |
+| Milestone | Scope | Status |
+| --- | --- | --- |
+| `v0.1.0` | Local text prototype | Complete |
+| `v0.2.0` | Verified runtime integration | Complete |
+| `v0.3.0` | Accessible demo interface and local voice | Complete |
+| `v1.0.0` | Hackathon submission | Release candidate |
 
-Future milestones remain planned and are not claims of implemented functionality.
+## Post-submission work
+
+- Local text-to-speech for grounded responses and safety refusals
+- Human-verified image or prescription-label assistance; never direct plan mutation
+- Lower-latency local model and audio execution
+- Native Android deployment
+- Explicit caregiver workflows and healthcare-system integration
+- Formal usability testing and clinical validation
+
+These items are future work, not implemented capabilities. Diagnosis, prescribing, treatment selection, interaction advice, and autonomous medication changes are not roadmap goals.
