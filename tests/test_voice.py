@@ -78,6 +78,7 @@ def test_provider_sends_audio_only_to_ollama_and_disables_thinking(tmp_path, mon
     assert captured["think"] is False and "images" in captured["messages"][0]
     serialized = json.dumps(captured)
     assert "patient_id" not in serialized and "source_record" not in serialized
+    assert "appearance" not in serialized and "pale-yellow" not in serialized
 
 
 def test_provider_failure_is_safe(tmp_path, monkeypatch):
@@ -94,6 +95,7 @@ def test_voice_mutation_waits_for_confirmation_and_executes_once(tmp_path):
     before = patients.load_patient("demo-ready-001").model_dump_json()
     result, pending = interaction.submit_transcript("I took my lunch tablet")
     assert result is None and pending and pending.medication_display == "Vitamin D3 1000 IU"
+    assert pending.appearance == "Small, pale-yellow softgel capsule."
     assert patients.reload_patient("demo-ready-001").model_dump_json() == before
     first = interaction.confirm(pending); second = interaction.confirm(pending)
     assert first["status"] == "taken" and second["status"] == "already_taken"

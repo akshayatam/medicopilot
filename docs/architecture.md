@@ -61,6 +61,8 @@ microphone/upload → local ffmpeg normalization → Gemma transcription only
 
 Audio is limited to 30 seconds and 10 MiB, normalized to mono 16 kHz PCM WAV in a non-identifying temporary directory, and deleted during unconditional cleanup. Neither raw audio nor transcript-review state is written to runtime patient JSON. The provider sends only the transcription instruction and audio—no patient record. Gradio state holds transcript and pending action per browser session; patient changes and cancellation replace that state. Pending mutations expire after five minutes and are revalidated against patient ID, readiness, deterministic resolution, and the exact scheduled ledger entry.
 
+An exactly-one missed-dose query can also stage a five-minute, session-local exact-dose follow-up. The visible prompt names the medication, strength, date, time, and proposed record action. Deterministic affirmative, negative, and cancel replies are handled before model routing; approved voice transcripts use the same path. Multiple missed doses never create a blanket confirmation. Patient changes, expiry, cancellation, unrelated requests, and replacement of the underlying demo patient file invalidate pending state.
+
 Ollama capability is established by a generated speech request whose returned content must match expected words. With Ollama 0.32.4 and `gemma4:e2b`, WAV audio works through the multimodal `images` compatibility field; a native `audios` field request was ignored. Thinking is disabled for transcription. No cloud provider or TTS is present.
 
 ## Source record and verified plan
@@ -69,7 +71,13 @@ Ollama capability is established by a generated speech request whose returned co
 
 `medication_plan.medications` is created by explicit reconciliation. Daily actions accept only confirmed, verified entries with verified schedules. PRN entries may be reconciled but cannot receive recurring reminders.
 
+Each reconciled plan entry may also carry an optional validated `appearance` object. Only a verified description with explicit source, verifier, and timestamp reaches patient-facing deterministic output. Appearance is presentation metadata: readiness, schedule generation, aliases, medication resolution, and the dose ledger do not read it. Older runtime records without the optional object remain valid.
+
 `dose_logs` contains only app events or explicitly seeded synthetic adherence events. Clinical `MedicationAdministration` records remain in `source_record.clinical_administrations` and are never merged automatically.
+
+Persisted dose status records events; it is not a live clock. A single deterministic effective-status function combines `scheduled_at`, `taken_at`, the injected clock, and a validated timing policy. Runtime services use that result for today, next dose, dose status, missed-dose lookup, history, dashboard progress, and debug output. Time passage never rewrites runtime JSON.
+
+The default application policy shows an unrecorded dose as due through 30 minutes after its scheduled time and missed afterward; recorded doses more than 15 minutes after schedule are presented as taken late. `DOSE_DUE_WINDOW_MINUTES` and `DOSE_MISSED_AFTER_MINUTES` configure these non-clinical display thresholds.
 
 ## Readiness enforcement
 
@@ -93,6 +101,8 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 
 `scripts/prepare_demo_data.py` builds the ready and unready patients from curated source objects and protected reconciliation profiles. It applies the existing reconciliation, plan, readiness, schedule-generation, and runtime-schema code.
 
+The ready reconciliation profile supplies three synthetic verified appearance descriptions. The unready source orders receive none. Runtime JSON is regenerated only through this pipeline.
+
 `python app.py reset-demo` generates into a temporary sibling directory, validates the complete expected patient set, and atomically replaces the active runtime directory only after success. It never recreates raw Synthea output or the deleted converted-patient corpus.
 
 ## Verification and health
@@ -103,4 +113,4 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 
 ## Future insertion points
 
-Image input is not implemented. A future image/document extractor must create an unverified candidate for human reconciliation; it must never write directly to the verified plan. Additional voice languages and local TTS remain future work. Neither modality may bypass safety, schemas, readiness, resolution, or deterministic services.
+Image input and pill recognition are not implemented. A future image/document extractor must create an unverified candidate for human reconciliation; it must never write directly to the verified plan. Current appearance text is not an identification feature and can vary by manufacturer or refill. Additional voice languages and local TTS remain future work. Neither modality may bypass safety, schemas, readiness, resolution, or deterministic services.

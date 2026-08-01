@@ -91,3 +91,9 @@ def test_router_repairs_discarded_vague_reference():
     intent = router.route("Did I take my heart tablet this morning?")
     assert intent.medication_reference == "heart tablet"
     assert router.repair_used
+
+
+def test_missed_dose_action_validates_as_complete():
+    intent = parse_intent('{"action":"CHECK_MISSED_DOSES","clarification_question":"ignored"}')
+    assert intent.action == Action.CHECK_MISSED_DOSES
+    assert intent.clarification_question is None

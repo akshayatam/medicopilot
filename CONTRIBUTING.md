@@ -46,7 +46,9 @@ Use `python app.py verify-demo --require-model` only when Ollama and the configu
 - `voice/`: ephemeral local audio validation, transcription providers, capability probing, and confirmation staging
 - `tests/`: non-live regression coverage
 
-Preserve source-record, verified-plan, and adherence-ledger separation. Never let model output become medication fact, resolve ambiguity clinically, invent a schedule, bypass readiness, or weaken deterministic safety. New voice/image work belongs to future phases and must not bypass these boundaries.
+Preserve source-record, verified-plan, and adherence-ledger separation. Optional appearance descriptions belong only in reconciled plan metadata, require explicit verification and provenance, and must never create names, aliases, schedules, readiness, or resolver matches. Never let model output become medication fact, resolve ambiguity clinically, invent a schedule, bypass readiness, or weaken deterministic safety. Image recognition remains future work and must not bypass these boundaries.
+
+Do not persist clock-derived status changes. Use the canonical effective-dose-status function with the injected clock and configured policy for every presentation/query surface. Missed means “not recorded as taken,” never observed non-adherence. Contextual confirmation must remain session-local, expiring, patient-specific, and exact-dose-specific, and must mutate only through the runtime medication service.
 
 ## Pull-request checklist
 
@@ -57,3 +59,4 @@ Preserve source-record, verified-plan, and adherence-ledger separation. Never le
 - [ ] Demo reset and verification pass when relevant.
 - [ ] Documentation distinguishes current functionality from future work.
 - [ ] I did not include raw Synthea output, patient corpora, model artifacts, logs, caches, or secrets.
+- [ ] Any medication appearance metadata is verified, provenance-carrying, optional, and never used as an identifier.

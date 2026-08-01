@@ -57,6 +57,7 @@ def apply_reconciliation(document: dict[str, Any], profile_data: dict[str, Any])
             "purpose_labels": decision.purpose_labels if decision.purpose_labels is not None else source.get("purpose_labels", []),
             "purpose_source": "verified_reconciliation" if decision.purpose_labels is not None else source.get("purpose_source", "not_recorded"),
             "source_instruction": source.get("source_instruction"),
+            "appearance": decision.appearance.model_dump(mode="json") if decision.appearance else None,
             "schedule_type": source.get("schedule_type", "unknown"),
             "reminder_schedule": [s.model_dump(mode="json") for s in decision.reminder_schedule],
             "current_use_status": decision.current_use_status,

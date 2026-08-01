@@ -124,6 +124,22 @@
         "purpose_labels": [],
         "purpose_source": "not_recorded",
         "source_instruction": "Take according to the verified saved plan.",
+        "appearance": {
+          "description": "Small, round, white tablet.",
+          "color": [
+            "white"
+          ],
+          "shape": "round",
+          "dosage_form": "tablet",
+          "transparency": null,
+          "size": "small",
+          "imprint": null,
+          "special_features": [],
+          "source": "synthetic_reconciliation_profile",
+          "verification_status": "verified",
+          "verified_by": "synthetic_caregiver",
+          "verified_at": "2026-08-01T09:00:00-04:00"
+        },
         "schedule_type": "scheduled",
         "reminder_schedule": [
           {
@@ -156,6 +172,22 @@
         "purpose_labels": [],
         "purpose_source": "not_recorded",
         "source_instruction": "Take according to the verified saved plan.",
+        "appearance": {
+          "description": "White, oval tablet.",
+          "color": [
+            "white"
+          ],
+          "shape": "oval",
+          "dosage_form": "tablet",
+          "transparency": null,
+          "size": null,
+          "imprint": null,
+          "special_features": [],
+          "source": "synthetic_reconciliation_profile",
+          "verification_status": "verified",
+          "verified_by": "synthetic_caregiver",
+          "verified_at": "2026-08-01T09:00:00-04:00"
+        },
         "schedule_type": "scheduled",
         "reminder_schedule": [
           {
@@ -188,6 +220,22 @@
         "purpose_labels": [],
         "purpose_source": "not_recorded",
         "source_instruction": "Take according to the verified saved plan.",
+        "appearance": {
+          "description": "Small, pale-yellow softgel capsule.",
+          "color": [
+            "pale-yellow"
+          ],
+          "shape": null,
+          "dosage_form": "softgel capsule",
+          "transparency": null,
+          "size": "small",
+          "imprint": null,
+          "special_features": [],
+          "source": "synthetic_reconciliation_profile",
+          "verification_status": "verified",
+          "verified_by": "synthetic_caregiver",
+          "verified_at": "2026-08-01T09:00:00-04:00"
+        },
         "schedule_type": "scheduled",
         "reminder_schedule": [
           {

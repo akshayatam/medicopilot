@@ -58,6 +58,9 @@ class VoiceInteractionService:
             patient_id=self.medication_service.patient_id, action="MARK_DOSE_TAKEN",
             medication_id=match.medication_id, medication_reference=intent.medication_reference,
             medication_display=match.display_name, scheduled_at=dose.scheduled_at,
+            appearance=self.medication_service._verified_appearance(
+                next(med for med in self.medication_service.repository.get_reconciled_medications() if med.id == match.medication_id)
+            ),
             created_at=self.medication_service.clock.now(), transcript=text,
         )
         return None, pending
@@ -78,4 +81,4 @@ class VoiceInteractionService:
         exact = [log for log in patient.dose_logs if log.medication_id == pending.medication_id and log.scheduled_at == pending.scheduled_at]
         if len(exact) != 1:
             raise ValueError("The exact scheduled dose could not be revalidated.")
-        return self.medication_service.mark_dose_taken(pending.medication_reference)
+        return self.medication_service.mark_exact_dose_taken(pending.medication_id, pending.scheduled_at)

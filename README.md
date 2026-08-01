@@ -34,16 +34,20 @@ See [Architecture](docs/architecture.md) for the detailed request, persistence, 
 - Local Gemma intent routing through Ollama
 - Curated, verified medication plans and deterministic medication resolution
 - Today's schedule, next-dose, dose-status, saved-instruction, and history lookup
+- Canonical time-aware due/missed status and record-based missed-dose follow-up
 - Idempotent mark-taken workflow with ambiguity blocking
 - Ready/unready patient enforcement
 - Deterministic medication-safety refusals
 - Ready and review-required synthetic demo patients
 - Local Gradio text interface with source review, health, and debug information
 - Local record–transcribe–review–submit voice input with explicit mutation confirmation
+- Optional verified medication-appearance descriptions as a local memory aid
 - Reproducible demo reset and verification commands
 - Supported Synthea FHIR conversion and reconciliation pipeline
 
 Production reminders, image scanning, hospital integration, native mobile deployment, and spoken output are not implemented.
+
+The ready synthetic demo includes curated appearance descriptions with reconciliation provenance. Only verified descriptions are displayed, and records without appearance remain valid. Appearance can vary by manufacturer or refill, so users should check the prescription label if a medicine looks different. Appearance is never used to identify or automatically resolve a medication, and no image recognition or external drug lookup is implemented.
 
 ## Setup
 
@@ -80,6 +84,8 @@ python app.py verify-demo
 ```
 
 `DEMO_NOW` must include a timezone offset.
+
+Dose display timing is controlled by `DOSE_DUE_WINDOW_MINUTES` (default `15`) and `DOSE_MISSED_AFTER_MINUTES` (default `30`). These are non-clinical application-display policies. Stored scheduled-dose state is preserved; `upcoming`, `due`, and `missed` are derived consistently at query time from the injected clock. “Missed” means only that no taken record exists after the configured threshold.
 
 ## Demo
 
@@ -134,6 +140,8 @@ python app.py verify-demo --require-model
 - Missing allergy data means `not_recorded`, never “no allergies.”
 - Gemma selects an approved action but cannot invent facts, resolve medication ambiguity, bypass readiness, or authorize unsafe advice.
 - Voice audio is normalized locally, limited to 30 seconds, deleted after transcription, and never added to patient JSON. A visible editable transcript must be submitted before routing. Voice mutations additionally show the exact scheduled dose and require confirmation.
+- Appearance metadata stays local and remains secondary to exact medication name, strength, schedule, and dose-ledger facts.
+- A uniquely identified overdue dose can create a five-minute browser-session confirmation. Contextual confirmation records only that exact revalidated dose; a bare “yes” without pending state never changes data. The app does not advise whether an overdue dose should be taken.
 
 ## Local voice compatibility
 

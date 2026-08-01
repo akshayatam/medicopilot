@@ -113,8 +113,8 @@ def test_dashboard_progress_uses_only_runtime_ledger_statuses():
     ]
     next_dose = {"status": "upcoming", "medication": "Medicine B", "scheduled_at": "2026-08-01T13:00:00-04:00"}
     rendered = _dashboard_html(status, today, next_dose, FixedClock("2026-08-01T10:00:00-04:00").now(), [])
-    assert "1 of 3 doses completed" in rendered and "2 remaining" in rendered
-    assert "33% complete" in rendered
+    assert "1 of 3 scheduled doses recorded as taken" in rendered and "1 remaining" in rendered
+    assert "0 missed or overdue" in rendered
     assert 'aria-valuenow="1"' in rendered and "Due now" in rendered
     assert "Taken at 8:11 AM" in rendered
 
@@ -169,7 +169,7 @@ def test_unready_dashboard_does_not_present_source_orders_as_schedule():
     rendered = _dashboard_html(status, {"review_required": UNREADY_MESSAGE}, {"status": "review_required"}, FixedClock("2026-08-01T10:00:00-04:00").now(), [])
     assert "Medication plan needs review" in rendered
     assert "source orders cannot be used for reminders" in rendered
-    assert "0 of 0 doses completed" in rendered
+    assert "0 of 0 scheduled doses recorded as taken" in rendered
 
 
 def test_simplified_mode_preserves_safety_response_and_shortens_known_schedule():
@@ -222,6 +222,10 @@ def test_demo_now_configuration_requires_timezone():
     assert Settings(demo_now="2026-08-01T10:00:00-04:00").demo_now.endswith("-04:00")
     with pytest.raises(ValueError, match="timezone offset"):
         Settings(demo_now="2026-08-01T10:00:00")
+    with pytest.raises(ValueError, match="non-negative"):
+        Settings(dose_missed_after_minutes=-1)
+    with pytest.raises(ValueError, match="at least"):
+        Settings(dose_due_window_minutes=15, dose_missed_after_minutes=10)
 
 
 def test_cli_routing_failure_has_no_traceback(monkeypatch, capsys):

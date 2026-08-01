@@ -29,6 +29,7 @@ class CopilotResult:
     repair_used: bool = False
     active_clock: str | None = None
     tool_executed: str | None = None
+    dose_status_policy: dict[str, int] | None = None
     outcome: Literal[
         "success", "needs_clarification", "patient_not_ready",
         "medication_not_found", "unsafe_request", "out_of_scope",
@@ -55,6 +56,7 @@ class MedicationOrchestrator:
             result = self._result(safety.response or STANDARD_REFUSAL, intent, None, None)
             result.outcome = "unsafe_request"
             result.active_clock = self._active_clock()
+            self._attach_status_policy(result)
             return result
         try:
             intent = self.router.route(text)
@@ -74,7 +76,7 @@ class MedicationOrchestrator:
             response = EMERGENCY_REFUSAL if safety.emergency else STANDARD_REFUSAL
             result = self._result(response, intent, None, latency)
             result.outcome = "unsafe_request"; result.active_clock = self._active_clock()
-            self._attach_routing_debug(result); return result
+            self._attach_routing_debug(result); self._attach_status_policy(result); return result
         if intent.action == Action.NEEDS_CLARIFICATION:
             result = self._result(
                 intent.clarification_question
@@ -82,14 +84,14 @@ class MedicationOrchestrator:
                 intent, None, latency,
             )
             result.outcome = "needs_clarification"
-            result.active_clock = self._active_clock(); self._attach_routing_debug(result); return result
+            result.active_clock = self._active_clock(); self._attach_routing_debug(result); self._attach_status_policy(result); return result
         if intent.action == Action.OUT_OF_SCOPE:
             result = self._result(
                 "I can only help navigate the medication schedule, saved instructions, and dose history in this local synthetic record.",
                 intent, None, latency,
             )
             result.outcome = "out_of_scope"
-            result.active_clock = self._active_clock(); self._attach_routing_debug(result); return result
+            result.active_clock = self._active_clock(); self._attach_routing_debug(result); self._attach_status_policy(result); return result
 
         if hasattr(self.service, "clock"):
             clock_now = self.service.clock.now()
@@ -110,6 +112,7 @@ class MedicationOrchestrator:
             result.tool_executed = intent.action.value
             result.active_clock = self._active_clock()
             self._attach_routing_debug(result)
+            self._attach_status_policy(result)
             return result
         except ValueError as exc:
             result = self._result(str(exc), intent, None, latency)
@@ -118,6 +121,7 @@ class MedicationOrchestrator:
             result.outcome = self._expected_outcome(str(exc), result.medication_resolver_result)
             result.active_clock = self._active_clock()
             self._attach_routing_debug(result)
+            self._attach_status_policy(result)
             return result
 
     @staticmethod
@@ -140,6 +144,10 @@ class MedicationOrchestrator:
         result.raw_model_json = getattr(self.router, "raw_model_json", None)
         result.repair_model_json = getattr(self.router, "repair_model_json", None)
         result.repair_used = bool(getattr(self.router, "repair_used", False))
+
+    def _attach_status_policy(self, result: CopilotResult) -> None:
+        if hasattr(self.service, "policy_payload"):
+            result.dose_status_policy = self.service.policy_payload()
 
     def _execute(
         self,
@@ -171,6 +179,8 @@ class MedicationOrchestrator:
             return self.service.get_saved_instructions(intent.medication_reference or "")
         if intent.action == Action.SHOW_MEDICATION_HISTORY:
             return self.service.show_medication_history(intent.medication_reference)
+        if intent.action == Action.CHECK_MISSED_DOSES:
+            return self.service.check_missed_doses(date_value)
         raise ValueError("That action is not supported.")
 
     @staticmethod

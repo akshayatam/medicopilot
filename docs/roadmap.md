@@ -13,6 +13,8 @@
 
 - Phase 3 — UI and accessibility polish (completed)
 - Phase 4 — Local reviewed voice input (current; TTS deferred)
+- Phase 4.1 — Verified medication-appearance text (memory aid only; completed)
+- Phase 4.2 — Time-aware dose status and exact missed-dose follow-up (completed)
 - Phase 5 — Image and prescription verification
 - Post-hackathon native deployment work
 

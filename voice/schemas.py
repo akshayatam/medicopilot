@@ -48,6 +48,7 @@ class PendingVoiceAction(BaseModel):
     medication_id: str
     medication_reference: str
     medication_display: str
+    appearance: str | None = None
     scheduled_at: datetime
     created_at: datetime
     transcript: str

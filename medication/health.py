@@ -5,11 +5,13 @@ from typing import Any
 
 from gemma.client import OllamaClient
 from medication.patient_data_service import PatientDataService
+from medication.dose_status import DoseStatusPolicy
 
 
 class ApplicationHealthService:
-    def __init__(self, client: OllamaClient, patients: PatientDataService, demo_now: str | None = None, voice_report: dict[str, Any] | None = None) -> None:
+    def __init__(self, client: OllamaClient, patients: PatientDataService, demo_now: str | None = None, voice_report: dict[str, Any] | None = None, dose_status_policy: DoseStatusPolicy | None = None) -> None:
         self.client = client; self.patients = patients; self.demo_now = demo_now; self.voice_report = voice_report
+        self.dose_status_policy = dose_status_policy or DoseStatusPolicy()
 
     def check(self) -> dict[str, Any]:
         model = self.client.health_check()
@@ -27,6 +29,7 @@ class ApplicationHealthService:
             "schema_errors": self.patients.validation_errors,
             "healthy_for_deterministic_use": bool(summaries) and not self.patients.validation_errors and any(p.ready for p in summaries),
             "active_application_time": datetime.fromisoformat(self.demo_now).isoformat() if self.demo_now else "system_clock_per_patient_timezone",
+            "dose_status_policy": self.dose_status_policy.model_dump(),
             "voice": self.voice_report or {
                 "configured": True,
                 "provider": "gemma4_audio",

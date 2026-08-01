@@ -11,6 +11,8 @@ from gemma.orchestrator import MedicationOrchestrator
 from gemma.response_parser import IntentParseError
 from gemma.schemas import Action
 from medication.clock import FixedClock, SystemClock
+from medication.dose_status import DoseStatusPolicy
+from medication.followup import PendingDoseFollowup, classify_contextual_reply, handle_pending_reply
 from medication.health import ApplicationHealthService
 from medication.patient_data_service import PatientDataService
 from medication.runtime_service import RuntimeMedicationService
@@ -30,6 +32,7 @@ def new_session_state(patient_id: str) -> dict:
         "debug_visible": False,
         "debug": {},
         "pending_clarification": None,
+        "pending_dose_followup": None,
         "voice_transcript": "",
         "voice_transcript_approved": False,
         "pending_voice_action": None,
@@ -116,19 +119,23 @@ def _dashboard_html(
     day = local_now.strftime("%A, %B %-d")
     doses = today if isinstance(today, list) else []
     completed = sum(item.get("status") in TAKEN_STATUSES for item in doses)
+    missed = sum(item.get("status") == "missed" for item in doses)
     total = len(doses)
-    remaining = total - completed
+    remaining = sum(item.get("status") in {"upcoming", "due"} for item in doses)
     percent = round(100 * completed / total) if total else 0
 
-    if ready and next_dose.get("status") == "upcoming":
+    if ready and next_dose.get("status") in {"upcoming", "due"}:
         medication = html.escape(next_dose.get("medication", "Medication not available"))
         next_time = _display_time(next_dose.get("scheduled_at"))
         purpose = purposes.get(next_dose.get("medication", ""))
         purpose_line = f'<p class="purpose">Saved purpose: {html.escape(purpose)}</p>' if purpose else ""
+        appearance = next_dose.get("appearance")
+        appearance_line = f'<p class="appearance">{html.escape(appearance)}</p>' if appearance else ""
         next_card = f"""
             <div class="next-card-heading"><p class="eyebrow">NEXT MEDICINE</p>
-            <span class="status-pill status-pill-upcoming">○ Upcoming</span></div>
+            <span class="status-pill status-pill-{html.escape(next_dose['status'])}">{_status_label(next_dose['status'])}</span></div>
             <h2 class="next-medication-name">{medication}</h2>
+            {appearance_line}
             <p class="next-time next-medication-time">{next_time}</p>
             {purpose_line}
             <p class="status-text">According to the saved medication plan</p>"""
@@ -148,16 +155,19 @@ def _dashboard_html(
     for item in doses:
         state = str(item.get("status", "unknown"))
         taken = f'<p class="taken-time">Taken at {_display_time(item.get("taken_at"))}</p>' if state in TAKEN_STATUSES else ""
+        not_recorded = '<p class="taken-time">No taken record exists for this scheduled dose.</p>' if state == "missed" else ""
         overdue = '<span class="badge overdue">Due now</span>' if state == "due" else ""
         purpose = purposes.get(item.get("name", ""))
         purpose_line = f'<p class="purpose">Saved purpose: {html.escape(purpose)}</p>' if purpose else ""
+        appearance = item.get("appearance")
+        appearance_line = f'<p class="appearance">{html.escape(appearance)}</p>' if appearance else ""
         cards.append(f"""
             <article class="medicine-card medicine-row status-{html.escape(state.replace('_', '-'))}">
               <div class="medicine-time"><strong>{_display_time(item.get('scheduled_at'))}</strong></div>
               <div class="medicine-details"><h3 class="medicine-name">{html.escape(item.get('name', 'Medication'))}</h3>
               <p class="strength medicine-strength">{html.escape(item.get('strength') or 'Strength not recorded')}</p>
-              {purpose_line}</div>
-              <div class="medicine-meta"><span class="status-pill">{_status_label(state)}</span>{overdue}{taken}</div>
+              {appearance_line}{purpose_line}</div>
+              <div class="medicine-meta"><span class="status-pill">{_status_label(state)}</span>{overdue}{taken}{not_recorded}</div>
             </article>""")
     if not cards:
         message = today.get("message", "No scheduled doses are stored for today.") if isinstance(today, dict) else "No scheduled doses are stored for today."
@@ -189,14 +199,15 @@ def _dashboard_html(
       </section>
       <section class="next-card next-dose-card">{next_card}</section>
       <section class="progress-card" aria-label="Today’s progress">
-        <div class="section-heading"><div><p class="eyebrow">TODAY’S PROGRESS</p><h2>{completed} of {total} doses completed</h2></div></div>
+        <div class="section-heading"><div><p class="eyebrow">TODAY’S PROGRESS</p><h2>{completed} of {total} scheduled doses recorded as taken</h2></div></div>
         <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="{total}" aria-valuenow="{completed}" aria-label="{completed} of {total} doses completed">
           <div class="progress-fill" style="width:{percent}%"></div>
         </div>
-        <div class="progress-stats"><strong>{percent}% complete</strong><span>{remaining} remaining</span></div>
+        <div class="progress-stats"><strong>{missed} missed or overdue</strong><span>{remaining} remaining</span></div>
       </section>
       <section class="schedule-section medicine-list-card"><div class="section-heading"><div><p class="eyebrow">TODAY’S MEDICINES</p><h2>Your saved schedule</h2></div></div>
         {''.join(cards)}{prn_cards}
+        <p class="appearance-notice">Appearance can vary by manufacturer or refill. Check the prescription label and ask a pharmacist or caregiver before relying on appearance if a medicine looks different.</p>
       </section>
     </main>"""
 
@@ -253,7 +264,9 @@ html, body { background:#f6f8f7 !important; color-scheme:light; }
 .summary-card { min-height:136px; }
 .patient-name { margin:.15rem 0 .25rem; color:var(--text-primary) !important; font-size:clamp(2rem,3vw,2.75rem); line-height:1.05; letter-spacing:-.035em; font-weight:760; }
 .eyebrow { margin:0; color:var(--green-dark) !important; font-size:.78rem; font-weight:800; letter-spacing:.12em; }
-.patient-date,.medicine-strength,.taken-time,.section-subtitle,.status-text,.purpose { color:var(--text-secondary) !important; opacity:1 !important; margin:.28rem 0; line-height:1.45; }
+.patient-date,.medicine-strength,.taken-time,.section-subtitle,.status-text,.purpose,.appearance,.appearance-notice { color:var(--text-secondary) !important; opacity:1 !important; margin:.28rem 0; line-height:1.45; }
+.appearance { font-size:.94rem; font-weight:600; }
+.appearance-notice { margin-top:.75rem; padding-top:.85rem; border-top:1px solid var(--border); font-size:.9rem; }
 .readiness { min-width:235px; padding:.85rem 1rem; border-radius:14px; display:grid; gap:.2rem; }
 .readiness.ready { color:var(--green-dark); background:var(--green-soft); border:1px solid #bddfc7; }
 .readiness.review { color:var(--warning); background:var(--warning-soft); border:1px solid #ead49b; }
@@ -278,7 +291,7 @@ html, body { background:#f6f8f7 !important; color-scheme:light; }
 .status-pill, .badge { display:inline-flex; align-items:center; width:max-content; border-radius:999px; padding:.3rem .68rem; font-size:.82rem; line-height:1.2; font-weight:800; border:1px solid transparent; white-space:nowrap; }
 .status-upcoming .status-pill,.status-pill-upcoming { color:var(--blue) !important; background:var(--blue-soft); border-color:#c8dff3; }
 .status-taken .status-pill,.status-taken-late .status-pill { color:var(--green-dark) !important; background:var(--green-soft); border-color:#bddfc7; }
-.status-missed .status-pill,.status-due .status-pill,.badge.overdue { color:var(--warning) !important; background:var(--warning-soft); border-color:#ead49b; }
+.status-missed .status-pill,.status-due .status-pill,.status-pill-due,.badge.overdue { color:var(--warning) !important; background:var(--warning-soft); border-color:#ead49b; }
 .status-unknown .status-pill { color:#51465e !important; background:#f2eef5; border-color:#d7ccdf; }
 .status-pill-review { color:var(--warning) !important; background:var(--warning-soft); border-color:#ead49b; }
 .taken-time { font-size:.84rem; }
@@ -359,7 +372,7 @@ def _accessibility_style(large_text: bool, high_contrast: bool) -> str:
     return f"<style>#app-root.gradio-container {{ font-size: {size}; }}{colors}</style>"
 
 
-def create_app(client: OllamaClient, patients_directory, demo_now: str | None = None):
+def create_app(client: OllamaClient, patients_directory, demo_now: str | None = None, dose_status_policy: DoseStatusPolicy | None = None):
     try:
         import gradio as gr
     except ImportError as exc:
@@ -371,7 +384,8 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
         raise FileNotFoundError("No valid schema-v2 runtime patients were found.")
     choices = [(p.label, p.patient_id) for p in summaries]
     initial = summaries[0].patient_id
-    health_service = ApplicationHealthService(client, patients, demo_now)
+    dose_status_policy = dose_status_policy or DoseStatusPolicy()
+    health_service = ApplicationHealthService(client, patients, demo_now, dose_status_policy=dose_status_policy)
     from voice.audio import AudioValidationError, normalized_audio
     from voice.providers import GemmaAudioTranscriptionProvider
     from voice.schemas import PendingVoiceAction
@@ -381,7 +395,7 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
     def service_for(patient_id: str):
         patient_record = patients.load_patient(patient_id)
         clock = FixedClock(demo_now) if demo_now else SystemClock(patient_record.source_record.patient.timezone)
-        return RuntimeMedicationService(patients, patient_id, clock)
+        return RuntimeMedicationService(patients, patient_id, clock, dose_status_policy)
 
     def status_payload(patient_id: str):
         patient_record = patients.reload_patient(patient_id)
@@ -463,6 +477,43 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
         state["conversation"] = [*state.get("conversation", []), {"user": user_text, "assistant": answer, "timestamp": timestamp}]
         return state
 
+    def stage_missed_followup(state: dict, result) -> tuple[dict, str]:
+        state = dict(state)
+        output = result.tool_output
+        if result.action != "CHECK_MISSED_DOSES" or not isinstance(output, dict) or len(output.get("doses", [])) != 1:
+            state["pending_dose_followup"] = None
+            return state, result.response
+        pending_service = service_for(state.get("patient_id", initial))
+        pending = PendingDoseFollowup.from_missed_dose(
+            state.get("patient_id", initial), pending_service.patient_data_version(),
+            output["doses"][0], pending_service.clock.now(),
+        )
+        state["pending_dose_followup"] = pending.model_dump(mode="json")
+        return state, f"{result.response}\n\nPending confirmation: {pending.prompt} Reply yes, no, or cancel."
+
+    def contextual_reply(state: dict, text: str, *, voice_input: bool = False):
+        kind = classify_contextual_reply(text)
+        if kind is None:
+            return None
+        state = dict(state)
+        patient_id = state.get("patient_id", initial)
+        raw = state.get("pending_dose_followup")
+        if not raw:
+            answer = "I’m not sure what you are confirming. Please tell me which medicine or action you mean."
+            payload = {"selected_patient_id": patient_id, "action": "CONTEXTUAL_REPLY", "tool_output": None, "active_clock": service_for(patient_id).clock.now().isoformat(), "outcome": "needs_clarification", "response_source": "deterministic_pending_confirmation", "voice_input": voice_input, "errors": None, "dose_status_policy": service_for(patient_id).policy_payload()}
+        else:
+            try:
+                pending = PendingDoseFollowup.model_validate(raw)
+                output = handle_pending_reply(service_for(patient_id), pending, text)
+                answer = output["message"]
+                payload = {"selected_patient_id": patient_id, "action": "CONFIRM_MISSED_DOSE", "tool_output": output, "active_clock": service_for(patient_id).clock.now().isoformat(), "outcome": "success", "response_source": "deterministic_runtime_service", "voice_input": voice_input, "errors": None, "dose_status_policy": service_for(patient_id).policy_payload()}
+            except ValueError as exc:
+                answer = str(exc)
+                payload = {"selected_patient_id": patient_id, "action": "CONFIRM_MISSED_DOSE", "tool_output": None, "active_clock": service_for(patient_id).clock.now().isoformat(), "outcome": "needs_clarification", "response_source": "deterministic_pending_confirmation", "voice_input": voice_input, "errors": None, "dose_status_policy": service_for(patient_id).policy_payload()}
+        state["pending_dose_followup"] = None
+        state = append_answer(state, text, answer, payload)
+        return state, payload
+
     def select(patient_id: str, simplified: bool, large_text: bool, high_contrast: bool):
         state = new_session_state(patient_id)
         state.update(simplified_mode=simplified, large_text=large_text, high_contrast=high_contrast)
@@ -490,7 +541,7 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
 
     def cancel_voice(state: dict):
         state = dict(state)
-        state.update(voice_transcript="", voice_transcript_approved=False, pending_voice_action=None, last_voice_error=None)
+        state.update(voice_transcript="", voice_transcript_approved=False, pending_voice_action=None, pending_dose_followup=None, last_voice_error=None)
         return state, None, "", "Voice request cancelled.", gr.update(visible=False), gr.update(visible=False), ""
 
     def submit_voice(state: dict, transcript: str):
@@ -499,6 +550,12 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
         transcript = (transcript or "").strip()
         state["voice_transcript"] = transcript
         state["voice_transcript_approved"] = True
+        contextual = contextual_reply(state, transcript, voice_input=True)
+        if contextual:
+            state, _payload = contextual
+            state.update(voice_transcript="", voice_transcript_approved=False, pending_voice_action=None)
+            return state, _chat_messages(state["conversation"]), debug_text(state), dashboard(patient_id), "", gr.update(visible=False), "Approved transcript handled as the exact pending confirmation."
+        state["pending_dose_followup"] = None
         interaction = VoiceInteractionService(service_for(patient_id), IntentRouter(client))
         try:
             result, pending = interaction.submit_transcript(transcript)
@@ -506,10 +563,13 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
                 state["pending_voice_action"] = pending.model_dump(mode="json")
                 when = _display_time(pending.scheduled_at.isoformat())
                 prompt = f"Record {pending.medication_display}, scheduled at {when} on {pending.scheduled_at.date().isoformat()}, as taken?"
+                if pending.appearance:
+                    prompt += f"\n\nAppearance saved in your verified plan: {pending.appearance}"
                 return state, _chat_messages(state.get("conversation", [])), debug_text(state), dashboard(patient_id), prompt, gr.update(visible=True), "Transcript approved. Confirm the exact proposed action below."
             payload = result.as_dict()
             payload.update(selected_patient_id=patient_id, voice_input=True, transcription_metadata=state.get("last_transcription_result"))
-            state = append_answer(state, transcript, result.response, payload)
+            state, answer = stage_missed_followup(state, result)
+            state = append_answer(state, transcript, answer, payload)
             state.update(voice_transcript="", pending_voice_action=None)
             return state, _chat_messages(state["conversation"]), debug_text(state), dashboard(patient_id), "", gr.update(visible=False), "Transcript submitted."
         except (OllamaError, IntentParseError, ValueError) as exc:
@@ -538,8 +598,15 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
         if not question:
             return state, _chat_messages(state.get("conversation", [])), debug_text(state), dashboard(state.get("patient_id", initial)), ""
         patient_id = state.get("patient_id", initial)
+        contextual = contextual_reply(state, question)
+        if contextual:
+            state, _payload = contextual
+            return state, _chat_messages(state["conversation"]), debug_text(state), dashboard(patient_id), ""
+        state = dict(state)
+        state["pending_dose_followup"] = None
         service = service_for(patient_id)
         orchestrator = MedicationOrchestrator(service, IntentRouter(client))
+        result = None
         try:
             result = orchestrator.handle(UserInput(text=question))
             payload = result.as_dict()
@@ -552,6 +619,8 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
             )
         except (OllamaError, IntentParseError) as exc:
             answer, payload = routing_failure_payload(patient_id, service.clock.now().isoformat(), exc)
+        if result is not None:
+            state, answer = stage_missed_followup(state, result)
         state = append_answer(state, question, answer, payload)
         return state, _chat_messages(state["conversation"]), debug_text(state), dashboard(patient_id), ""
 
@@ -579,7 +648,7 @@ def create_app(client: OllamaClient, patients_directory, demo_now: str | None = 
                 action_name = "SHOW_MEDICATION_HISTORY"
             else:
                 upcoming = service.find_next_dose()
-                if upcoming.get("status") != "upcoming":
+                if upcoming.get("status") not in {"upcoming", "due"}:
                     output = upcoming
                 else:
                     output = service.mark_dose_taken(upcoming["medication"])

@@ -25,11 +25,15 @@ Explain that people managing several medicines may struggle to recall what comes
 
 Point to Elena's ready status and today's three scheduled medicines. Emphasize that the schedule comes from explicit synthetic reconciliation, not from Gemma or an `active` FHIR order.
 
+Point out the synthetic verified appearance text below each medication name. Explain that it is a memory aid with provenance, not pill identification, and can vary by manufacturer or refill. The label remains authoritative.
+
 ### 1:15–1:45 — Next dose
 
 Prompt: **“What medicine comes next?”**
 
 Expected: Vitamin D3 1000 IU at 1:00 PM, according to the saved plan.
+
+For the time-aware follow-up demonstration, restart with `DEMO_NOW="2026-08-01T13:58:00-04:00"`. Vitamin D3 should display as missed/not recorded, while Metformin remains the next dose. Ask **“Have I missed any medicine?”** The response should state that Vitamin D3 was scheduled for 1:00 PM and is not recorded as taken. Reply **“yes”** only after the exact pending prompt is visible; the service records that exact dose once and progress becomes 2 of 3. Reset the demo afterward. This is record navigation, not advice to take a late dose.
 
 ### 1:45–2:15 — Dose status and alias
 
@@ -75,12 +79,13 @@ Optionally record “What medicine comes next?”, review the visible transcript
 - Gemma routes language; deterministic code owns facts, matching, readiness, safety, and persistence
 - Ambiguity and unready data cause safe non-mutation
 - The demo clock makes the scenario reproducible
+- Stored dose state is separate from effective clock-derived display status
 
 ## Claims not to make
 
 - Do not claim diagnosis, prescribing, treatment recommendations, interaction checking, or clinical validation.
 - Do not call imported source orders a verified current medication list.
-- Do not claim production reminders, always-listening/real-time voice, image scanning, hospital integration, mobile deployment, or real patient support. Do not claim working local voice when the live probe fails.
+- Do not claim production reminders, always-listening/real-time voice, image scanning or pill recognition, hospital integration, mobile deployment, or real patient support. Do not claim working local voice when the live probe fails.
 - Do not call this real-time voice chat. It is record–transcribe–review–submit, English-only as tested, and voice support is conditional on the live capability probe.
 - Do not claim “no allergies” when the file says allergy information is not recorded.
 - Do not claim model availability unless strict live verification actually passed.

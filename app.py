@@ -18,6 +18,7 @@ from medication.health import ApplicationHealthService
 from medication.patient_data_service import PatientDataService
 from medication.repository import MedicationRepository
 from medication.runtime_service import RuntimeMedicationService
+from medication.dose_status import DoseStatusPolicy
 from medication.schemas import UserInput
 from medication.service import MedicationService
 
@@ -122,6 +123,10 @@ def main() -> None:
             validate_patient_document(document); _write(output, document); result = {"output": output, "dose_logs_generated": len(document["dose_logs"]), "seed": args.seed}
         print(json.dumps(result, indent=2, ensure_ascii=False)); return
     client = OllamaClient(settings.ollama_base_url, settings.ollama_model, settings.ollama_timeout_seconds)
+    dose_status_policy = DoseStatusPolicy(
+        due_window_minutes=settings.dose_due_window_minutes,
+        missed_after_minutes=settings.dose_missed_after_minutes,
+    )
     if args.command == "voice-health":
         from voice.capability import probe_voice_capability
         from voice.providers import GemmaAudioTranscriptionProvider
@@ -140,7 +145,7 @@ def main() -> None:
             raise SystemExit("Error: No ready runtime patient is available.")
         patient = patients.load_patient(selected_patient)
         clock = FixedClock(args.now or settings.demo_now) if (args.now or settings.demo_now) else SystemClock(patient.source_record.patient.timezone)
-        service = RuntimeMedicationService(patients, selected_patient, clock)
+        service = RuntimeMedicationService(patients, selected_patient, clock, dose_status_policy)
         orchestrator = MedicationOrchestrator(service, IntentRouter(client))
         try: result = orchestrator.handle(UserInput(text=args.question)).as_dict()
         except (OllamaError, IntentParseError) as exc: result = {"response": "I could not route that request safely, so no medication action was performed.", "action": "ROUTING_ERROR", "tool_output": None, "errors": [str(exc)], "active_clock": clock.now().isoformat(), "outcome": "routing_error"}
@@ -153,12 +158,12 @@ def main() -> None:
         elif args.command == "mark-taken": result = service.mark_dose_taken(args.medicine, args.date, args.taken_at)
         elif args.command == "instructions": result = service.get_saved_instructions(args.medicine)
         elif args.command == "history": result = service.show_medication_history(args.medicine)
-        elif args.command == "health": result = ApplicationHealthService(client, patients, settings.demo_now).check()
+        elif args.command == "health": result = ApplicationHealthService(client, patients, settings.demo_now, dose_status_policy=dose_status_policy).check()
         elif args.command == "ask":
             result = orchestrator.handle(UserInput(text=args.question), args.now or settings.demo_now).as_dict()
         elif args.command == "serve":
             from ui.gradio_app import create_app
-            create_app(client, settings.runtime_patients_directory, settings.demo_now).launch(
+            create_app(client, settings.runtime_patients_directory, args.now or settings.demo_now, dose_status_policy).launch(
                 server_name="127.0.0.1", server_port=7860, share=False
             )
             return

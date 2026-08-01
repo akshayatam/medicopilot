@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 
 class UserInput(BaseModel):
@@ -26,6 +26,52 @@ CurrentUseStatus = Literal["confirmed_current", "unverified", "historical", "dis
 DoseStatus = Literal["upcoming", "due", "taken", "taken_late", "missed", "skipped_by_user", "unknown"]
 DoseSource = Literal["app_event", "synthetic_adherence_simulation"]
 AllergyStatus = Literal["not_recorded", "recorded", "no_known_allergies_explicitly_recorded"]
+
+
+class MedicationAppearance(BaseModel):
+    """Optional, verified presentation metadata; never a medication identifier."""
+
+    description: str | None = None
+    color: list[str] = Field(default_factory=list)
+    shape: str | None = None
+    dosage_form: str | None = None
+    transparency: str | None = None
+    size: str | None = None
+    imprint: str | None = None
+    special_features: list[str] = Field(default_factory=list)
+    source: Literal[
+        "synthetic_reconciliation_profile", "synthetic_demo_data", "patient_confirmed",
+        "caregiver_confirmed", "pharmacist_confirmed", "prescription_label_confirmed",
+    ] | None = None
+    verification_status: Literal["verified", "unverified", "not_recorded"]
+    verified_by: str | None = None
+    verified_at: datetime | None = None
+
+    @field_validator("description", "shape", "dosage_form", "transparency", "size", "imprint", "verified_by")
+    @classmethod
+    def nonempty_optional_text(cls, value: str | None) -> str | None:
+        if value is not None and not value.strip():
+            raise ValueError("appearance text fields cannot be empty")
+        return value.strip() if value is not None else None
+
+    @field_validator("color", "special_features")
+    @classmethod
+    def nonempty_list_text(cls, values: list[str]) -> list[str]:
+        if any(not value.strip() for value in values):
+            raise ValueError("appearance list values cannot be empty")
+        return [value.strip() for value in values]
+
+    @model_validator(mode="after")
+    def verified_data_is_attributable(self) -> "MedicationAppearance":
+        if self.verification_status == "verified":
+            if not (self.description and self.source and self.verified_by and self.verified_at):
+                raise ValueError("verified appearance requires description and complete provenance")
+        if self.verification_status == "not_recorded" and any((
+            self.description, self.color, self.shape, self.dosage_form, self.transparency,
+            self.size, self.imprint, self.special_features,
+        )):
+            raise ValueError("not-recorded appearance cannot contain factual characteristics")
+        return self
 
 
 class ProvenancedSchedule(BaseModel):
@@ -59,6 +105,7 @@ class MedicationPlanItem(BaseModel):
     purpose_labels: list[str] = Field(default_factory=list)
     purpose_source: Literal["linked_fhir_reason", "verified_reconciliation", "not_recorded"] = "not_recorded"
     source_instruction: str | None = None
+    appearance: MedicationAppearance | None = None
     schedule_type: Literal["scheduled", "as_needed", "unknown"] = "unknown"
     reminder_schedule: list[ProvenancedSchedule] = Field(default_factory=list)
     current_use_status: CurrentUseStatus = "unverified"
@@ -89,6 +136,7 @@ class ReconciliationDecision(BaseModel):
     patient_friendly_name: str | None = None
     aliases: list[str] = Field(default_factory=list)
     purpose_labels: list[str] | None = None
+    appearance: MedicationAppearance | None = None
     reminder_schedule: list[ProvenancedSchedule] = Field(default_factory=list)
     verified_by: str
     verified_at: datetime
