@@ -16,7 +16,10 @@ from medication.service import MedicationService
 from medication.clock import FixedClock, SystemClock
 from medication.health import ApplicationHealthService
 from medication.patient_data_service import PatientDataService
+from medication.repository import MedicationRepository
 from medication.runtime_service import RuntimeMedicationService
+from medication.schemas import UserInput
+from medication.service import MedicationService
 
 
 def build_components() -> tuple[MedicationRepository, MedicationService, OllamaClient, MedicationOrchestrator]:
@@ -84,8 +87,9 @@ def main() -> None:
             raise SystemExit(1)
         return
     if args.command == "convert-fhir":
-        from scripts.convert_synthea_fhir import main as converter_main
         import sys
+
+        from scripts.convert_synthea_fhir import main as converter_main
         converter_args = [args.input, args.output, "--min-age", str(args.min_age), "--as-of-date", args.as_of_date.isoformat(), "--old-active-order-days", str(args.old_active_order_days)]
         if args.default_timezone: converter_args += ["--default-timezone", args.default_timezone]
         if args.pretty: converter_args.append("--pretty")
