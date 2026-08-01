@@ -53,6 +53,35 @@ def _display_time(value: str) -> str:
     return datetime.fromisoformat(value).strftime("%I:%M %p").lstrip("0")
 
 
+def _dose_presentation_labels(patient: Any) -> dict[str, dict[str, Any]]:
+    """Expose verified schedule labels for each stored dose so the interface never derives them.
+
+    Only fields already carried by the verified plan are returned. A dose whose scheduled clock
+    time has no matching verified reminder entry receives null labels rather than an inferred one.
+    """
+    confirmed = {
+        item.id: item
+        for item in patient.medication_plan.medications
+        if item.current_use_status == "confirmed_current"
+        and item.included_in_daily_plan
+        and item.reconciliation_status == "verified"
+    }
+    labels: dict[str, dict[str, Any]] = {}
+    for log in patient.dose_logs:
+        medication = confirmed.get(log.medication_id)
+        if medication is None:
+            continue
+        clock_time = log.scheduled_at.strftime("%H:%M")
+        entry = next((slot for slot in medication.reminder_schedule if slot.time == clock_time), None)
+        labels[log.id] = {
+            "period": entry.period if entry else None,
+            "meal_context": entry.meal_context if entry else None,
+            "instruction": medication.source_instruction,
+            "purpose": ", ".join(medication.purpose_labels),
+        }
+    return labels
+
+
 def create_api(
     client: OllamaClient,
     patients_directory: str | Path,
@@ -114,6 +143,7 @@ def create_api(
                 "name": medication.patient_friendly_name,
                 "strength": medication.strength or "",
                 "purpose": ", ".join(medication.purpose_labels),
+                "instruction": medication.source_instruction,
             }
             for medication in patient.medication_plan.medications
             if medication.current_use_status == "confirmed_current"
@@ -148,6 +178,7 @@ def create_api(
             },
             "prn_medications": prn,
             "purposes": purposes,
+            "dose_details": _dose_presentation_labels(patient),
         }
 
     def action_response(patient_id: str, action: str) -> dict[str, Any]:

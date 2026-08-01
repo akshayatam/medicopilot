@@ -25,6 +25,21 @@ export type NextDose = {
   message: string;
 };
 
+/** Verified, presentation-only labels the API resolves from the reminder schedule. */
+export type DoseDetail = {
+  period: string | null;
+  meal_context: string | null;
+  instruction: string | null;
+  purpose: string;
+};
+
+export type PrnMedication = {
+  name: string;
+  strength: string;
+  purpose: string;
+  instruction: string | null;
+};
+
 export type Dashboard = {
   patient: {
     id: string;
@@ -44,8 +59,10 @@ export type Dashboard = {
   today: Dose[] | { status: string; message: string; date?: string };
   next_dose: NextDose;
   progress: { completed: number; total: number; remaining: number; percent: number };
-  prn_medications: Array<{ name: string; strength: string; purpose: string }>;
+  prn_medications: PrnMedication[];
   purposes: Record<string, string>;
+  /** Added by the current API; optional so a stale local server cannot crash the UI. */
+  dose_details?: Record<string, DoseDetail>;
 };
 
 export type ActionResponse = {
@@ -64,9 +81,27 @@ export type SourceMedication = {
   included_in_plan: boolean;
 };
 
+export type Health = {
+  ollama_reachable?: boolean;
+  configured_model?: string;
+  model_available?: boolean;
+  generation_ok?: boolean;
+  patient_directory_readable?: boolean;
+  patients_loaded?: number;
+  patients_ready?: number;
+  schema_validation_ok?: boolean;
+  timezone_data_valid?: boolean;
+  schema_errors?: string[];
+  healthy_for_deterministic_use?: boolean;
+  active_application_time?: string;
+  error?: string;
+};
+
 export type ConversationItem = {
   id: number;
   user: string;
   assistant: string;
   timestamp?: string;
 };
+
+export type QuickAction = "today" | "next" | "history";

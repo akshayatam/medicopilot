@@ -35,6 +35,28 @@ def test_dashboard_is_structured_and_uses_verified_dose_ids(tmp_path):
     assert all(item["dose_id"] for item in payload["today"])
 
 
+def test_dose_details_expose_only_verified_schedule_labels(tmp_path):
+    client = api_client(tmp_path)
+    payload = client.get("/api/patients/demo-ready-001/dashboard").json()
+    details = payload["dose_details"]
+
+    assert set(details) >= {item["dose_id"] for item in payload["today"]}
+    for dose in payload["today"]:
+        entry = details[dose["dose_id"]]
+        assert set(entry) == {"period", "meal_context", "instruction", "purpose"}
+
+    metoprolol = next(item for item in payload["today"] if item["name"].startswith("Metoprolol"))
+    assert details[metoprolol["dose_id"]]["period"] == "morning"
+    assert details[metoprolol["dose_id"]]["meal_context"] is None
+
+
+def test_unready_dashboard_exposes_no_dose_labels(tmp_path):
+    client = api_client(tmp_path)
+    payload = client.get("/api/patients/demo-unready-001/dashboard").json()
+    assert payload["dose_details"] == {}
+    assert all("instruction" in item for item in payload["prn_medications"])
+
+
 def test_exact_dose_confirmation_mutates_once_and_reloads_dashboard(tmp_path):
     client = api_client(tmp_path)
     dashboard = client.get("/api/patients/demo-ready-001/dashboard").json()
