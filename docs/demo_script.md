@@ -8,6 +8,7 @@ Start Ollama, then restore and verify the deterministic scenario:
 export DEMO_NOW="2026-08-01T10:00:00-04:00"
 python app.py reset-demo
 python app.py verify-demo --require-model
+cd frontend && npm install && npm run build && cd ..
 python app.py serve
 ```
 
@@ -34,6 +35,8 @@ Expected: Vitamin D3 1000 IU at 1:00 PM, according to the saved plan.
 Prompt: **“Did I take my heart tablet this morning?”**
 
 Expected: the resolver maps the saved alias to Metoprolol succinate ER; the ledger reports it taken at 8:11 AM.
+
+Use the **Mark next dose taken** quick action to show the exact-dose confirmation dialog. Cancel it first to demonstrate that no state changes until confirmation.
 
 ### 2:15–2:50 — Ambiguity without mutation
 
@@ -81,4 +84,3 @@ Summarize the source-record → reconciliation → verified-plan boundary, deter
 - Do not claim production reminders, voice, image scanning, hospital integration, mobile deployment, or real patient support.
 - Do not claim “no allergies” when the file says allergy information is not recorded.
 - Do not claim model availability unless strict live verification actually passed.
-

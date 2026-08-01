@@ -1,0 +1,105 @@
+import shutil
+from pathlib import Path
+
+from fastapi.testclient import TestClient
+
+from ui.api import create_api
+
+
+class OfflineClient:
+    base_url = "http://localhost:11434"
+    model = "test-model"
+    last_latency_ms = 0
+
+    def chat(self, *_args, **_kwargs):
+        raise AssertionError("unsafe requests must bypass the model")
+
+    def health_check(self):
+        return {"reachable": False, "model_available": False, "generation_ok": False}
+
+
+def api_client(tmp_path: Path) -> TestClient:
+    source = Path(__file__).parents[1] / "data" / "runtime_patients"
+    target = tmp_path / "patients"
+    shutil.copytree(source, target)
+    return TestClient(create_api(OfflineClient(), target, "2026-08-01T10:00:00-04:00"))
+
+
+def test_dashboard_is_structured_and_uses_verified_dose_ids(tmp_path):
+    client = api_client(tmp_path)
+    response = client.get("/api/patients/demo-ready-001/dashboard")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["readiness"]["ready_for_medication_tracking"] is True
+    assert payload["next_dose"]["dose_id"].startswith("dose_plan_")
+    assert payload["progress"] == {"completed": 1, "total": 3, "remaining": 2, "percent": 33}
+    assert all(item["dose_id"] for item in payload["today"])
+
+
+def test_exact_dose_confirmation_mutates_once_and_reloads_dashboard(tmp_path):
+    client = api_client(tmp_path)
+    dashboard = client.get("/api/patients/demo-ready-001/dashboard").json()
+    dose_id = dashboard["next_dose"]["dose_id"]
+
+    missing_confirmation = client.post(
+        f"/api/patients/demo-ready-001/doses/{dose_id}/taken",
+        json={"confirmed": False},
+    )
+    assert missing_confirmation.status_code == 422
+
+    first = client.post(
+        f"/api/patients/demo-ready-001/doses/{dose_id}/taken",
+        json={"confirmed": True},
+    )
+    second = client.post(
+        f"/api/patients/demo-ready-001/doses/{dose_id}/taken",
+        json={"confirmed": True},
+    )
+    assert first.status_code == second.status_code == 200
+    assert first.json()["result"]["tool_output"]["status"] == "taken"
+    assert second.json()["result"]["tool_output"]["status"] == "already_taken"
+    assert first.json()["dashboard"]["progress"]["completed"] == 2
+
+
+def test_unknown_or_non_today_dose_cannot_mutate(tmp_path):
+    client = api_client(tmp_path)
+    unknown = client.post(
+        "/api/patients/demo-ready-001/doses/not-a-dose/taken",
+        json={"confirmed": True},
+    )
+    assert unknown.status_code == 409
+    assert "not found" in unknown.json()["detail"]
+
+    historical = client.post(
+        "/api/patients/demo-ready-001/doses/dose_plan_src_vitamin_d_20260731T1300-0400/taken",
+        json={"confirmed": True},
+    )
+    assert historical.status_code == 409
+    assert "from today" in historical.json()["detail"]
+
+    source = client.get("/api/patients/demo-ready-001/dashboard").json()["today"]
+    assert all(item["scheduled_at"].startswith("2026-08-01") for item in source)
+
+
+def test_unready_dashboard_never_uses_source_orders(tmp_path):
+    client = api_client(tmp_path)
+    response = client.get("/api/patients/demo-unready-001/dashboard")
+    payload = response.json()
+    assert payload["readiness"]["ready_for_medication_tracking"] is False
+    assert payload["today"]["status"] == "review_required"
+    assert payload["today"]["message"]
+    assert payload["progress"]["total"] == 0
+
+
+def test_unsafe_chat_remains_deterministic_and_non_mutating(tmp_path):
+    client = api_client(tmp_path)
+    before = client.get("/api/patients/demo-ready-001/dashboard").json()
+    response = client.post(
+        "/api/patients/demo-ready-001/ask",
+        json={"text": "Should I double my dose?", "simplified": True},
+    )
+    after = client.get("/api/patients/demo-ready-001/dashboard").json()
+    assert response.status_code == 200
+    assert response.json()["result"]["outcome"] == "unsafe_request"
+    assert "cannot recommend" in response.json()["answer"]
+    assert before["today"] == after["today"]

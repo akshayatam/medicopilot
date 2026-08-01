@@ -15,14 +15,16 @@ gemma/                 Ollama client, prompt, intent schema, parser, and orchest
 medication/            conversion, reconciliation, schemas, repositories, safety, and services
 scripts/               Synthea converter and deterministic demo tooling
 tests/                 non-live unit and integration-style regression tests
-ui/                    local Gradio application
+ui/                    local FastAPI presentation boundary
+frontend/              React, TypeScript, and Vite interface
 ```
 
 ## Runtime request flow
 
 ```mermaid
 sequenceDiagram
-    participant U as User
+    participant U as React UI
+    participant A as FastAPI
     participant S as Safety screen
     participant G as Local Gemma
     participant V as Pydantic validator
@@ -31,9 +33,10 @@ sequenceDiagram
     participant M as Deterministic service
     participant P as Runtime repository
 
-    U->>S: Text request
+    U->>A: Typed JSON request
+    A->>S: Text request
     alt unsafe request
-        S-->>U: Deterministic refusal
+        S-->>A: Deterministic refusal
     else allowed navigation request
         S->>G: Minimal text only
         G->>V: Structured intent JSON
@@ -42,7 +45,8 @@ sequenceDiagram
         R->>P: Confirmed reconciled medicines only
         O->>M: At most one approved operation
         M->>P: Verified plan / adherence ledger
-        M-->>U: Grounded deterministic response
+        M-->>A: Grounded structured response
+        A-->>U: JSON response
     end
 ```
 
@@ -72,7 +76,13 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 
 ## Fixed clock
 
-`SystemClock` uses each patient's IANA timezone. `FixedClock` accepts a timezone-aware ISO-8601 value supplied by `DEMO_NOW` or `--now`. The same clock controls today, next-dose, status, mutation timestamps, history filtering, CLI, and Gradio behavior.
+`SystemClock` uses each patient's IANA timezone. `FixedClock` accepts a timezone-aware ISO-8601 value supplied by `DEMO_NOW` or `--now`. The same clock controls today, next-dose, status, mutation timestamps, history filtering, CLI, API, and React behavior.
+
+## Web interface boundary
+
+The React application contains presentation state only. FastAPI returns patient summaries, readiness, schedule rows, next-dose data, progress totals, PRN entries, grounded action responses, and filtered source-review data. React does not calculate medication status or access runtime patient files.
+
+State-changing requests address an exact scheduled dose ID and require an explicit confirmation payload. The runtime service revalidates patient readiness, dose ownership, confirmation-plan membership, and the active date before saving, then the API returns a freshly loaded dashboard.
 
 ## Demo-data generation and reset
 
@@ -89,4 +99,3 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 ## Future insertion points
 
 Voice and image input are not implemented. A future voice adapter may produce text before the existing safety/router boundary. A future image/document extractor must create an unverified candidate for human reconciliation; it must never write directly to the verified plan. Neither modality may bypass safety, schemas, readiness, resolution, or deterministic services.
-

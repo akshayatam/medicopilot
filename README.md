@@ -17,12 +17,13 @@ flowchart TD
     C --> D[Explicit reconciliation]
     D --> E[Verified medication plan]
     E --> F[Schema-v2 runtime patient]
-    F --> G[Gradio text input]
-    G --> H[Deterministic safety screening]
-    H --> I[Local Gemma 4 intent routing]
-    I --> J[Pydantic intent validation]
-    J --> K[Deterministic medication service]
-    K --> L[Grounded local response]
+    F --> G[React and Vite interface]
+    G --> H[FastAPI boundary]
+    H --> I[Deterministic safety screening]
+    I --> J[Local Gemma 4 intent routing]
+    J --> K[Pydantic intent validation]
+    K --> L[Deterministic medication service]
+    L --> M[Grounded local response]
 ```
 
 The repeatable live demo uses curated synthetic runtime data. Synthea FHIR ingestion remains supported, but imported orders stay in an unverified source-record layer. They cannot drive reminders or adherence answers until an explicit reconciliation profile creates a verified plan. Gemma routes language into approved actions; it is never the source of medication facts.
@@ -38,7 +39,9 @@ See [Architecture](docs/architecture.md) for the detailed request, persistence, 
 - Ready/unready patient enforcement
 - Deterministic medication-safety refusals
 - Ready and review-required synthetic demo patients
-- Local Gradio text interface with source review, health, and debug information
+- React and Vite interface with source review, health, and debug information
+- Local FastAPI boundary with structured dashboard responses
+- Explicit confirmation of an exact scheduled dose before adherence mutation
 - Reproducible demo reset and verification commands
 - Supported Synthea FHIR conversion and reconciliation pipeline
 
@@ -46,13 +49,17 @@ Production reminders, voice, image scanning, hospital integration, and native mo
 
 ## Setup
 
-Python 3.10 or newer is supported.
+Python 3.10 or newer and Node.js 20.19 or newer are supported.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+cd frontend
+npm install
+npm run build
+cd ..
 ```
 
 Install and start [Ollama](https://ollama.com/), then pull the configured local model:
@@ -88,7 +95,16 @@ python app.py verify-demo
 python app.py serve
 ```
 
-Open `http://127.0.0.1:7860`. Public sharing is disabled. A five-minute walkthrough and offline fallback are in [Demo script](docs/demo_script.md).
+Open `http://127.0.0.1:7860`. The server binds to localhost only. A five-minute walkthrough and offline fallback are in [Demo script](docs/demo_script.md).
+
+For frontend development, run the API and Vite development servers in separate terminals:
+
+```bash
+python app.py serve-api
+cd frontend && npm run dev
+```
+
+Open `http://127.0.0.1:5173`; Vite proxies `/api` requests to the local Python server.
 
 Useful CLI checks include:
 
@@ -108,6 +124,7 @@ The standard suite does not require Ollama:
 ```bash
 pytest -m "not integration"
 python -m compileall -q app.py medication gemma ui scripts evaluation
+cd frontend && npm run build
 git diff --check
 ```
 

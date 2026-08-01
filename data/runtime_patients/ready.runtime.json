@@ -104,12 +104,14 @@
       }
     ],
     "clinical_administrations": [],
-    "reconciliation_flags": [],
     "provenance": {
       "source": "curated_synthetic_demo_source"
-    }
+    },
+    "reconciliation_flags": []
   },
   "medication_plan": {
+    "patient_id": "demo-ready-001",
+    "status": "verified",
     "medications": [
       {
         "id": "plan_src_metoprolol",
@@ -208,9 +210,7 @@
         "source": "synthetic_reconciliation_profile"
       }
     ],
-    "source": "synthetic_reconciliation_profile",
-    "patient_id": "demo-ready-001",
-    "status": "verified"
+    "source": "synthetic_reconciliation_profile"
   },
   "dose_logs": [
     {
@@ -233,7 +233,8 @@
       "status": "missed",
       "taken_at": null,
       "recorded_by": null,
-      "source": "app_event"
+      "source": "app_event",
+      "generation_parameters": null
     },
     {
       "id": "dose_plan_src_metformin_20260731T2000-0400",
@@ -242,7 +243,8 @@
       "status": "missed",
       "taken_at": null,
       "recorded_by": null,
-      "source": "app_event"
+      "source": "app_event",
+      "generation_parameters": null
     },
     {
       "id": "dose_plan_src_metoprolol_20260801T0800-0400",
@@ -261,21 +263,33 @@
       "id": "dose_plan_src_vitamin_d_20260801T1300-0400",
       "medication_id": "plan_src_vitamin_d",
       "scheduled_at": "2026-08-01T13:00:00-04:00",
-      "status": "upcoming",
-      "taken_at": null,
-      "recorded_by": null,
-      "source": "app_event"
+      "status": "taken",
+      "taken_at": "2026-08-01T12:45:23.600069-04:00",
+      "recorded_by": "patient",
+      "source": "app_event",
+      "generation_parameters": null
     },
     {
       "id": "dose_plan_src_metformin_20260801T2000-0400",
       "medication_id": "plan_src_metformin",
       "scheduled_at": "2026-08-01T20:00:00-04:00",
-      "status": "upcoming",
-      "taken_at": null,
-      "recorded_by": null,
-      "source": "app_event"
+      "status": "taken",
+      "taken_at": "2026-08-01T12:46:15.492657-04:00",
+      "recorded_by": "patient",
+      "source": "app_event",
+      "generation_parameters": null
     }
   ],
+  "import_summary": {
+    "ready_for_medication_tracking": true,
+    "blocking_issues": [],
+    "warnings": [
+      "allergy_status_not_recorded",
+      "missing_medication_reasons",
+      "sensitive_conditions_excluded_from_ai_context"
+    ],
+    "source": "deterministic_readiness_validation"
+  },
   "support_profile": {
     "caregiver": null,
     "preferred_response_language": "en-US",
@@ -288,15 +302,5 @@
   },
   "provenance": {
     "source": "curated_synthetic_demo_builder"
-  },
-  "import_summary": {
-    "ready_for_medication_tracking": true,
-    "blocking_issues": [],
-    "warnings": [
-      "allergy_status_not_recorded",
-      "missing_medication_reasons",
-      "sensitive_conditions_excluded_from_ai_context"
-    ],
-    "source": "deterministic_readiness_validation"
   }
 }

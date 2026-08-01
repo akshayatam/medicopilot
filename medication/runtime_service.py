@@ -35,7 +35,7 @@ class RuntimeMedicationService:
     def list_today_medications(self, *_):
         self.ensure_ready(); patient = self.repository.load(); today = self.clock.now().date()
         meds = {m.id: m for m in self.repository.get_confirmed_medications()}
-        results = [{"name": meds[l.medication_id].patient_friendly_name, "strength": meds[l.medication_id].strength or "", "scheduled_at": l.scheduled_at.isoformat(), "status": l.status, "taken_at": l.taken_at.isoformat() if l.taken_at else ""} for l in patient.dose_logs if l.medication_id in meds and l.scheduled_at.date() == today]
+        results = [{"dose_id": l.id, "name": meds[l.medication_id].patient_friendly_name, "strength": meds[l.medication_id].strength or "", "scheduled_at": l.scheduled_at.isoformat(), "status": l.status, "taken_at": l.taken_at.isoformat() if l.taken_at else ""} for l in patient.dose_logs if l.medication_id in meds and l.scheduled_at.date() == today]
         if not results:
             return {"status": "no_data", "date": today.isoformat(), "message": f"No dose instances are stored for {today.isoformat()}. No other date was substituted."}
         return results
@@ -45,7 +45,7 @@ class RuntimeMedicationService:
         upcoming = [l for l in patient.dose_logs if l.medication_id in meds and l.status in {"upcoming", "due"} and l.scheduled_at >= now]
         if not upcoming: return {"status": "none", "message": "According to your saved medication plan, there are no upcoming doses."}
         log = min(upcoming, key=lambda l: l.scheduled_at); med = meds[log.medication_id]
-        return {"status": "upcoming", "medication": f"{med.patient_friendly_name}{' ' + med.strength if med.strength else ''}", "scheduled_at": log.scheduled_at.isoformat(), "message": f"According to your saved medication plan, the next dose is {med.patient_friendly_name}{' ' + med.strength if med.strength else ''} at {log.scheduled_at.strftime('%I:%M %p')}."}
+        return {"status": "upcoming", "dose_id": log.id, "medication": f"{med.patient_friendly_name}{' ' + med.strength if med.strength else ''}", "scheduled_at": log.scheduled_at.isoformat(), "message": f"According to your saved medication plan, the next dose is {med.patient_friendly_name}{' ' + med.strength if med.strength else ''} at {log.scheduled_at.strftime('%I:%M %p')}."}
 
     def check_dose_status(self, reference: str, *_):
         self.ensure_ready(); med = self._med(reference); today = self.clock.now().date()
@@ -66,6 +66,33 @@ class RuntimeMedicationService:
         log.status = "taken"; log.taken_at = self.clock.now(); log.recorded_by = "patient"; log.source = "app_event"
         self.patients.save_patient(patient)
         return {"status": "taken", "message": f"The dose was recorded as taken at {log.taken_at.strftime('%I:%M %p')}."}
+
+    def mark_dose_taken_by_id(self, dose_id: str):
+        """Record one exact, confirmed dose instance selected by the user interface."""
+        self.ensure_ready()
+        patient = self.repository.load()
+        confirmed = {m.id: m for m in self.repository.get_confirmed_medications()}
+        log = next((item for item in patient.dose_logs if item.id == dose_id), None)
+        if log is None or log.medication_id not in confirmed:
+            raise ValueError("That scheduled dose was not found in the confirmed medication plan.")
+        if log.scheduled_at.date() != self.clock.now().date():
+            raise ValueError("Only a scheduled dose from today can be recorded from this dashboard.")
+        if log.status in {"taken", "taken_late"}:
+            return {
+                "status": "already_taken",
+                "dose_id": log.id,
+                "message": f"That dose was already recorded at {log.taken_at.strftime('%I:%M %p')}.",
+            }
+        log.status = "taken"
+        log.taken_at = self.clock.now()
+        log.recorded_by = "patient"
+        log.source = "app_event"
+        self.patients.save_patient(patient)
+        return {
+            "status": "taken",
+            "dose_id": log.id,
+            "message": f"The {confirmed[log.medication_id].patient_friendly_name} dose was recorded as taken at {log.taken_at.strftime('%I:%M %p')}.",
+        }
 
     def get_saved_instructions(self, reference: str):
         med = self._med(reference)
