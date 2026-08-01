@@ -1,6 +1,4 @@
 from datetime import datetime
-from pathlib import Path
-import shutil
 
 import pytest
 from pydantic import ValidationError
@@ -14,7 +12,7 @@ from medication.patient_data_service import PatientDataService
 from medication.runtime_service import RuntimeMedicationService, UNREADY_MESSAGE
 from medication.schemas import DoseLogRecord, UserInput
 from scripts.demo_management import reset_demo
-from ui.gradio_app import _dashboard_html
+from scripts.prepare_demo_data import prepare_demo_data
 from voice.service import VoiceInteractionService
 
 
@@ -66,7 +64,7 @@ def test_effective_status_compares_timezone_aware_instants():
 @pytest.fixture
 def patients(tmp_path):
     target = tmp_path / "patients"
-    shutil.copytree(Path(__file__).parents[1] / "data" / "runtime_patients", target)
+    prepare_demo_data(target)
     return PatientDataService(target)
 
 
@@ -82,14 +80,10 @@ def test_cross_surface_statuses_agree_after_missed_threshold(patients):
     assert runtime.check_dose_status("lunch tablet")["status"] == "missed"
     missed = runtime.check_missed_doses()
     assert [item["name"] for item in missed["doses"]] == ["Vitamin D3"]
+    assert missed["doses"][0]["dose_id"].startswith("dose_plan_src_vitamin_d")
     assert runtime.find_next_dose()["medication"] == "Metformin 500 mg"
     assert any(item["medication"].startswith("Vitamin D3") and item["status"] == "missed" for item in runtime.show_medication_history())
-    rendered = _dashboard_html(
-        {"display_name": "Elena Rivera", "readiness": "Ready"}, today,
-        runtime.find_next_dose(), runtime.clock.now(), [],
-    )
-    assert "! Missed" in rendered and "1 of 3 scheduled doses recorded as taken" in rendered
-    assert "1 missed or overdue" in rendered and "1 remaining" in rendered
+    assert [item["status"] for item in today] == ["taken", "missed", "upcoming"]
 
 
 def test_next_dose_uses_same_due_policy(patients):

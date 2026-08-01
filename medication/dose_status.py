@@ -49,6 +49,7 @@ def calculate_effective_dose_status(
 
 
 class MissedDoseItem(BaseModel):
+    dose_id: str
     medication_id: str
     name: str
     strength: str = ""

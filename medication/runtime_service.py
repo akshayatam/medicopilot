@@ -55,7 +55,23 @@ class RuntimeMedicationService:
     def list_today_medications(self, *_):
         self.ensure_ready(); patient = self.repository.load(); now = self.clock.now(); today = now.date()
         meds = {m.id: m for m in self.repository.get_confirmed_medications()}
-        results = [{"medication_id": l.medication_id, "name": meds[l.medication_id].patient_friendly_name, "strength": meds[l.medication_id].strength or "", "appearance": self._verified_appearance(meds[l.medication_id]), "scheduled_at": l.scheduled_at.isoformat(), "stored_status": l.status, "effective_status": self.effective_status(l, now), "status": self.effective_status(l, now), "taken_at": l.taken_at.isoformat() if l.taken_at else "", "dose_status_policy": self.policy_payload()} for l in patient.dose_logs if l.medication_id in meds and l.scheduled_at.date() == today]
+        results = [
+            {
+                "dose_id": log.id,
+                "medication_id": log.medication_id,
+                "name": meds[log.medication_id].patient_friendly_name,
+                "strength": meds[log.medication_id].strength or "",
+                "appearance": self._verified_appearance(meds[log.medication_id]),
+                "scheduled_at": log.scheduled_at.isoformat(),
+                "stored_status": log.status,
+                "effective_status": self.effective_status(log, now),
+                "status": self.effective_status(log, now),
+                "taken_at": log.taken_at.isoformat() if log.taken_at else "",
+                "dose_status_policy": self.policy_payload(),
+            }
+            for log in patient.dose_logs
+            if log.medication_id in meds and log.scheduled_at.date() == today
+        ]
         if not results:
             return {"status": "no_data", "date": today.isoformat(), "message": f"No dose instances are stored for {today.isoformat()}. No other date was substituted."}
         return results
@@ -66,7 +82,18 @@ class RuntimeMedicationService:
         if not upcoming: return {"status": "none", "message": "According to your saved medication plan, there are no upcoming doses."}
         log = min(upcoming, key=lambda l: l.scheduled_at); med = meds[log.medication_id]
         effective = self.effective_status(log, now)
-        return {"status": effective, "stored_status": log.status, "effective_status": effective, "medication_id": med.id, "medication": f"{med.patient_friendly_name}{' ' + med.strength if med.strength else ''}", "appearance": self._verified_appearance(med), "scheduled_at": log.scheduled_at.isoformat(), "dose_status_policy": self.policy_payload(), "message": f"According to your saved medication plan, the next dose is {med.patient_friendly_name}{' ' + med.strength if med.strength else ''} at {log.scheduled_at.strftime('%I:%M %p')}."}
+        return {
+            "status": effective,
+            "stored_status": log.status,
+            "effective_status": effective,
+            "dose_id": log.id,
+            "medication_id": med.id,
+            "medication": f"{med.patient_friendly_name}{' ' + med.strength if med.strength else ''}",
+            "appearance": self._verified_appearance(med),
+            "scheduled_at": log.scheduled_at.isoformat(),
+            "dose_status_policy": self.policy_payload(),
+            "message": f"According to your saved medication plan, the next dose is {med.patient_friendly_name}{' ' + med.strength if med.strength else ''} at {log.scheduled_at.strftime('%I:%M %p')}.",
+        }
 
     def check_dose_status(self, reference: str, *_):
         self.ensure_ready(); med = self._med(reference); now = self.clock.now(); today = now.date()
@@ -99,14 +126,14 @@ class RuntimeMedicationService:
 
     def _record_exact(self, patient, med, log):
         if log.status in {"taken", "taken_late"}:
-            return {"status": "already_taken", "message": "That dose was already recorded as taken."}
+            return {"status": "already_taken", "dose_id": log.id, "message": "That dose was already recorded as taken."}
         now = self.clock.now()
         late_after = log.scheduled_at + timedelta(minutes=self.policy.due_window_minutes)
         log.status = "taken_late" if now > late_after else "taken"
         log.taken_at = now; log.recorded_by = "patient"; log.source = "app_event"
         self.patients.save_patient(patient)
         display = f"{med.patient_friendly_name}{' ' + med.strength if med.strength else ''}"
-        return {"status": log.status, "medication_id": med.id, "scheduled_at": log.scheduled_at.isoformat(), "message": f"{display} scheduled for {log.scheduled_at.strftime('%-I:%M %p')} has been recorded as taken."}
+        return {"status": log.status, "dose_id": log.id, "medication_id": med.id, "scheduled_at": log.scheduled_at.isoformat(), "message": f"{display} scheduled for {log.scheduled_at.strftime('%-I:%M %p')} has been recorded as taken."}
 
     def check_missed_doses(self, *_):
         self.ensure_ready(); now = self.clock.now(); today = now.date(); patient = self.repository.load()
@@ -119,7 +146,7 @@ class RuntimeMedicationService:
             if self.effective_status(log, now) != "missed":
                 continue
             med = meds[log.medication_id]
-            missed.append({"medication_id": med.id, "name": med.patient_friendly_name, "strength": med.strength or "", "scheduled_at": log.scheduled_at, "stored_status": log.status})
+            missed.append({"dose_id": log.id, "medication_id": med.id, "name": med.patient_friendly_name, "strength": med.strength or "", "scheduled_at": log.scheduled_at, "stored_status": log.status})
         if not missed:
             return MissedDoseResult(status="no_missed_doses", date=today.isoformat(), message="Your local dose log does not show any missed scheduled doses today.", dose_status_policy=self.policy).model_dump(mode="json")
         if len(missed) == 1:
@@ -129,6 +156,18 @@ class RuntimeMedicationService:
             rows = "\n".join(f"- {dose['name']}{' ' + dose['strength'] if dose['strength'] else ''} — {dose['scheduled_at'].strftime('%-I:%M %p')}" for dose in missed)
             message = f"I found {len(missed)} scheduled doses that are not recorded as taken:\n{rows}\nWhich medicine would you like to review?"
         return MissedDoseResult(status="missed_doses_found", date=today.isoformat(), doses=missed, message=message, dose_status_policy=self.policy).model_dump(mode="json")
+
+    def mark_dose_taken_by_id(self, dose_id: str):
+        """Record one exact, confirmed dose instance selected by the user interface."""
+        self.ensure_ready()
+        patient = self.repository.load()
+        confirmed = {m.id: m for m in self.repository.get_confirmed_medications()}
+        log = next((item for item in patient.dose_logs if item.id == dose_id), None)
+        if log is None or log.medication_id not in confirmed:
+            raise ValueError("That scheduled dose was not found in the confirmed medication plan.")
+        if log.scheduled_at.date() != self.clock.now().date():
+            raise ValueError("Only a scheduled dose from today can be recorded from this dashboard.")
+        return self._record_exact(patient, confirmed[log.medication_id], log)
 
     def get_saved_instructions(self, reference: str):
         med = self._med(reference)

@@ -8,6 +8,9 @@ Read [rules.md](rules.md) completely before changing code or data. It is the aut
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+cd frontend
+npm install
+cd ..
 ```
 
 For natural-language routing, install Ollama and run:
@@ -32,6 +35,7 @@ Before opening a pull request, run:
 ```bash
 pytest -m "not integration"
 python -m compileall -q app.py medication gemma ui scripts evaluation voice
+cd frontend && npm run build
 git diff --check
 ```
 
@@ -42,7 +46,8 @@ Use `python app.py verify-demo --require-model` only when Ollama and the configu
 - `medication/`: deterministic schemas, safety, conversion, reconciliation, repositories, and services
 - `gemma/`: local model client and bounded intent-routing layer
 - `scripts/`: conversion and demo lifecycle tools
-- `ui/`: local Gradio interface
+- `ui/`: local FastAPI presentation boundary
+- `frontend/`: React, TypeScript, and Vite interface
 - `voice/`: ephemeral local audio validation, transcription providers, capability probing, and confirmation staging
 - `tests/`: non-live regression coverage
 

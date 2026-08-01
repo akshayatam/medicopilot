@@ -15,7 +15,8 @@ gemma/                 Ollama client, prompt, intent schema, parser, and orchest
 medication/            conversion, reconciliation, schemas, repositories, safety, and services
 scripts/               Synthea converter and deterministic demo tooling
 tests/                 non-live unit and integration-style regression tests
-ui/                    local Gradio application
+ui/                    local FastAPI presentation boundary
+frontend/              React, TypeScript, and Vite interface
 voice/                 ephemeral audio validation, provider, capability probe, and confirmation workflow
 ```
 
@@ -23,7 +24,8 @@ voice/                 ephemeral audio validation, provider, capability probe, a
 
 ```mermaid
 sequenceDiagram
-    participant U as User
+    participant U as React UI
+    participant A as FastAPI
     participant S as Safety screen
     participant G as Local Gemma
     participant V as Pydantic validator
@@ -32,9 +34,10 @@ sequenceDiagram
     participant M as Deterministic service
     participant P as Runtime repository
 
-    U->>S: Text request
+    U->>A: Typed JSON request
+    A->>S: Text request
     alt unsafe request
-        S-->>U: Deterministic refusal
+        S-->>A: Deterministic refusal
     else allowed navigation request
         S->>G: Minimal text only
         G->>V: Structured intent JSON
@@ -43,7 +46,8 @@ sequenceDiagram
         R->>P: Confirmed reconciled medicines only
         O->>M: At most one approved operation
         M->>P: Verified plan / adherence ledger
-        M-->>U: Grounded deterministic response
+        M-->>A: Grounded structured response
+        A-->>U: JSON response
     end
 ```
 
@@ -52,18 +56,19 @@ Invalid model output receives one bounded repair attempt. Failed repair produces
 ## Voice request flow
 
 ```text
-microphone/upload → local ffmpeg normalization → Gemma transcription only
-→ visible editable transcript → explicit transcript submission
+microphone → browser-verified on-device transcription
+→ visible editable transcript → explicit Ask submission
 → existing safety/router/Pydantic/resolver/readiness path
-→ read-only response OR session-bound exact-dose proposal
-→ explicit confirmation → revalidation → existing runtime service
+→ grounded response or the same deterministic action path as typed text
 ```
 
-Audio is limited to 30 seconds and 10 MiB, normalized to mono 16 kHz PCM WAV in a non-identifying temporary directory, and deleted during unconditional cleanup. Neither raw audio nor transcript-review state is written to runtime patient JSON. The provider sends only the transcription instruction and audio—no patient record. Gradio state holds transcript and pending action per browser session; patient changes and cancellation replace that state. Pending mutations expire after five minutes and are revalidated against patient ID, readiness, deterministic resolution, and the exact scheduled ledger entry.
+The React microphone is offered only when the browser can verify on-device recognition and set `processLocally`; otherwise it remains disabled and the user can paste text or load a local text/WebVTT transcript. Dictation is limited to 30 seconds, placed visibly in the question field, and never submitted automatically. Browser audio and transcript-review state are not written to runtime patient JSON.
+
+The separate Python `voice/` capability path validates WAV input, limits it to 30 seconds and 10 MiB, normalizes it to mono 16 kHz PCM WAV in a non-identifying temporary directory, and deletes it during unconditional cleanup. Its Ollama provider sends only the transcription instruction and audio—no patient record. Pending mutation objects belong to the caller's session, are never persisted, expire after five minutes, and are revalidated against patient ID, readiness, deterministic resolution, and the exact scheduled ledger entry.
 
 An exactly-one missed-dose query can also stage a five-minute, session-local exact-dose follow-up. The visible prompt names the medication, strength, date, time, and proposed record action. Deterministic affirmative, negative, and cancel replies are handled before model routing; approved voice transcripts use the same path. Multiple missed doses never create a blanket confirmation. Patient changes, expiry, cancellation, unrelated requests, and replacement of the underlying demo patient file invalidate pending state.
 
-Ollama capability is established by a generated speech request whose returned content must match expected words. With Ollama 0.32.4 and `gemma4:e2b`, WAV audio works through the multimodal `images` compatibility field; a native `audios` field request was ignored. Thinking is disabled for transcription. No cloud provider or TTS is present.
+The CLI Ollama voice capability is established by a generated speech request whose returned content must match expected words. With Ollama 0.32.4 and `gemma4:e2b`, WAV audio works through the multimodal `images` compatibility field; a native `audios` field request was ignored. Thinking is disabled for transcription. No cloud provider or TTS is present.
 
 ## Source record and verified plan
 
@@ -95,7 +100,13 @@ Runtime patients are loaded through `PatientDataService`, which validates schema
 
 ## Fixed clock
 
-`SystemClock` uses each patient's IANA timezone. `FixedClock` accepts a timezone-aware ISO-8601 value supplied by `DEMO_NOW` or `--now`. The same clock controls today, next-dose, status, mutation timestamps, history filtering, CLI, and Gradio behavior.
+`SystemClock` uses each patient's IANA timezone. `FixedClock` accepts a timezone-aware ISO-8601 value supplied by `DEMO_NOW` or `--now`. The same clock controls today, next-dose, status, mutation timestamps, history filtering, CLI, API, and React behavior.
+
+## Web interface boundary
+
+The React application contains presentation state only. FastAPI returns patient summaries, readiness, schedule rows, next-dose data, progress totals, PRN entries, grounded action responses, and filtered source-review data. React does not calculate medication status or access runtime patient files.
+
+State-changing requests address an exact scheduled dose ID and require an explicit confirmation payload. The runtime service revalidates patient readiness, dose ownership, confirmation-plan membership, and the active date before saving, then the API returns a freshly loaded dashboard.
 
 ## Demo-data generation and reset
 

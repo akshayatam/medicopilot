@@ -42,7 +42,7 @@ class FakeClient:
 
 def test_router_repairs_once():
     client = FakeClient(["bad", VALID]); router = IntentRouter(client)
-    assert router.route("what comes next").action == Action.FIND_NEXT_DOSE
+    assert router.route("Could you identify the upcoming item?").action == Action.FIND_NEXT_DOSE
     assert router.repair_used and router.raw_model_json == "bad" and router.repair_model_json == VALID
     assert "Concrete validation error" in client.calls[1][1]
     assert "do not reproduce" in client.calls[1][1]
@@ -50,12 +50,59 @@ def test_router_repairs_once():
 
 def test_router_fails_after_repair():
     with pytest.raises(IntentParseError):
-        IntentRouter(FakeClient(["bad", "still bad"])).route("what comes next")
+        IntentRouter(FakeClient(["bad", "still bad"])).route("Could you identify the upcoming item?")
 
 
 def test_safety_bypasses_model():
     intent = IntentRouter(FakeClient([])).route("Should I double my dose?")
     assert intent.action == Action.UNSAFE_MEDICAL_REQUEST
+
+
+@pytest.mark.parametrize("text", [
+    "what does my schedule look like?",
+    "What is my medication schedule for today?",
+    "Please show me my dose schedule.",
+    "Show today's medicines",
+])
+def test_common_schedule_requests_route_without_model(text):
+    client = FakeClient([])
+    intent = IntentRouter(client).route(text)
+    assert intent.action == Action.LIST_TODAY_MEDICATIONS
+    assert intent.date_reference == "today"
+    assert not hasattr(client, "calls")
+    assert client.last_latency_ms is None
+
+
+def test_schedule_change_request_is_not_mistaken_for_schedule_display():
+    reply = ('{"action":"UNSAFE_MEDICAL_REQUEST","medication_reference":null,'
+             '"date_reference":null,"time_period":null,"clarification_question":null,'
+             '"unsafe_reason":"medication change"}')
+    client = FakeClient([reply])
+    intent = IntentRouter(client).route("Can I change my medication schedule?")
+    assert intent.action == Action.UNSAFE_MEDICAL_REQUEST
+    assert len(client.calls) == 1
+
+
+@pytest.mark.parametrize("text", [
+    "What is my next medication?",
+    "What medicine comes next?",
+    "What comes next?",
+    "When is my next dose?",
+    "Please show me my next pill.",
+])
+def test_common_next_dose_requests_route_without_model(text):
+    client = FakeClient([])
+    intent = IntentRouter(client).route(text)
+    assert intent.action == Action.FIND_NEXT_DOSE
+    assert not hasattr(client, "calls")
+    assert client.last_latency_ms is None
+
+
+def test_treatment_advice_is_blocked_before_next_dose_lookup():
+    client = FakeClient([])
+    intent = IntentRouter(client).route("Should I take my next medication?")
+    assert intent.action == Action.UNSAFE_MEDICAL_REQUEST
+    assert not hasattr(client, "calls")
 
 
 def test_parser_preserves_vague_medication_reference():

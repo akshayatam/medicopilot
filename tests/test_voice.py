@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import shutil
 import struct
 import wave
 from pathlib import Path
@@ -13,6 +12,7 @@ from gemma.schemas import Action, Intent
 from medication.clock import FixedClock
 from medication.patient_data_service import PatientDataService
 from medication.runtime_service import RuntimeMedicationService
+from scripts.prepare_demo_data import prepare_demo_data
 from voice.audio import AudioValidationError, inspect_wav, normalized_audio
 from voice.providers import GemmaAudioTranscriptionProvider
 from voice.schemas import PendingVoiceAction
@@ -29,7 +29,7 @@ def make_wav(path: Path, seconds: float = 1, rate: int = 16000) -> Path:
 
 def runtime_patients(tmp_path: Path) -> PatientDataService:
     target = tmp_path / "patients"
-    shutil.copytree(Path(__file__).parents[1] / "data" / "runtime_patients", target)
+    prepare_demo_data(target)
     return PatientDataService(target)
 
 
@@ -132,14 +132,6 @@ def test_unsafe_voice_bypasses_router_and_read_only_uses_orchestrator(tmp_path):
     assert unsafe.outcome == "unsafe_request" and pending is None
     readonly, pending = VoiceInteractionService(service, StubRouter(Intent(action=Action.FIND_NEXT_DOSE))).submit_transcript("What comes next?")
     assert "Vitamin D3" in readonly.response and pending is None
-
-
-def test_voice_session_fields_are_isolated():
-    from ui.gradio_app import new_session_state
-    first = new_session_state("a"); second = new_session_state("b")
-    first["voice_transcript"] = "private session text"
-    first["pending_voice_action"] = {"x": 1}
-    assert second["voice_transcript"] == "" and second["pending_voice_action"] is None
 
 
 def test_capability_probe_requires_content_match_not_http_success(tmp_path, monkeypatch):

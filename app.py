@@ -14,13 +14,10 @@ from medication.repository import MedicationRepository
 from medication.schemas import UserInput
 from medication.service import MedicationService
 from medication.clock import FixedClock, SystemClock
+from medication.dose_status import DoseStatusPolicy
 from medication.health import ApplicationHealthService
 from medication.patient_data_service import PatientDataService
-from medication.repository import MedicationRepository
 from medication.runtime_service import RuntimeMedicationService
-from medication.dose_status import DoseStatusPolicy
-from medication.schemas import UserInput
-from medication.service import MedicationService
 
 
 def build_components() -> tuple[MedicationRepository, MedicationService, OllamaClient, MedicationOrchestrator]:
@@ -45,7 +42,8 @@ def build_parser() -> argparse.ArgumentParser:
     commands.add_parser("reset-demo")
     verify = commands.add_parser("verify-demo")
     verify.add_argument("--require-model", action="store_true")
-    serve = commands.add_parser("serve"); serve.add_argument("--now")
+    serve = commands.add_parser("serve"); serve.add_argument("--now"); serve.add_argument("--port", type=int, default=7860)
+    serve_api = commands.add_parser("serve-api"); serve_api.add_argument("--now"); serve_api.add_argument("--port", type=int, default=8000)
     convert = commands.add_parser("convert-fhir"); convert.add_argument("input"); convert.add_argument("output"); convert.add_argument("--min-age", type=int, default=60); convert.add_argument("--as-of-date", type=date.fromisoformat, default=date.today()); convert.add_argument("--default-timezone"); convert.add_argument("--old-active-order-days", type=int, default=730); convert.add_argument("--pretty", action="store_true"); convert.add_argument("--include-inactive-medications", action="store_true"); convert.add_argument("--include-all-conditions", action="store_true")
     inspect = commands.add_parser("inspect-patient"); inspect.add_argument("patient")
     reconcile = commands.add_parser("reconcile-patient"); reconcile.add_argument("patient"); reconcile.add_argument("reconciliation"); reconcile.add_argument("output", nargs="?")
@@ -161,11 +159,22 @@ def main() -> None:
         elif args.command == "health": result = ApplicationHealthService(client, patients, settings.demo_now, dose_status_policy=dose_status_policy).check()
         elif args.command == "ask":
             result = orchestrator.handle(UserInput(text=args.question), args.now or settings.demo_now).as_dict()
-        elif args.command == "serve":
-            from ui.gradio_app import create_app
-            create_app(client, settings.runtime_patients_directory, args.now or settings.demo_now, dose_status_policy).launch(
-                server_name="127.0.0.1", server_port=7860, share=False
+        elif args.command in {"serve", "serve-api"}:
+            import uvicorn
+
+            from ui.api import create_api
+
+            frontend_dist = Path(__file__).resolve().parent / "frontend" / "dist" if args.command == "serve" else None
+            if frontend_dist and not frontend_dist.is_dir():
+                raise SystemExit("Error: React build not found. Run: cd frontend && npm install && npm run build")
+            api = create_api(
+                client,
+                settings.runtime_patients_directory,
+                args.now or settings.demo_now,
+                frontend_dist=frontend_dist,
+                dose_status_policy=dose_status_policy,
             )
+            uvicorn.run(api, host="127.0.0.1", port=args.port)
             return
         else: raise RuntimeError(f"Unsupported command: {args.command}")
         print(json.dumps(result, indent=2, ensure_ascii=False))

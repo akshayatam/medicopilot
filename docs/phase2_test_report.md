@@ -1,9 +1,10 @@
-# Phase 2 Test Report
+# Current Test Report
 
 ## Automated verification
 
-- Non-live tests: 64 passed
+- Non-live tests: 72 passed
 - Python compilation: passed
+- React TypeScript and Vite production build: passed
 - Git diff validation: passed
 
 ## Live Gemma verification
@@ -22,6 +23,8 @@
 - Dose status derived only from local dose logs
 - Gemma used only for language routing
 - Deterministic logic controls safety and medication truth
+- React receives structured dashboard data through FastAPI
+- State mutation requires confirmation of an exact scheduled dose ID
 
 ## Known limitations
 

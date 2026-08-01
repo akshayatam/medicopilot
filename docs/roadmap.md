@@ -3,20 +3,23 @@
 ## Completed
 
 - Phase 1 — Data pipeline and initial medication services
-- Phase 2 — Runtime integration, safety enforcement, Gemma routing, and Gradio
+- Phase 2 — Runtime integration, safety enforcement, and Gemma routing
+- Phase 3 — Accessible React/Vite interface and local FastAPI boundary
 
 ## Current
 
-- Phase 2.5 — Repository hygiene, documentation, and demo reliability
+- Phase 4 — Local reviewed voice input validation (TTS deferred)
 
 ## Planned
 
-- Phase 3 — UI and accessibility polish (completed)
-- Phase 4 — Local reviewed voice input (current; TTS deferred)
-- Phase 4.1 — Verified medication-appearance text (memory aid only; completed)
-- Phase 4.2 — Time-aware dose status and exact missed-dose follow-up (completed)
 - Phase 5 — Image and prescription verification
 - Post-hackathon native deployment work
+
+## Recently completed
+
+- Phase 3.5 — React UI usability and accessibility validation
+- Phase 4.1 — Verified medication-appearance text (memory aid only)
+- Phase 4.2 — Time-aware dose status and exact missed-dose follow-up
 
 ## Milestone map
 

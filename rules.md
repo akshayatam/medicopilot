@@ -1062,8 +1062,12 @@ Examples:
 │   ├── test_safety.py
 │   └── test_service.py
 ├── ui
-│   ├── gradio_app.py
+│   ├── api.py
 │   └── __init__.py
+├── frontend
+│   ├── src
+│   ├── package.json
+│   └── vite.config.ts
 └── uv.lock
 
 ```
@@ -1100,7 +1104,7 @@ Minimal AI context
 python app.py serve
 ```
 
-Launch the Gradio interface.
+Launch the built React interface and local FastAPI server.
 
 ```bash
 python app.py ask --patient demo-ready-001 "What medicine comes next?"
@@ -1387,7 +1391,7 @@ Runtime architecture and Gemma integration
 Repository cleanup and demo tooling
 
 ✓ Phase 3
-Accessible dashboard and Gradio interface
+Accessible React dashboard and FastAPI interface
 
 Planned
 

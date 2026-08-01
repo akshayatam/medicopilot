@@ -34,6 +34,16 @@ env/
 data/runtime_patients.backup*/
 data/runtime_patients/*.runtime.json.tmp
 
+# React/Vite frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.npm-cache/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+.uv-cache/
+node_modules
+
 # Local model artifacts and evaluation output
 *.gguf
 *.safetensors

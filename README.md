@@ -17,12 +17,14 @@ flowchart TD
     C --> D[Explicit reconciliation]
     D --> E[Verified medication plan]
     E --> F[Schema-v2 runtime patient]
-    F --> G[Gradio text or approved voice transcript]
-    G --> H[Deterministic safety screening]
-    H --> I[Local Gemma 4 intent routing]
-    I --> J[Pydantic intent validation]
-    J --> K[Deterministic medication service]
-    K --> L[Grounded local response]
+    F --> G[React and Vite interface]
+    G --> H[FastAPI boundary]
+    H --> I[Text or reviewed local voice transcript]
+    I --> J[Deterministic safety screening]
+    J --> K[Local Gemma 4 intent routing]
+    K --> L[Pydantic intent validation]
+    L --> M[Deterministic medication service]
+    M --> N[Grounded local response]
 ```
 
 The repeatable live demo uses curated synthetic runtime data. Synthea FHIR ingestion remains supported, but imported orders stay in an unverified source-record layer. They cannot drive reminders or adherence answers until an explicit reconciliation profile creates a verified plan. Gemma routes language into approved actions; it is never the source of medication facts.
@@ -39,8 +41,10 @@ See [Architecture](docs/architecture.md) for the detailed request, persistence, 
 - Ready/unready patient enforcement
 - Deterministic medication-safety refusals
 - Ready and review-required synthetic demo patients
-- Local Gradio text interface with source review, health, and debug information
-- Local record–transcribe–review–submit voice input with explicit mutation confirmation
+- React and Vite interface with source review, health, and debug information
+- Local FastAPI boundary with structured dashboard responses
+- Explicit confirmation of an exact scheduled dose before adherence mutation
+- Browser-verified on-device dictation with visible review before submission
 - Optional verified medication-appearance descriptions as a local memory aid
 - Reproducible demo reset and verification commands
 - Supported Synthea FHIR conversion and reconciliation pipeline
@@ -51,13 +55,17 @@ The ready synthetic demo includes curated appearance descriptions with reconcili
 
 ## Setup
 
-Python 3.10 or newer is supported.
+Python 3.10 or newer and Node.js 20.19 or newer are supported.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+cd frontend
+npm install
+npm run build
+cd ..
 ```
 
 Install and start [Ollama](https://ollama.com/), then pull the configured local model:
@@ -95,7 +103,16 @@ python app.py verify-demo
 python app.py serve
 ```
 
-Open `http://127.0.0.1:7860`. Public sharing is disabled. A five-minute walkthrough and offline fallback are in [Demo script](docs/demo_script.md).
+Open `http://127.0.0.1:7860`. The server binds to localhost only. A five-minute walkthrough and offline fallback are in [Demo script](docs/demo_script.md).
+
+For frontend development, run the API and Vite development servers in separate terminals:
+
+```bash
+python app.py serve-api
+cd frontend && npm run dev
+```
+
+Open `http://127.0.0.1:5173`; Vite proxies `/api` requests to the local Python server.
 
 Useful CLI checks include:
 
@@ -116,6 +133,7 @@ The standard suite does not require Ollama:
 ```bash
 pytest -m "not integration"
 python -m compileall -q app.py medication gemma ui scripts evaluation voice
+cd frontend && npm run build
 git diff --check
 ```
 
@@ -139,15 +157,15 @@ python app.py verify-demo --require-model
 - Raw FHIR orders remain isolated for review and do not become a daily plan automatically.
 - Missing allergy data means `not_recorded`, never “no allergies.”
 - Gemma selects an approved action but cannot invent facts, resolve medication ambiguity, bypass readiness, or authorize unsafe advice.
-- Voice audio is normalized locally, limited to 30 seconds, deleted after transcription, and never added to patient JSON. A visible editable transcript must be submitted before routing. Voice mutations additionally show the exact scheduled dose and require confirmation.
+- Browser dictation is limited to 30 seconds, is enabled only when on-device recognition can be verified, and places an editable transcript in the question field without submitting it. The separate Python voice provider deletes normalized temporary audio after transcription. Neither path adds audio or transcript-review state to patient JSON.
 - Appearance metadata stays local and remains secondary to exact medication name, strength, schedule, and dose-ledger facts.
-- A uniquely identified overdue dose can create a five-minute browser-session confirmation. Contextual confirmation records only that exact revalidated dose; a bare “yes” without pending state never changes data. The app does not advise whether an overdue dose should be taken.
+- The deterministic follow-up service can stage a five-minute confirmation for one uniquely identified overdue dose. Contextual confirmation records only that exact revalidated dose; a bare “yes” without pending state never changes data. The app does not advise whether an overdue dose should be taken.
 
 ## Local voice compatibility
 
-Voice uses a provider abstraction backed by the configured `gemma4:e2b`. For Ollama 0.32.4, the verified local transport is a mono 16 kHz PCM WAV carried through Ollama's multimodal `images` compatibility field; the native `audios` field was observed to be ignored. `python app.py voice-health` generates a harmless English speech sample, sends no patient data, and accepts support only when returned words match the sample. A model capability flag or HTTP 200 alone is not considered success.
+The React interface uses the browser's on-device speech-recognition mode. It enables the microphone only when local processing can be verified and otherwise offers local `.txt` or `.vtt` transcript loading. The transcript remains editable and requires an explicit **Ask** action.
 
-The UI supports microphone recording and audio-file upload. The only currently tested language is English. No cloud speech provider or fallback is configured. TTS is not implemented.
+Separately, the Python voice provider is backed by the configured `gemma4:e2b`. For Ollama 0.32.4, the verified local transport is a mono 16 kHz PCM WAV carried through Ollama's multimodal `images` compatibility field; the native `audios` field was observed to be ignored. `python app.py voice-health` generates a harmless English speech sample, sends no patient data, and accepts support only when returned words match the sample. A model capability flag or HTTP 200 alone is not considered success. The only currently tested language is English. No cloud speech provider, audio-upload web endpoint, or TTS is implemented.
 
 The permanent safety and data specification is [rules.md](rules.md).
 

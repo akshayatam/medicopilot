@@ -7,7 +7,6 @@ from medication.runtime import RuntimePatient
 from medication.runtime_service import RuntimeMedicationService
 from medication.schemas import MedicationAppearance, MedicationPlanItem
 from scripts.prepare_demo_data import prepare_demo_data
-from ui.gradio_app import _dashboard_html
 
 
 def test_verified_appearance_validates_with_provenance():
@@ -64,15 +63,9 @@ def test_runtime_and_dashboard_expose_only_verified_appearance(tmp_path):
     service = RuntimeMedicationService(patients, "demo-ready-001", clock)
     today = service.list_today_medications()
     assert next(item for item in today if item["name"] == "Metformin")["appearance"] is None
+    assert next(item for item in today if item["name"] == "Metoprolol succinate ER")["appearance"] == "Small, round, white tablet."
     assert service.find_next_dose()["appearance"] == "Small, pale-yellow softgel capsule."
-    rendered = _dashboard_html(
-        {"display_name": "Elena Rivera", "readiness": "Ready"}, today,
-        service.find_next_dose(), clock.now(), [],
-    )
-    assert "Small, pale-yellow softgel capsule." in rendered
-    assert "Small, round, white tablet." in rendered
-    assert "Unverified visual note." not in rendered
-    assert "Appearance can vary by manufacturer or refill" in rendered
+    assert all(item.get("appearance") != "Unverified visual note." for item in today)
 
 
 def test_appearance_phrase_does_not_become_resolver_input(tmp_path):
